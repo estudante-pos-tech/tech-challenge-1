@@ -1,13 +1,15 @@
 package rm349040.techchallenge1.apis.enderecos.dominio;
 
 import lombok.*;
+import rm349040.techchallenge1.apis.ID;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
-public class Endereco {
+@ToString()
+public class Endereco extends ID {
 
     private Long id;
     private String rua;
@@ -16,5 +18,9 @@ public class Endereco {
     private String cidade;
     private String estado;
 
+
+    public static void main(String[] args) {
+        System.out.println(new Endereco(3L,"rua","numero","centro","sp","sp"));
+    }
 
 }

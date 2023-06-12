@@ -2,6 +2,7 @@ package rm349040.techchallenge1.apis.enderecos.controller.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import rm349040.techchallenge1.apis.enderecos.dominio.Endereco;
 
 public record DadosCadastroEndereco(
 
@@ -23,4 +24,7 @@ public record DadosCadastroEndereco(
 
 
 ) {
+        public Endereco toEndereco() {
+                return new Endereco(null,rua,numero,bairro,cidade,estado);
+        }
 }
