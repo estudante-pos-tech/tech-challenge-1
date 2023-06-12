@@ -17,8 +17,8 @@ public record DadosCadastroEndereco(
         @NotBlank(message = "ERRO: a cidade NÃO pode ser nula ou em BRANCO")
         @Size(max = 50, message = "ERRO: o nome da cidade NÃO pode conter mais do que 50 chars")
         String cidade,
-        @NotBlank(message = "ERRO: o estado NÃO pode ser nulo ou em BRANCO")
-        @Size(max = 30, message = "ERRO: o nome da estado NÃO pode conter mais do que 30 chars")
+        @NotBlank()
+        @Size(max = 30, message = "ERRO: o nome do estado NÃO pode conter mais do que 30 chars")
         String estado
 
 
