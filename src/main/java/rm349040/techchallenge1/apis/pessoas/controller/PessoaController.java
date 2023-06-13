@@ -34,10 +34,9 @@ public class PessoaController  {
 
         if (validation.isDadosOk(dados)) {
 
-            //repositorio.save(dados.toPessoa());
+            repositorio.save(dados.toPessoa());
 
-            //TODO refatorar para Pessoa.class.getName()
-            return ResponseEntity.ok().body(Messages.SUCESSO_CRIAR("Pessoa"));
+            return ResponseEntity.ok().body(Messages.SUCESSO_CRIAR(Pessoa.class.getSimpleName()));
 
         } else {
 
@@ -45,14 +44,12 @@ public class PessoaController  {
 
         }
 
-
     }
 
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public @ResponseBody ResponseEntity handleHttpMessageNotReadableException(HttpServletRequest request, Exception ex){
-        //TODO refatorar para Pessoa.class.getSimpleName()
-        return ResponseEntity.badRequest().body(Messages.ERRO_CRIAR("Pessoa", ": sexo e/ou parentesco inválidos"));
+        return ResponseEntity.badRequest().body(Messages.ERRO_CRIAR(Pessoa.class.getSimpleName(), ": sexo e/ou parentesco inválidos"));
     }
 
 
