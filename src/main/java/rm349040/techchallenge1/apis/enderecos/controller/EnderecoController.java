@@ -10,6 +10,7 @@ import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosCadastroEnder
 import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosListagemEndereco;
 import rm349040.techchallenge1.apis.enderecos.dominio.Endereco;
 import rm349040.techchallenge1.repositories.Repositorio;
+import rm349040.techchallenge1.util.Messages;
 
 import java.util.List;
 import java.util.Set;
@@ -36,7 +37,7 @@ public class EnderecoController {
 
             repositorio.save(dados.toEndereco());
 
-            return ResponseEntity.ok().body("SUCESSO: ao cadastrar endereço");
+            return ResponseEntity.ok().body(Messages.SUCESSO_CRIAR(Endereco.class.getName()));
 
         } else {
 
@@ -65,7 +66,7 @@ public class EnderecoController {
                 return ResponseEntity.ok().body(dados);
 
             } else {
-                return ResponseEntity.badRequest().body("Endereço NÃO atualizado, pois seu id=" + dados.id() + " NÃO existia na base de dados.");
+                return ResponseEntity.badRequest().body(Messages.ERRO_ATUALIZAR(Endereco.class.getName(),dados.id()));
             }
 
 
@@ -90,15 +91,15 @@ public class EnderecoController {
 
                 repositorio.delete(endereco.get());
 
-                return ResponseEntity.ok().body("SUCESSO: ao remover Endereço "+id);
+                return ResponseEntity.ok().body(Messages.SUCESSO_EXCLUJR(Endereco.class.getName(), id));
 
             } else {
-                return ResponseEntity.badRequest().body("Endereço NÃO excluido, pois seu id=" + id + " NÃO existia na base de dados.");
+                return ResponseEntity.badRequest().body(Messages.ERRO_EXCLUIR(Endereco.class.getName(),id));
             }
 
         } else{
 
-            return ResponseEntity.badRequest().body("ERRO: O id do Endereço NÃO pode ser nulo.");
+            return ResponseEntity.badRequest().body(Messages.ERRO_ID_NULO(Endereco.class.getName()));
 
         }
 
