@@ -31,7 +31,7 @@ public class EnderecoController {
 
             repositorio.save(dados.toEndereco());
 
-            return ResponseEntity.ok().body(Messages.SUCESSO_CRIAR(Endereco.class.getName()));
+            return ResponseEntity.ok().body(Messages.SUCESSO_CRIAR(Endereco.class.getSimpleName()));
 
         } else {
 
@@ -58,7 +58,7 @@ public class EnderecoController {
                 return ResponseEntity.ok().body(dados);
 
             } else {
-                return ResponseEntity.badRequest().body(Messages.ERRO_ATUALIZAR(Endereco.class.getName(),dados.id()));
+                return ResponseEntity.badRequest().body(Messages.ERRO_ATUALIZAR(Endereco.class.getSimpleName(),dados.id()));
             }
 
 
@@ -83,15 +83,15 @@ public class EnderecoController {
 
                 repositorio.delete(endereco.get());
 
-                return ResponseEntity.ok().body(Messages.SUCESSO_EXCLUJR(Endereco.class.getName(), id));
+                return ResponseEntity.ok().body(Messages.SUCESSO_EXCLUJR(Endereco.class.getSimpleName(), id));
 
             } else {
-                return ResponseEntity.badRequest().body(Messages.ERRO_EXCLUIR(Endereco.class.getName(),id));
+                return ResponseEntity.badRequest().body(Messages.ERRO_EXCLUIR(Endereco.class.getSimpleName(),id));
             }
 
         } else{
 
-            return ResponseEntity.badRequest().body(Messages.ERRO_ID_NULO(Endereco.class.getName()));
+            return ResponseEntity.badRequest().body(Messages.ERRO_ID_NULO(Endereco.class.getSimpleName()));
 
         }
 
