@@ -9,6 +9,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosCadastroPessoa;
+import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosAtualizarPessoa;
 import rm349040.techchallenge1.apis.pessoas.dominio.Pessoa;
 import rm349040.techchallenge1.repositories.Repositorio;
 import rm349040.techchallenge1.util.Messages;
@@ -45,6 +46,35 @@ public class PessoaController  {
         }
 
     }
+
+    @PutMapping
+    public ResponseEntity atualizar(@RequestBody DadosAtualizarPessoa dados) {
+
+        if (validation.isDadosOk(dados)) {
+
+            var pessoa = repositorio.getReferenceById(dados.id());
+
+
+            if (pessoa.isPresent()) {
+
+                pessoa.get().atualizarDados(dados.toPessoa());
+                repositorio.save(pessoa.get());
+
+                return ResponseEntity.ok().body(dados);
+
+            } else {
+                return ResponseEntity.badRequest().body(Messages.ERRO_ATUALIZAR(Pessoa.class.getSimpleName(),dados.id()));
+            }
+
+
+        } else {
+
+            return ResponseEntity.badRequest().body(validation.errorMessage(dados));
+
+        }
+
+    }
+
 
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
