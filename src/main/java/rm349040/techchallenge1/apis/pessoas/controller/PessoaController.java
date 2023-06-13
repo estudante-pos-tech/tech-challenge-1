@@ -2,23 +2,19 @@ package rm349040.techchallenge1.apis.pessoas.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
-import rm349040.techchallenge1.apis.enderecos.dominio.Endereco;
 import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosCadastroPessoa;
+import rm349040.techchallenge1.apis.pessoas.dominio.Pessoa;
 import rm349040.techchallenge1.repositories.Repositorio;
 import rm349040.techchallenge1.util.Messages;
 import rm349040.techchallenge1.util.Validation;
 
-import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -27,7 +23,7 @@ public class PessoaController  {
 
 
     @Autowired
-    private Repositorio<Endereco> repositorio;
+    private Repositorio<Pessoa> repositorio;
 
     @Autowired
     private Validation validation;
@@ -80,4 +76,5 @@ public class PessoaController  {
         return new ModelAndView("error", body);
 
     }
-}
+
+  }
