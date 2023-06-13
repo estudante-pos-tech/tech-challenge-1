@@ -24,6 +24,10 @@ public class Messages {
         return "ERRO: O id do "+dominio+" NÃO pode ser nulo.";
     }
 
+    static public String ERRO_CRIAR(String dominio, String msg) {
+        return "ERRO: "+dominio+""+msg;
+    }
+
 
 
 
