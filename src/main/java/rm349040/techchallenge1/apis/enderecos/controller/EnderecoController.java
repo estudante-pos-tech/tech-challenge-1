@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosAtualizarEndereco;
 import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosCadastroEndereco;
+import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosListagemEndereco;
 import rm349040.techchallenge1.apis.enderecos.dominio.Endereco;
 import rm349040.techchallenge1.repositories.Repositorio;
 
@@ -78,6 +79,13 @@ public class EnderecoController {
         }
 
     }
+
+
+    @GetMapping
+    public ResponseEntity listar(){
+        return ResponseEntity.ok().body(repositorio.findAll().stream().map(DadosListagemEndereco::new));
+    }
+
 
     private static boolean isDadosOk(List<String> violacoes) {
         return violacoes.isEmpty();

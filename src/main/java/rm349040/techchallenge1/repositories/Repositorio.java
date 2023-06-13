@@ -39,11 +39,11 @@ public class Repositorio<T extends ID> {
 
     }
 
-    public Set<T> getAll() {
-        return Collections.unmodifiableSet(collection);
-    }
-
     public Optional<T> getReferenceById(Long id) {
         return collection.stream().filter(t -> t.getId().equals(id)).findFirst();
+    }
+
+    public Set<T> findAll() {
+        return Collections.unmodifiableSet(collection);
     }
 }
