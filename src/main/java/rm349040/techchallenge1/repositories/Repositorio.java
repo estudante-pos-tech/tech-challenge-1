@@ -1,12 +1,14 @@
 package rm349040.techchallenge1.repositories;
 
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 import rm349040.techchallenge1.apis.BASE;
 
 import java.util.*;
 
 @Repository
+@Scope("prototype")
 public class Repositorio<T extends BASE> {
 
     private static Random random = new Random();
