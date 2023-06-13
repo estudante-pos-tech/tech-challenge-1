@@ -1,7 +1,5 @@
 package rm349040.techchallenge1.apis.enderecos.controller;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +9,7 @@ import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosListagemEnder
 import rm349040.techchallenge1.apis.enderecos.dominio.Endereco;
 import rm349040.techchallenge1.repositories.Repositorio;
 import rm349040.techchallenge1.util.Messages;
-
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import rm349040.techchallenge1.util.Validation;
 
 @RestController
 @RequestMapping("endereco")
@@ -24,16 +19,15 @@ public class EnderecoController {
     @Autowired
     private Repositorio<Endereco> repositorio;
 
+
     @Autowired
-    private Validator validator;
+    private Validation validation;
 
     @PostMapping
     public ResponseEntity criar(@RequestBody DadosCadastroEndereco dados) {
 
 
-        List<String> violacoes = getViolacoes(dados);
-
-        if (isDadosOk(violacoes)) {
+        if (validation.isDadosOk(dados)) {
 
             repositorio.save(dados.toEndereco());
 
@@ -41,7 +35,7 @@ public class EnderecoController {
 
         } else {
 
-            return ResponseEntity.badRequest().body(errorMessage(violacoes));
+            return ResponseEntity.badRequest().body(validation.errorMessage(dados));
 
         }
 
@@ -51,9 +45,7 @@ public class EnderecoController {
     @PutMapping
     public ResponseEntity atualizar(@RequestBody DadosAtualizarEndereco dados) {
 
-        List<String> violacoes = getViolacoes(dados);
-
-        if (isDadosOk(violacoes)) {
+        if (validation.isDadosOk(dados)) {
 
             var endereco = repositorio.getReferenceById(dados.id());
 
@@ -72,7 +64,7 @@ public class EnderecoController {
 
         } else {
 
-            return ResponseEntity.badRequest().body(errorMessage(violacoes));
+            return ResponseEntity.badRequest().body(validation.errorMessage(dados));
 
         }
 
@@ -113,37 +105,7 @@ public class EnderecoController {
     }
 
 
-    private static boolean isDadosOk(List<String> violacoes) {
-        return violacoes.isEmpty();
-    }
 
-    private String errorMessage(List<String> violacoes) {
-
-        StringBuilder sb = new StringBuilder();
-
-
-        violacoes.stream().forEach(violacao -> {
-            sb.append(violacao);
-            sb.append("\n");
-        });
-
-
-        return sb.toString();
-
-    }
-
-
-    private <T> List<String> getViolacoes(T obj) {
-
-        Set<ConstraintViolation<T>> violacoes = validator.validate(obj);
-
-        List<String> violacoesToList = violacoes.stream().
-                map((violacao) -> new String(violacao.getPropertyPath() + ":" + violacao.getMessage()))
-                .collect(Collectors.toList());
-
-        return violacoesToList;
-
-    }
 
 
 }
