@@ -46,4 +46,9 @@ public class Repositorio<T extends ID> {
     public Set<T> findAll() {
         return Collections.unmodifiableSet(collection);
     }
+
+    public void delete(T t) {
+        collection.remove(t);
+    }
+
 }

@@ -32,7 +32,7 @@ public class EnderecoController {
 
         List<String> violacoes = getViolacoes(dados);
 
-        if ( isDadosOk(violacoes) ) {
+        if (isDadosOk(violacoes)) {
 
             repositorio.save(dados.toEndereco());
 
@@ -48,28 +48,25 @@ public class EnderecoController {
     }
 
     @PutMapping
-    public ResponseEntity atualizar(@RequestBody DadosAtualizarEndereco dados){
+    public ResponseEntity atualizar(@RequestBody DadosAtualizarEndereco dados) {
 
         List<String> violacoes = getViolacoes(dados);
 
-        if ( isDadosOk(violacoes) ) {
+        if (isDadosOk(violacoes)) {
 
             var endereco = repositorio.getReferenceById(dados.id());
 
 
-
-            if(endereco.isPresent()){
+            if (endereco.isPresent()) {
 
                 endereco.get().atualizarDados(dados.toEndereco());
                 repositorio.save(endereco.get());
 
                 return ResponseEntity.ok().body(dados);
 
-            } else{
-                return ResponseEntity.badRequest().body("Endereço NÃO atualizado, pois seu id="+dados.id()+" NÃO existia na base de dados.");
+            } else {
+                return ResponseEntity.badRequest().body("Endereço NÃO atualizado, pois seu id=" + dados.id() + " NÃO existia na base de dados.");
             }
-
-
 
 
         } else {
@@ -81,8 +78,36 @@ public class EnderecoController {
     }
 
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity excluir(@PathVariable Long id) {
+
+        if (id != null) {
+
+
+            var endereco = repositorio.getReferenceById(id);
+
+            if (endereco.isPresent()) {
+
+                repositorio.delete(endereco.get());
+
+                return ResponseEntity.ok().body("SUCESSO: ao remover Endereço "+id);
+
+            } else {
+                return ResponseEntity.badRequest().body("Endereço NÃO excluido, pois seu id=" + id + " NÃO existia na base de dados.");
+            }
+
+        } else{
+
+            return ResponseEntity.badRequest().body("ERRO: O id do Endereço NÃO pode ser nulo.");
+
+        }
+
+
+    }
+
+
     @GetMapping
-    public ResponseEntity listar(){
+    public ResponseEntity listar() {
         return ResponseEntity.ok().body(repositorio.findAll().stream().map(DadosListagemEndereco::new));
     }
 
