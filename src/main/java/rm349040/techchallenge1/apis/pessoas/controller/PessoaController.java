@@ -12,7 +12,7 @@ import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosAtualizarPessoa
 import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosCadastroPessoa;
 import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosListagemPessoa;
 import rm349040.techchallenge1.apis.pessoas.dominio.Pessoa;
-import rm349040.techchallenge1.repositories.Repositorio;
+import rm349040.techchallenge1.repository.Repositorio;
 import rm349040.techchallenge1.util.Messages;
 import rm349040.techchallenge1.util.Validation;
 

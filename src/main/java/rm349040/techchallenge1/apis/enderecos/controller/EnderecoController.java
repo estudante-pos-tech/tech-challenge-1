@@ -7,7 +7,7 @@ import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosAtualizarEnde
 import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosCadastroEndereco;
 import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosListagemEndereco;
 import rm349040.techchallenge1.apis.enderecos.dominio.Endereco;
-import rm349040.techchallenge1.repositories.Repositorio;
+import rm349040.techchallenge1.repository.Repositorio;
 import rm349040.techchallenge1.util.Messages;
 import rm349040.techchallenge1.util.Validation;
 
