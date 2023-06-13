@@ -2,6 +2,7 @@ package rm349040.techchallenge1.apis.enderecos.dominio;
 
 import lombok.*;
 import rm349040.techchallenge1.apis.ID;
+import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosAtualizarEndereco;
 
 @Getter
 @Setter
@@ -9,7 +10,7 @@ import rm349040.techchallenge1.apis.ID;
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 @ToString()
-public class Endereco extends ID {
+public class Endereco extends ID<Endereco> {
 
     private Long id;
     private String rua;
@@ -20,7 +21,18 @@ public class Endereco extends ID {
 
 
     public static void main(String[] args) {
-        System.out.println(new Endereco(3L,"rua","numero","centro","sp","sp"));
+        System.out.println(new Endereco(3L, "rua", "numero", "centro", "sp", "sp"));
     }
 
+
+    @Override
+    public void atualizarDados(Endereco endereco) {
+
+        this.rua = endereco.getRua();
+        this.numero = endereco.getNumero();
+        this.bairro = endereco.getBairro();
+        this.cidade = endereco.getCidade();
+        this.estado = endereco.getEstado();
+
+    }
 }

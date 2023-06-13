@@ -4,10 +4,8 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosAtualizarEndereco;
 import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosCadastroEndereco;
 import rm349040.techchallenge1.apis.enderecos.dominio.Endereco;
 import rm349040.techchallenge1.repositories.Repositorio;
@@ -45,6 +43,39 @@ public class EnderecoController {
 
         }
 
+
+    }
+
+    @PutMapping
+    public ResponseEntity atualizar(@RequestBody DadosAtualizarEndereco dados){
+
+        List<String> violacoes = getViolacoes(dados);
+
+        if ( isDadosOk(violacoes) ) {
+
+            var endereco = repositorio.getReferenceById(dados.id());
+
+
+
+            if(endereco.isPresent()){
+
+                endereco.get().atualizarDados(dados.toEndereco());
+                repositorio.save(endereco.get());
+
+                return ResponseEntity.ok().body(dados);
+
+            } else{
+                return ResponseEntity.badRequest().body("Endereço NÃO atualizado, pois seu id="+dados.id()+" NÃO existia na base de dados.");
+            }
+
+
+
+
+        } else {
+
+            return ResponseEntity.badRequest().body(errorMessage(violacoes));
+
+        }
 
     }
 
