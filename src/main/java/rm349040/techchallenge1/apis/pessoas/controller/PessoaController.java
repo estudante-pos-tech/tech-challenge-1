@@ -8,9 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosListagemEndereco;
-import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosCadastroPessoa;
 import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosAtualizarPessoa;
+import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosCadastroPessoa;
 import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosListagemPessoa;
 import rm349040.techchallenge1.apis.pessoas.dominio.Pessoa;
 import rm349040.techchallenge1.repositories.Repositorio;
@@ -77,6 +76,33 @@ public class PessoaController  {
 
     }
 
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity excluir(@PathVariable Long id) {
+
+        if (id != null) {
+
+
+            var pessoa = repositorio.getReferenceById(id);
+
+            if (pessoa.isPresent()) {
+
+                repositorio.delete(pessoa.get());
+
+                return ResponseEntity.ok().body(Messages.SUCESSO_EXCLUJR(Pessoa.class.getSimpleName(), id));
+
+            } else {
+                return ResponseEntity.badRequest().body(Messages.ERRO_EXCLUIR(Pessoa.class.getSimpleName(),id));
+            }
+
+        } else{
+
+            return ResponseEntity.badRequest().body(Messages.ERRO_ID_NULO(Pessoa.class.getSimpleName()));
+
+        }
+
+
+    }
 
     @GetMapping
     public ResponseEntity listar() {
