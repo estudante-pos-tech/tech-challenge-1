@@ -1,8 +1,7 @@
 package rm349040.techchallenge1.apis.enderecos.dominio;
 
 import lombok.*;
-import rm349040.techchallenge1.apis.ID;
-import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosAtualizarEndereco;
+import rm349040.techchallenge1.apis.BASE;
 
 @Getter
 @Setter
@@ -10,7 +9,7 @@ import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosAtualizarEnde
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 @ToString()
-public class Endereco extends ID<Endereco> {
+public class Endereco extends BASE<Endereco> {
 
     private Long id;
     private String rua;

@@ -1,15 +1,13 @@
 package rm349040.techchallenge1.repositories;
 
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Repository;
-import rm349040.techchallenge1.apis.ID;
+import rm349040.techchallenge1.apis.BASE;
 
 import java.util.*;
 
 @Repository
-public class Repositorio<T extends ID> {
+public class Repositorio<T extends BASE> {
 
     private static Random random = new Random();
 
