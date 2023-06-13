@@ -12,7 +12,7 @@ public record DadosCadastroPessoa(
         String nome,
         @NotNull(message = "ERRO: A data de nascimento NÃO pode ser nula")
         @Past(message = "ERR0: A data de nascimento NÃO pode ser hoje ou qualquer outro dia depois de hoje")
-        LocalDate dataNascimento,
+        LocalDate nascimento,
 
         @NotNull(message = "ERRO: O sexo NÃO pode ser nulo")
         Sexo sexo,
