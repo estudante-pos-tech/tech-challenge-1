@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosListagemEndereco;
 import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosCadastroPessoa;
 import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosAtualizarPessoa;
+import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosListagemPessoa;
 import rm349040.techchallenge1.apis.pessoas.dominio.Pessoa;
 import rm349040.techchallenge1.repositories.Repositorio;
 import rm349040.techchallenge1.util.Messages;
@@ -73,6 +75,12 @@ public class PessoaController  {
 
         }
 
+    }
+
+
+    @GetMapping
+    public ResponseEntity listar() {
+        return ResponseEntity.ok().body(repositorio.findAll().stream().map(DadosListagemPessoa::new));
     }
 
 
