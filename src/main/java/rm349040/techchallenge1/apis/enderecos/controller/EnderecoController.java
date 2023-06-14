@@ -49,16 +49,16 @@ public class EnderecoController {
 
             var endereco = repositorio.getReferenceById(dados.id());
 
-
             if (endereco.isPresent()) {
 
                 endereco.get().atualizarDados(dados.toEndereco());
-                repositorio.save(endereco.get());
 
                 return ResponseEntity.ok().body(dados);
 
             } else {
+
                 return ResponseEntity.badRequest().body(Messages.ERRO_ATUALIZAR(Endereco.class.getSimpleName(),dados.id()));
+
             }
 
 
