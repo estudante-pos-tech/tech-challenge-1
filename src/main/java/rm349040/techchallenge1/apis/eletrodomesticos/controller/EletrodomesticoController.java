@@ -71,6 +71,34 @@ public class EletrodomesticoController {
     }
 
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity excluir(@PathVariable Long id) {
+
+        if (id != null) {
+
+            var eletrodomestico = repositorio.deleteById(id);
+
+            if (eletrodomestico.isPresent()) {
+
+                return ResponseEntity.ok().body(Messages.SUCESSO_EXCLUJR(Eletrodomestico.class.getSimpleName(), id));
+
+            } else {
+
+                return ResponseEntity.badRequest().body(Messages.ERRO_EXCLUIR(Eletrodomestico.class.getSimpleName(),id));
+
+            }
+
+        } else{
+
+            return ResponseEntity.badRequest().body(Messages.ERRO_ID_NULO(Eletrodomestico.class.getSimpleName()));
+
+        }
+
+
+    }
+
+
+
     @GetMapping
     public ResponseEntity listar() {
         return ResponseEntity.ok().body(repositorio.findAll().stream().map(DadosListagemEletrodomestico::new));
