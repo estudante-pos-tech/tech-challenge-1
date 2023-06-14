@@ -76,12 +76,9 @@ public class EnderecoController {
 
         if (id != null) {
 
-
-            var endereco = repositorio.getReferenceById(id);
+            var endereco = repositorio.deleteById(id);
 
             if (endereco.isPresent()) {
-
-                repositorio.delete(endereco.get());
 
                 return ResponseEntity.ok().body(Messages.SUCESSO_EXCLUJR(Endereco.class.getSimpleName(), id));
 
