@@ -47,13 +47,13 @@ public class EletrodomesticoController {
 
         if (validation.isDadosOk(dados)) {
 
+
             var eletrodomestico = repositorio.getReferenceById(dados.id());
 
 
             if (eletrodomestico.isPresent()) {
 
                 eletrodomestico.get().atualizarDados(dados.toEletrodomestico());
-                repositorio.save(eletrodomestico.get());
 
                 return ResponseEntity.ok().body(dados);
 
