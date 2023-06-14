@@ -11,13 +11,15 @@ import java.util.*;
 @Scope("prototype")
 public class Repositorio<T extends BASE> {
 
+    static private int instances = 0;
+
     private static Random random = new Random();
 
     private Set<T> collection;
 
     public Repositorio() {
         collection = new HashSet<>();
-        System.out.println("CREATING REPOSITORY " + collection.getClass().componentType() + " " + collection.getClass().toGenericString());
+        System.out.println("CREATING REPOSITORY " + ++instances + " Set type is " +collection.getClass().getSimpleName()+" "+ collection.getClass().toGenericString());
     }
 
     public T save(T t) {
