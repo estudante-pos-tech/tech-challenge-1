@@ -30,8 +30,8 @@ public class Repositorio<T extends BASE> {
 
         } else {//updating
 
-            getReferenceById(t.getId()).get().atualizarDados(t);
-
+            getReferenceById(t.getId()).ifPresent( obj -> obj.atualizarDados(t) );
+            ;
         }
 
 
