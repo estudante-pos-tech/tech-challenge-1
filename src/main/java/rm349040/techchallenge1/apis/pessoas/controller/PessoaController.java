@@ -111,12 +111,6 @@ public class PessoaController  {
 
 
 
-    @ExceptionHandler(HttpMessageNotReadableException.class)
-    public @ResponseBody ResponseEntity handleHttpMessageNotReadableException(HttpServletRequest request, Exception ex){
-        return ResponseEntity.badRequest().body(Messages.ERRO_CRIAR(Pessoa.class.getSimpleName(), ": sexo e/ou parentesco inválidos"));
-    }
-
-
 
     /**
      * @param request 
