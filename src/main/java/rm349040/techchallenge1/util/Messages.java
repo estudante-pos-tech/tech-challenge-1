@@ -15,6 +15,10 @@ public class Messages {
         return dominio + " NÃO atualizado, pois seu id=" + id + " NÃO existia na base de dados.";
     }
 
+    static public String ERRO_ATUALIZAR(String dominio, String id) {
+        return dominio + " NÃO atualizado, pois seu id=" + id + " NÃO existia na base de dados.";
+    }
+
     static public String ERRO_EXCLUIR(String dominio, long id) {
         return dominio + " NÃO excluido, pois seu id=" + id + " NÃO existia na base de dados.";
     }
@@ -29,6 +33,7 @@ public class Messages {
     }
 
 
-
-
+    static public String ERRO_METODO_REQUEST_NAO_SUPORTADO() {
+        return "ERRO: Método Http NÃO suportado";
+    }
 }
