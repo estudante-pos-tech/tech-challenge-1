@@ -19,7 +19,7 @@ public class Repositorio<T extends BASE> {
 
     public Repositorio() {
         collection = new HashSet<>();
-        System.out.println("CREATING REPOSITORY " + ++instances + " Set type is " +collection.getClass().getSimpleName()+" "+ collection.getClass().toGenericString());
+        System.out.println("CREATING REPOSITORY " + ++instances + " Set type is " + collection.getClass().getSimpleName() + " " + collection.getClass().toGenericString());
     }
 
     public T save(T t) {
@@ -32,7 +32,7 @@ public class Repositorio<T extends BASE> {
 
         } else {//updating
 
-            getReferenceById(t.getId()).ifPresent( obj -> obj.atualizarDados(t) );
+            getReferenceById(t.getId()).ifPresent(obj -> obj.atualizarDados(t));
             ;
         }
 
@@ -53,4 +53,29 @@ public class Repositorio<T extends BASE> {
         collection.remove(t);
     }
 
+    public Optional<T> deleteById(Long id) {
+
+        if (id != null) {
+
+            Optional<T> optional = getReferenceById(id);
+
+            if (optional.isPresent()) {
+
+                delete(optional.get());
+
+                return optional;
+
+            } else {
+
+                return Optional.empty();
+
+            }
+
+        } else {
+
+            return Optional.empty();
+
+        }
+
+    }
 }
