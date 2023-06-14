@@ -29,13 +29,7 @@ public class Repositorio<T extends BASE> {
             t.setId(random.nextLong(Long.MAX_VALUE));
             collection.add(t);
 
-
-        } else {//updating
-
-            getReferenceById(t.getId()).ifPresent(obj -> obj.atualizarDados(t));
-            ;
         }
-
 
         return t;
 
