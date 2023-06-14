@@ -2,6 +2,7 @@ package rm349040.techchallenge1.apis.eletrodomesticos.controller.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import rm349040.techchallenge1.apis.eletrodomesticos.dominio.Eletrodomestico;
 
 public record DadosCadastroEletrodomestico(
 
@@ -20,4 +21,7 @@ public record DadosCadastroEletrodomestico(
 
 
 ) {
+    public Eletrodomestico toEletrodomestico() {
+        return new Eletrodomestico(null,nome,modelo,potencia);
+    }
 }
