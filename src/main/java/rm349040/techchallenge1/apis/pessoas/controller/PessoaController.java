@@ -79,12 +79,9 @@ public class PessoaController  {
 
         if (id != null) {
 
-
-            var pessoa = repositorio.getReferenceById(id);
+            var pessoa = repositorio.deleteById(id);
 
             if (pessoa.isPresent()) {
-
-                repositorio.delete(pessoa.get());
 
                 return ResponseEntity.ok().body(Messages.SUCESSO_EXCLUJR(Pessoa.class.getSimpleName(), id));
 
