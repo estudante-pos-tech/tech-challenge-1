@@ -20,8 +20,8 @@ O ***CRUD*** foi implementado seguindo o mapa :
 -  VERBO HTTP **DELETE** - **DELETAR**
 -  VERBO HTTP **GET** - **LISTAR**
 <br><br>
-
-### Endpoint endereco : REQUESTS, Curls, RESPONSES
+### Requests corretas
+#### Endpoint endereco : REQUESTS, Curls, RESPONSES
 
   **POST** http://localhost:8080/endereco<br>
     Content-Type: application/json
@@ -73,7 +73,7 @@ O ***CRUD*** foi implementado seguindo o mapa :
     SUCESSO: ao excluir Endereco 1275424829065256685
 
 
-### Endpoint pessoa : REQUESTS, Curls, RESPONSES
+#### Endpoint pessoa : REQUESTS, Curls, RESPONSES
 
     
    **POST** http://localhost:8080/pessoa<br>
@@ -117,7 +117,7 @@ O ***CRUD*** foi implementado seguindo o mapa :
     curl -X DELETE --location "http://localhost:8080/pessoa/6196618678884909927"
     SUCESSO: ao excluir Pessoa 6196618678884909927
 
-### Endpoint eletrodomestico : REQUESTS, Curls, RESPONSES
+#### Endpoint eletrodomestico : REQUESTS, Curls, RESPONSES
 
   
    **POST** http://localhost:8080/eletrodomestico<br>
