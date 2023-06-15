@@ -1,14 +1,16 @@
 # tech-challenge-1 
 Implementação ***CRUD** Java Rest Apis*.<br>
 Os endpoints são endereco, pessoa e eletrodoméstico
-### Relatório Técnico
+## Relatório Técnico
 
 IDE Intellij, maven, String Boot, Spring MVC, Spring DevTools, Lombok são as ferramentas e tecnologias usadas para desenvolver as apis rest.
 <br><br>**Não está implementada persistência de dados**. Os dados que o app cria e manipula residem na memória volátil e **não são persistentes**. Estes dados ficam armazenados numa estrututura de dados java do tipo Set (conjunto). 
 <br><br>Um **repositório** é usado para acessar uma coleção (Set) de objetos, simulando **CRUD**. 
-#### Desafios técnico
+<br><br>**Soluções genéricas** são excelentes, quando evoluimos uma app. Neste projeto **tech-challenge-1**, o **repositorio** implementado usa **java generics**. O código para fazer o *CRUD* é parametrizado pelos tipos Endereco, Pessoa e Eletromestico. *Instâncias de Repositorio<T>*, **com escopo prototype**, são criadas e gerenciadas pelo Spring e são injetadas em cada um dos controllers respectivos.
 
-### Documentação das APIs
+
+##
+## Documentação das APIs
 **ELETRODMÉSTICOS REQUESTS E CURLs E RESPONSES**
 
 
@@ -58,5 +60,10 @@ SUCESSO: ao excluir Eletrodomestico 8393364629003825317
 
 #ENDEREÇOS
 
+
+
+### Desafios técnico
+Se fosse possívelr ao Spring *mapear* **um subconjunto de requests** a *apenas 1 determinado método* e se fosse possível *mapear* determindado DTO *a uma determinada request*, então, **ao invés de se ter 3 controllers** (EnderecoController, PessoaController, EletrodomesticoController), **seria possivel ter apenas 1 controller genérico**. Essa solução simplificaria, enxugaria, tornaria ++ fácil de evoluir o app.<br>
+Precisa ser estudado se o **Spring AOP (Aspect Oriented Programming)** suporta os mapeamentos.
 
 
