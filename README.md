@@ -23,6 +23,56 @@ O ***CRUD*** foi implementado seguindo o mapa :
 
 ### Endpoint endereco : REQUESTS, Curls, RESPONSES
 
+  **POST** http://localhost:8080/endereco<br>
+    Content-Type: application/json
+    
+    {
+      "rua": "rua bela",
+      "numero": "234",
+      "bairro": "bairro",
+      "cidade": "Maya",
+      "estado": "SP"
+    }
+    
+    curl -X POST --location "http://localhost:8080/endereco" -H "Content-type:application/json" -d '{"rua":"rua bela", "numero":"234", "bairro":"bairro", "cidade":"Maya","estado":"SP"}'
+    SUCESSO: ao criar Endereco
+    
+   **GET** http://localhost:8080/endereco
+    
+    curl -X GET --location "http://localhost:8080/endereco"
+    [{"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}]
+    
+    
+    
+   **PUT** http://localhost:8080/endereco<br>
+    Content-Type: application/json
+    
+    {
+      "id": "1275424829065256685",
+      "rua": "rua belissima",
+      "numero": "890234",
+      "bairro": "brejo-bairro",
+      "cidade": "Mayaporã",
+      "estado": "AM"
+    }
+    
+    curl -X PUT --location "http://localhost:8080/endereco" -H "Content-type:application/json" -d '{"id":"1275424829065256685", "rua":"rua belissima",  "numero":"890234", "bairro":"brejo-bairro", "cidade":"Mayaporã","estado":"AM"}'
+    {
+      "id": "1275424829065256685",
+      "rua": "rua belissima",
+      "numero": "890234",
+      "bairro": "brejo-bairro",
+      "cidade": "Mayaporã",
+      "estado": "AM"
+    }
+    
+    
+   **DELETE** http://localhost:8080/endereco/1275424829065256685
+    
+    curl -X DELETE --location "http://localhost:8080/endereco/1275424829065256685"
+    SUCESSO: ao excluir Endereco 1275424829065256685
+
+
 ### Endpoint pessoa : REQUESTS, Curls, RESPONSES
 
 ### Endpoint eletrodomestico : REQUESTS, Curls, RESPONSES
