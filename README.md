@@ -2,7 +2,8 @@
 Implementação ***CRUD** Java Rest Apis*.<br>
 Os endpoints são endereco, pessoa e eletrodomestico
 ## Relatório Técnico
-
+<div style='text-align: justify;'>
+  
 Debian host, Oracle virtual machine, bash scripting, git, IDE Intellij, maven, String Boot, Spring MVC, Spring DevTools, Lombok são as ferramentas e tecnologias usadas para desenvolver as apis rest.
 <br><br>**Não está implementada persistência de dados**. Os dados que o app cria e manipula residem na memória volátil e **não são persistentes**. Estes dados ficam armazenados numa estrututura de dados java do tipo Set (conjunto). 
 <br><br>Um **repositório** é usado para acessar uma coleção (Set) de objetos, simulando **CRUD**. 
@@ -11,6 +12,8 @@ Debian host, Oracle virtual machine, bash scripting, git, IDE Intellij, maven, S
 **Requests incorretas** aos endpoints tem **response** : ***erro + causa do erro*** . Este comportamento é implementado usando ***exception handlers GLOBAIS*** e ***validações LOCAIS*** em cada endpoint.<br>
 O mecanismo de captura de erros GLOBAL foi instalado na classe [AppConfiguration.java](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/config/AppConfiguration.java), anotando esta classe com a **@ControllerAdvice** annotation do Spring.
               
+
+</div>
 
 ##
 ## Documentação das APIs
@@ -166,13 +169,15 @@ O ***CRUD*** foi implementado seguindo o mapa :
 
 ### Requests incorretas
 
+<div style='text-align: justify;'>
 Qualquer e toda request às apis que não esteja na forma indicada na documentação das apis, resultará numa *java exception*.
 <br> Essa exception será capturada pelo **exception handler GLOBAL**. O handler criará uma mensagem genérica que será retornada ao cliente da api. O cliente será **informando** sobre o **erro e a causa do erro**, numa *linguagem técnica*. 
 <br><br>Requests que **violem as restrições (constraints)** programadas, serão interrompidas na **camada de validação** e mensagem de erro adequada será retornada ao cliente da api.
-
+</div>
 
 ## Desafio técnico
+<div style='text-align: justify;'>
 Se fosse possível ao Spring *mapear* **um subconjunto de requests** a *apenas 1 determinado método* e se fosse possível *mapear* determinado DTO *a uma determinada request*, então, **ao invés de se ter 3 controllers** (EnderecoController, PessoaController, EletrodomesticoController), **seria possivel ter apenas 1 controller genérico**. Essa solução simplificaria, enxugaria, tornaria ++ fácil de evoluir o app.<br>
 Precisa ser estudado se o **Spring AOP (Aspect Oriented Programming)** suporta os mapeamentos.
-
+</div>
 
