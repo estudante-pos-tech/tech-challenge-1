@@ -20,6 +20,10 @@ O ***CRUD*** foi implementado seguindo o mapa :
 -  VERBO HTTP **GET** - **LISTAR**
 <br><br>
 
+### Endpoint endereco : REQUESTS, Curls, RESPONSES
+
+### Endpoint pessoa : REQUESTS, Curls, RESPONSES
+
 ### Endpoint eletrodomestico : REQUESTS, Curls, RESPONSES
 
   
@@ -67,7 +71,6 @@ O ***CRUD*** foi implementado seguindo o mapa :
     curl -X DELETE --location "http://localhost:8080/eletrodomestico/8393364629003825317"
     SUCESSO: ao excluir Eletrodomestico 8393364629003825317
 
-#ENDEREÇOS
 
 
 
