@@ -75,6 +75,48 @@ O ***CRUD*** foi implementado seguindo o mapa :
 
 ### Endpoint pessoa : REQUESTS, Curls, RESPONSES
 
+    
+   **POST** http://localhost:8080/pessoa<br>
+    Content-Type: application/json
+    
+    {
+      "nome": "ana bela",
+      "nascimento": "2020-01-01",
+      "sexo": "FEMININO",
+      "parentesco": "MAE"
+    }
+    
+    curl -X POST --location "http://localhost:8080/pessoa" -H "Content-type:application/json" -d '{"nome":"ana bela", "nascimento":"2020-01-01", "sexo":"FEMININO", "parentesco":"MAE"}'
+    SUCESSO: ao criar Pessoa
+    
+    
+   **GET** http://localhost:8080/pessoa<br>
+    
+    curl -X GET --location "http://localhost:8080/pessoa"
+    [{"id":6196618678884909927,"nome":"ana bela","nascimento":"2020-01-01","sexo":"FEMININO","parentesco":"MAE"}]
+    
+    
+    
+   **PUT** http://localhost:8080/pessoa<br>
+    Content-Type: application/json
+    
+    {
+      "id": "6196618678884909927",
+      "nome": "Zuleica bela",
+      "nascimento": "2010-01-01",
+      "sexo": "FEMININO",
+      "parentesco": "CONJUGE"
+    }
+    
+    curl -X PUT --location "http://localhost:8080/pessoa" -H "Content-type:application/json" -d '{"id":"6196618678884909927", "nome":"Zuleica bela", "nascimento":"2010-01-01", "sexo":"FEMININO", "parentesco":"CONJUGE"}'
+    {"id":6196618678884909927,"nome":"Zuleica bela","nascimento":"2010-01-01","sexo":"FEMININO","parentesco":"CONJUGE"}
+    
+    
+   **DELETE** http://localhost:8080/pessoa/1401389624475652749
+    
+    curl -X DELETE --location "http://localhost:8080/pessoa/6196618678884909927"
+    SUCESSO: ao excluir Pessoa 6196618678884909927
+
 ### Endpoint eletrodomestico : REQUESTS, Curls, RESPONSES
 
   
