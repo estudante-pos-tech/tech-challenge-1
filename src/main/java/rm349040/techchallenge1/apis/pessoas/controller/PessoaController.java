@@ -5,7 +5,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosAtualizarPessoa;
@@ -55,11 +54,9 @@ public class PessoaController  {
 
             var pessoa = repositorio.getReferenceById(dados.id());
 
-
             if (pessoa.isPresent()) {
 
                 pessoa.get().atualizarDados(dados.toPessoa());
-                repositorio.save(pessoa.get());
 
                 return ResponseEntity.ok().body(dados);
 
