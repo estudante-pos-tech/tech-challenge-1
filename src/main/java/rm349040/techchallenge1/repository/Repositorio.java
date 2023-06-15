@@ -43,7 +43,7 @@ public class Repositorio<T extends BASE> {
         return Collections.unmodifiableSet(collection);
     }
 
-    public void delete(T t) {
+    private void delete(T t) {
         collection.remove(t);
     }
 
