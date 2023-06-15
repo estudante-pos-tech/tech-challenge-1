@@ -24,15 +24,9 @@ public class AppConfiguration {
     }
 
 
-    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public @ResponseBody ResponseEntity handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException ex){
-        return ResponseEntity.badRequest().body(Messages.ERRO_METODO_REQUEST_NAO_SUPORTADO());
+    @ExceptionHandler(Exception.class)
+    public @ResponseBody ResponseEntity handleException(HttpServletRequest request, Exception ex){
+        return ResponseEntity.badRequest().body(Messages.ERRO_GLOBAL(request,ex));
     }
-
-    @ExceptionHandler(value = {HttpMessageNotReadableException.class, MethodArgumentTypeMismatchException.class})
-    public @ResponseBody ResponseEntity handleHttpMessageNotReadableException(HttpServletRequest request, Exception ex){
-        return  ResponseEntity.badRequest().body(Messages.ERRO_MENSAGEM_NAO_LEGIVEL(request,ex));
-    }
-
 
 }

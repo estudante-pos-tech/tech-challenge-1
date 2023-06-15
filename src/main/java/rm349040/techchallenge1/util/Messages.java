@@ -39,16 +39,9 @@ public class Messages {
         return "ERRO: O id do " + dominio + " NÃO pode ser nulo.";
     }
 
-    static public String ERRO_CRIAR(String dominio, String msg) {
-        return "ERRO: " + dominio + "" + msg;
-    }
 
+    public static String ERRO_GLOBAL(HttpServletRequest request,Exception ex) {
 
-    static public String ERRO_METODO_REQUEST_NAO_SUPORTADO() {
-        return "ERRO: Método Http NÃO suportado";
-    }
-
-    public static String ERRO_MENSAGEM_NAO_LEGIVEL(HttpServletRequest request, Exception ex) {
         String action="";
 
         switch (request.getMethod().toString()){
