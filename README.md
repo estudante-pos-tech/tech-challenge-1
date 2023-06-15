@@ -1,7 +1,13 @@
 # tech-challenge-1 
-Implementação *CRUD Java Rest Apis*.<br>
+Implementação ***CRUD** Java Rest Apis*.<br>
 Os endpoints são endereco, pessoa e eletrodoméstico
 ### Relatório Técnico
+
+IDE Intellij, maven, String Boot, Spring MVC, Spring DevTools, Lombok são as ferramentas e tecnologias usadas para desenvolver as apis rest.
+<br><br>**Não está implementada persistência de dados**. Os dados que o app cria e manipula residem na memória volátil e **não são persistentes**. Estes dados ficam armazenados numa estrututura de dados java do tipo Set (conjunto). 
+<br><br>Um **repositório** é usado para acessar uma coleção (Set) de objetos, simulando **CRUD**. 
+#### Desafios técnico
+
 ### Documentação das APIs
 **ELETRODMÉSTICOS REQUESTS E CURLs E RESPONSES**
 
