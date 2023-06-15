@@ -1,10 +1,6 @@
 # tech-challenge-1 
 You must watch this novel over and over
-<br><br>
 ## Documentação das APIs
-
-
-
 **ELETRODMÉSTICOS REQUESTS E CURLs E RESPONSES**
 
 
