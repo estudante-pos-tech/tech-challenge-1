@@ -1,5 +1,6 @@
 # tech-challenge-1 
-You must watch this novel over and over
+Implementação *CRUD Java Rest Apis*.
+Os endpoints são endereco, pessoa e eletrodoméstico
 ## Documentação das APIs
 **ELETRODMÉSTICOS REQUESTS E CURLs E RESPONSES**
 
