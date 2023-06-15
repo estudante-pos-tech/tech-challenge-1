@@ -170,14 +170,18 @@ O ***CRUD*** foi implementado seguindo o mapa :
 ### Requests incorretas
 
 <div style='text-align: justify;'>
+  
 Qualquer e toda request às apis que não esteja na forma indicada na documentação das apis, resultará numa *java exception*.
 <br> Essa exception será capturada pelo **exception handler GLOBAL**. O handler criará uma mensagem genérica que será retornada ao cliente da api. O cliente será **informando** sobre o **erro e a causa do erro**, numa *linguagem técnica*. 
 <br><br>Requests que **violem as restrições (constraints)** programadas, serão interrompidas na **camada de validação** e mensagem de erro adequada será retornada ao cliente da api.
+
 </div>
 
 ## Desafio técnico
 <div style='text-align: justify;'>
+  
 Se fosse possível ao Spring *mapear* **um subconjunto de requests** a *apenas 1 determinado método* e se fosse possível *mapear* determinado DTO *a uma determinada request*, então, **ao invés de se ter 3 controllers** (EnderecoController, PessoaController, EletrodomesticoController), **seria possivel ter apenas 1 controller genérico**. Essa solução simplificaria, enxugaria, tornaria ++ fácil de evoluir o app.<br>
 Precisa ser estudado se o **Spring AOP (Aspect Oriented Programming)** suporta os mapeamentos.
+
 </div>
 
