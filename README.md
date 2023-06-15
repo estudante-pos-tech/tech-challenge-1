@@ -164,7 +164,11 @@ O ***CRUD*** foi implementado seguindo o mapa :
     curl -X DELETE --location "http://localhost:8080/eletrodomestico/8393364629003825317"
     SUCESSO: ao excluir Eletrodomestico 8393364629003825317
 
+### Requests incorreta
 
+Qualquer e toda request às apis que não esteja na forma indicada na documentação das apis, resultará numa *java exception*.
+<br> Essa exception será capturada pelo **exception handler GLOBAL**. O handler criará uma mensagem genérica que será retornada ao cliente da api. O cliente será **informando** sobre o **erro e a causa do erro**, numa *linguagem técnica*. 
+<br><br>Requests que **violem as restrições (constraints)** programadas, serão interrompidas na **camada de validação** e mensagem de erro adequada será retornada ao cliente da api.
 
 
 ## Desafio técnico
