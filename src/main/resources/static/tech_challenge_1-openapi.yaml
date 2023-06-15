@@ -1,0 +1,289 @@
+openapi: "3.0.3"
+info:
+  title: "tech_challenge_1 API"
+  description: "tech_challenge_1 API"
+  version: "1.0.0"
+servers:
+  - url: "https://tech_challenge_1"
+paths:
+  /endereco:
+    get:
+      summary: "GET endereco"
+      operationId: "listar"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+          "400":
+            description: "BAD REQUEST"
+            content:
+              '*/*':
+                schema:
+                  $ref: "#/components/schemas/ResponseEntity"
+    put:
+      summary: "PUT endereco"
+      operationId: "atualizar"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DadosAtualizarEndereco"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+        "400":
+          description: "BAD REQUEST"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+    post:
+      summary: "POST endereco"
+      operationId: "criar"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DadosCadastroEndereco"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+        "400":
+          description: "BAD REQUEST"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+  /endereco/{id}:
+    delete:
+      summary: "DELETE endereco/{id}"
+      operationId: "excluir"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+        "400":
+          description: "BAD REQUEST"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+  /pessoa:
+    get:
+      summary: "GET pessoa"
+      operationId: "listar"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+        "400":
+          description: "BAD REQUEST"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+    put:
+      summary: "PUT pessoa"
+      operationId: "atualizar"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DadosAtualizarPessoa"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+        "400":
+          description: "BAD REQUEST"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+
+    post:
+      summary: "POST pessoa"
+      operationId: "criar"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DadosCadastroPessoa"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+        "400":
+          description: "BAD REQUEST"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+  /pessoa/{id}:
+    delete:
+      summary: "DELETE pessoa/{id}"
+      operationId: "excluir"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+        "400":
+          description: "BAD REQUEST"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+components:
+  schemas:
+    HttpHeaders:
+      type: "object"
+      properties: { }
+    ResponseEntity:
+      type: "object"
+      properties:
+        headers:
+          $ref: "#/components/schemas/HttpHeaders"
+    DadosAtualizarEndereco:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        rua:
+          type: "string"
+        numero:
+          type: "string"
+        bairro:
+          type: "string"
+        cidade:
+          type: "string"
+        estado:
+          type: "string"
+    DadosCadastroEndereco:
+      type: "object"
+      properties:
+        rua:
+          type: "string"
+        numero:
+          type: "string"
+        bairro:
+          type: "string"
+        cidade:
+          type: "string"
+        estado:
+          type: "string"
+    DadosAtualizarPessoa:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        nome:
+          type: "string"
+        nascimento:
+          type: "string"
+          format: "date"
+        sexo:
+          type: "string"
+          enum:
+            - "MASCULINO"
+            - "FEMININO"
+        parentesco:
+          type: "string"
+          enum:
+            - "IRMÃO"
+            - "IRMÃ"
+            - "PAI"
+            - "MAE"
+            - "FILHO"
+            - "FILHA"
+            - "AVÔ"
+            - "AVÓ"
+            - "CUNHADA"
+            - "SOGRA"
+            - "CUNHADO"
+            - "SOGRO"
+            - "AGREGADO"
+            - "NAMORADA"
+            - "NOMORADO"
+            - "CONJUGE"
+            - "TIA"
+            - "TIO"
+    DadosCadastroPessoa:
+      type: "object"
+      properties:
+        nome:
+          type: "string"
+        nascimento:
+          type: "string"
+          format: "date"
+        sexo:
+          type: "string"
+          enum:
+            - "MASCULINO"
+            - "FEMININO"
+        parentesco:
+          type: "string"
+          enum:
+            - "IRMÃO"
+            - "IRMÃ"
+            - "PAI"
+            - "MAE"
+            - "FILHO"
+            - "FILHA"
+            - "AVÔ"
+            - "AVÓ"
+            - "CUNHADA"
+            - "SOGRA"
+            - "CUNHADO"
+            - "SOGRO"
+            - "AGREGADO"
+            - "NAMORADA"
+            - "NOMORADO"
+            - "CONJUGE"
+            - "TIA"
+            - "TIO"
