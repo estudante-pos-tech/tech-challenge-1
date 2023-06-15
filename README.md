@@ -1,7 +1,8 @@
 # tech-challenge-1 
 Implementação *CRUD Java Rest Apis*.<br>
 Os endpoints são endereco, pessoa e eletrodoméstico
-## Documentação das APIs
+### Relatório Técnico
+### Documentação das APIs
 **ELETRODMÉSTICOS REQUESTS E CURLs E RESPONSES**
 
 
@@ -52,4 +53,4 @@ SUCESSO: ao excluir Eletrodomestico 8393364629003825317
 #ENDEREÇOS
 
 
-## Relatório Técnico
+
