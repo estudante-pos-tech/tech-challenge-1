@@ -8,7 +8,8 @@ IDE Intellij, maven, String Boot, Spring MVC, Spring DevTools, Lombok são as fe
 <br><br>Um **repositório** é usado para acessar uma coleção (Set) de objetos, simulando **CRUD**. 
 <br><br>**Soluções genéricas** são excelentes, quando evoluimos uma app. Neste projeto **tech-challenge-1**, o **repositorio** implementado usa **java generics**. O código para fazer o *CRUD* é parametrizado pelos tipos Endereco, Pessoa e Eletromestico. *Instâncias de Repositorio<T>*, **com escopo prototype**, são criadas e gerenciadas pelo Spring e são injetadas em cada um dos controllers respectivos.
 <br><br>**Requests corretas** aos endpoints tem **responses** descritas na **Documentação das APIs**<br>
-**Requests incorretas** aos endpoints tem **response** : ***erro + causa do erro*** . Este comportamento é implementado usando ***exception handlers GLOBAIS*** e ***validações LOCAIS*** em cada endpoint.
+**Requests incorretas** aos endpoints tem **response** : ***erro + causa do erro*** . Este comportamento é implementado usando ***exception handlers GLOBAIS*** e ***validações LOCAIS*** em cada endpoint.<br>
+O mecanismo de captura de erros GLOBAL foi instalado na classe [AppConfiguration.java](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/config/AppConfiguration.java), anotando esta classe com a **@ControllerAdvice** annotation do Spring.
               
 
 ##
