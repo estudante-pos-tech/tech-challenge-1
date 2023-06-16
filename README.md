@@ -188,6 +188,13 @@ ___
 ___
 
 ##### **POST**<br><br>
+
+No body da **POST** request, devem estar os pares key-value: 
+  -    ***nome*** , *não em-branco e no máximo 60 caracteres* 
+  -    ***modelo***, *não em-branco e no máximo 60 caracteres*
+  -    ***potencia***, *não em-bramco e no máximo 30 caracteres*     
+
+*EXEMPLO:*  
   
    **POST** http://localhost:8080/eletrodomestico<br>
      Content-Type: application/json
@@ -213,6 +220,14 @@ ___
 ___
 
 ##### **PUT**<br><br>
+
+No body da **POST** request, devem estar os pares key-value:
+  -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
+  -    ***nome*** , *não em-branco e no máximo 60 caracteres* 
+  -    ***modelo***, *não em-branco e no máximo 60 caracteres*
+  -    ***potencia***, *não em-bramco e no máximo 30 caracteres*     
+
+*EXEMPLO:* 
 
    **PUT** http://localhost:8080/eletrodomestico<br>
     Content-Type: application/json
