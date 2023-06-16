@@ -104,6 +104,9 @@ ___
 <br>
 
 ##### **DELETE**<br><br>
+
+No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja deletar: 
+  -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
     
    **DELETE** http://localhost:8080/endereco/1275424829065256685
     
@@ -177,7 +180,10 @@ No body da **PUT** request, devem estar os pares key-value:
 ___
 
   ##### **DELETE**<br><br>
-    
+
+  No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja deletar: 
+  -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
+        
    **DELETE** http://localhost:8080/pessoa/1401389624475652749
     
     curl -X DELETE --location "http://localhost:8080/pessoa/6196618678884909927"
@@ -251,6 +257,9 @@ ___
 
 ##### **DELETE**<br><br>
 
+No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja deletar: 
+  -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
+    
    **DELETE** http://localhost:8080/eletrodomestico/8393364629003825317
     
     curl -X DELETE --location "http://localhost:8080/eletrodomestico/8393364629003825317"
