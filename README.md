@@ -4,7 +4,7 @@ Os endpoints são endereco, pessoa e eletrodomestico
 ## Relatório Técnico
 <div style='text-align: justify;'>
   
-Debian host, Oracle virtual machine, bash scripting, git, IDE Intellij, maven, String Boot, Spring MVC, Spring DevTools, Lombok são as ferramentas e tecnologias usadas para desenvolver as apis rest.
+Debian host, Oracle virtual machine, bash scripting, git, IDE Intellij, maven, Spring Boot, Spring MVC, Spring DevTools, Lombok são as ferramentas e tecnologias usadas para desenvolver as apis rest.
 <br><br>**Não está implementada persistência de dados**. Os dados que o app cria e manipula residem na memória volátil e **não são persistentes**. Estes dados ficam armazenados numa estrututura de dados java do tipo Set (conjunto). 
 <br><br>Um [**repositório**](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/repository/Repositorio.java) é usado para acessar uma coleção (Set) de objetos, simulando **CRUD**. 
 <br><br>**Soluções genéricas** são excelentes, quando evoluimos uma app. Neste projeto **tech-challenge-1**, o [**repositorio**](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/repository/Repositorio.java) implementado usa **java generics**. O código para fazer o *CRUD* é parametrizado pelos tipos Endereco, Pessoa e Eletromestico. *Instâncias de Repositorio<T>*, **com escopo prototype**, são criadas e gerenciadas pelo Spring e são injetadas em cada um dos controllers respectivos.
