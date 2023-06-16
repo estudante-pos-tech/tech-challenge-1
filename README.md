@@ -8,7 +8,8 @@ Debian host, Oracle virtual machine, bash scripting, git, IDE Intellij, maven, S
 <br><br>**Não está implementada persistência de dados**. Os dados que o app cria e manipula residem na memória volátil e **não são persistentes**. Estes dados ficam armazenados numa estrututura de dados java do tipo Set (conjunto). 
 <br><br>Um [**repositório**](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/repository/Repositorio.java) é usado para acessar uma coleção (Set) de objetos, simulando **CRUD**. 
 <br><br>**Soluções genéricas** são excelentes, quando evoluimos uma app. Neste projeto **tech-challenge-1**, o [**repositorio**](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/repository/Repositorio.java) implementado usa **java generics**. O código para fazer o *CRUD* é parametrizado pelos tipos Endereco, Pessoa e Eletromestico. *Instâncias de Repositorio<T>*, **com escopo prototype**, são criadas e gerenciadas pelo Spring e são injetadas em cada um dos controllers respectivos.
-<br><br>**Requests corretas** aos endpoints tem **responses** descritas na **Documentação das APIs**<br>
+<br><br>**Não está implementado i18n**. Toda e qualquer mensagem ao cliente das apis está **hard-coded**; as mensagens ou estão na classe Message.java ou nos DTOs, através das ***bean validations***.  
+<br>**Requests corretas** aos endpoints tem **responses** descritas na **Documentação das APIs**<br>
 **Requests incorretas** aos endpoints tem **response** : ***erro + causa do erro*** . Este comportamento é implementado usando ***exception handlers GLOBAIS*** e ***validações LOCAIS*** em cada endpoint.<br>
 O mecanismo de captura de erros GLOBAL foi instalado na classe [AppConfiguration.java](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/config/AppConfiguration.java), anotando esta classe com a **@ControllerAdvice** annotation do Spring.
               
@@ -24,9 +25,19 @@ O ***CRUD*** foi implementado seguindo o mapa :
 -  VERBO HTTP **GET** - **LISTAR**
 <br><br>
 ### Requests corretas
+___
 #### Endpoint endereco : REQUESTS, Curls, RESPONSES
+___
+No body da **POST** request, devem estar os pares key-value: 
+  -    ***rua*** , *não em-branco e no máximo 60 caracteres* 
+  -    ***numero***, *não em-branco e no máximo 10 caracteres*
+  -    ***bairro***, *não em-branco e no máximo 40 caracteres*
+  -    ***cidade***, *não em-branco e no máximo 50 caracteres*
+  -    ***estado***, *não em-branco e no máximo 30 caracteres*
 
-  **POST** http://localhost:8080/endereco<br>
+*EXEMPLO:*   
+
+**POST** http://localhost:8080/endereco<br>
     Content-Type: application/json
     
     {
@@ -39,14 +50,32 @@ O ***CRUD*** foi implementado seguindo o mapa :
     
     curl -X POST --location "http://localhost:8080/endereco" -H "Content-type:application/json" -d '{"rua":"rua bela", "numero":"234", "bairro":"bairro", "cidade":"Maya","estado":"SP"}'
     SUCESSO: ao criar Endereco
+
+
+___
+
+
     
    **GET** http://localhost:8080/endereco
     
     curl -X GET --location "http://localhost:8080/endereco"
     [{"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}]
+
+
+___    
+
+
     
-    
-    
+  No body da **PUT** request, devem estar os pares key-value: 
+  -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
+  -    ***rua*** , *não em-branco e no máximo 60 caracteres* 
+  -    ***numero***, *não em-branco e no máximo 10 caracteres*
+  -    ***bairro***, *não em-branco e no máximo 40 caracteres*
+  -    ***cidade***, *não em-branco e no máximo 50 caracteres*
+  -    ***estado***, *não em-branco e no máximo 30 caracteres*
+
+*EXEMPLO:*    
+
    **PUT** http://localhost:8080/endereco<br>
     Content-Type: application/json
     
@@ -68,16 +97,20 @@ O ***CRUD*** foi implementado seguindo o mapa :
       "cidade": "Mayaporã",
       "estado": "AM"
     }
-    
+
+
+___    
+<br>
+
     
    **DELETE** http://localhost:8080/endereco/1275424829065256685
     
     curl -X DELETE --location "http://localhost:8080/endereco/1275424829065256685"
     SUCESSO: ao excluir Endereco 1275424829065256685
 
-
+___
 #### Endpoint pessoa : REQUESTS, Curls, RESPONSES
-
+___
     
    **POST** http://localhost:8080/pessoa<br>
     Content-Type: application/json
