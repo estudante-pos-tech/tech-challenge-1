@@ -192,7 +192,7 @@ ___
 No body da **POST** request, devem estar os pares key-value: 
   -    ***nome*** , *não em-branco e no máximo 60 caracteres* 
   -    ***modelo***, *não em-branco e no máximo 60 caracteres*
-  -    ***potencia***, *não em-bramco e no máximo 30 caracteres*     
+  -    ***potencia***, *não em-branco e no máximo 30 caracteres*     
 
 *EXEMPLO:*  
   
@@ -221,11 +221,11 @@ ___
 
 ##### **PUT**<br><br>
 
-No body da **POST** request, devem estar os pares key-value:
+No body da **PUT** request, devem estar os pares key-value:
   -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
   -    ***nome*** , *não em-branco e no máximo 60 caracteres* 
   -    ***modelo***, *não em-branco e no máximo 60 caracteres*
-  -    ***potencia***, *não em-bramco e no máximo 30 caracteres*     
+  -    ***potencia***, *não em-branco e no máximo 30 caracteres*     
 
 *EXEMPLO:* 
 
