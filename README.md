@@ -131,7 +131,7 @@ ___
 
 ___
 
-    ##### **GET**<br><br>
+  ##### **GET**<br><br>
     
    **GET** http://localhost:8080/pessoa<br>
     
