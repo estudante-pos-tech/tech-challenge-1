@@ -151,14 +151,14 @@ ___
 
   ##### **PUT**<br><br>
 
-  No body da **PUT** request, devem estar os pares key-value: 
-    -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
-    -    ***nome*** , *não em-branco e no máximo 60 caracteres* 
-    -    ***nascimento***, *não-nulo e NÃO pode ser "hoje" ou qualquer outro dia depois de "hoje"*
-    -    ***sexo***, *não-nulo e MASCULINO ou FEMININO*
-    -    ***parentesco***, *não-nulo e um dos valores : IRMÃO, IRMÃ, PAI, MAE, FILHO , FILHA, AVÔ, AVÓ, CUNHADA, SOGRA, CUNHADO, SOGRO, AGREGADO, NAMORADA,NOMORADO, CONJUGE, TIA, TIO*
-  
-  *EXEMPLO:*  
+No body da **PUT** request, devem estar os pares key-value: 
+  -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
+  -    ***nome*** , *não em-branco e no máximo 60 caracteres* 
+  -    ***nascimento***, *não-nulo e NÃO pode ser "hoje" ou qualquer outro dia depois de "hoje"*
+  -    ***sexo***, *não-nulo e MASCULINO ou FEMININO*
+  -    ***parentesco***, *não-nulo e um dos valores : IRMÃO, IRMÃ, PAI, MAE, FILHO , FILHA, AVÔ, AVÓ, CUNHADA, SOGRA, CUNHADO, SOGRO, AGREGADO, NAMORADA,NOMORADO, CONJUGE, TIA, TIO*
+
+*EXEMPLO:*  
     
    **PUT** http://localhost:8080/pessoa<br>
     Content-Type: application/json
