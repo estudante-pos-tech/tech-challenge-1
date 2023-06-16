@@ -1,6 +1,6 @@
 # tech-challenge-1 
 Implementação ***CRUD** Java Rest Apis*.<br>
-Os endpointspessoa são endereco, pessoa e eletrodomestico
+Os endpoints são endereco, pessoa e eletrodomestico
 ## Relatório Técnico
 <div style='text-align: justify;'>
   
