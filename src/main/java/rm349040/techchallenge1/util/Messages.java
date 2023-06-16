@@ -12,33 +12,17 @@ public class Messages {
         return "SUCESSO: ao excluir " + dominio + " " + id;
     }
 
-
     static public String ERRO_ATUALIZAR(String dominio, long id) {
         return dominio + " NÃO atualizado, pois seu id=" + id + " NÃO existia na base de dados.";
-    }
-
-    static public String ERRO_ATUALIZAR(String dominio, String id) {
-        return dominio + " NÃO atualizado, pois seu id=" + id + " NÃO existia na base de dados.";
-    }
-
-
-    public static String ERRO_ATUALIZAR() {
-        return "Recurso NÃO atualizado, pois seu id NÃO existia na base de dados.";
     }
 
     static public String ERRO_EXCLUIR(String dominio, long id) {
         return dominio + " NÃO excluido, pois seu id=" + id + " NÃO existia na base de dados.";
     }
 
-    public static String ERRO_EXCLUIR() {
-        return "Recurso NÃO excluido, pois seu id NÃO existia na base de dados.";
-    }
-
-
     static public String ERRO_ID_NULO(String dominio) {
         return "ERRO: O id do " + dominio + " NÃO pode ser nulo.";
     }
-
 
     public static String ERRO_GLOBAL(HttpServletRequest request,Exception ex) {
 
