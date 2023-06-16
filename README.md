@@ -28,6 +28,7 @@ O ***CRUD*** foi implementado seguindo o mapa :
 ___
 #### Endpoint endereco : REQUESTS, Curls, RESPONSES
 ___
+##### **POST**<br><br>
 No body da **POST** request, devem estar os pares key-value: 
   -    ***rua*** , *não em-branco e no máximo 60 caracteres* 
   -    ***numero***, *não em-branco e no máximo 10 caracteres*
@@ -54,7 +55,7 @@ No body da **POST** request, devem estar os pares key-value:
 
 ___
 
-
+##### **GET**<br><br>
     
    **GET** http://localhost:8080/endereco
     
@@ -64,7 +65,7 @@ ___
 
 ___    
 
-
+##### **PUT**<br><br>
     
   No body da **PUT** request, devem estar os pares key-value: 
   -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
@@ -102,6 +103,7 @@ ___
 ___    
 <br>
 
+##### **DELETE**<br><br>
     
    **DELETE** http://localhost:8080/endereco/1275424829065256685
     
@@ -153,8 +155,9 @@ ___
     curl -X DELETE --location "http://localhost:8080/pessoa/6196618678884909927"
     SUCESSO: ao excluir Pessoa 6196618678884909927
 
+___
 #### Endpoint eletrodomestico : REQUESTS, Curls, RESPONSES
-
+___
   
    **POST** http://localhost:8080/eletrodomestico<br>
      Content-Type: application/json
