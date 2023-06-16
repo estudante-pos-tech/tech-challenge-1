@@ -113,6 +113,8 @@ ___
 ___
 #### Endpoint pessoa : REQUESTS, Curls, RESPONSES
 ___
+
+##### **POST**<br><br>
     
    **POST** http://localhost:8080/pessoa<br>
     Content-Type: application/json
@@ -126,14 +128,19 @@ ___
     
     curl -X POST --location "http://localhost:8080/pessoa" -H "Content-type:application/json" -d '{"nome":"ana bela", "nascimento":"2020-01-01", "sexo":"FEMININO", "parentesco":"MAE"}'
     SUCESSO: ao criar Pessoa
-    
+
+___
+
+    ##### **GET**<br><br>
     
    **GET** http://localhost:8080/pessoa<br>
     
     curl -X GET --location "http://localhost:8080/pessoa"
     [{"id":6196618678884909927,"nome":"ana bela","nascimento":"2020-01-01","sexo":"FEMININO","parentesco":"MAE"}]
     
-    
+___
+
+  ##### **PUT**<br><br>
     
    **PUT** http://localhost:8080/pessoa<br>
     Content-Type: application/json
@@ -148,7 +155,10 @@ ___
     
     curl -X PUT --location "http://localhost:8080/pessoa" -H "Content-type:application/json" -d '{"id":"6196618678884909927", "nome":"Zuleica bela", "nascimento":"2010-01-01", "sexo":"FEMININO", "parentesco":"CONJUGE"}'
     {"id":6196618678884909927,"nome":"Zuleica bela","nascimento":"2010-01-01","sexo":"FEMININO","parentesco":"CONJUGE"}
-    
+
+___
+
+  ##### **DELETE**<br><br>
     
    **DELETE** http://localhost:8080/pessoa/1401389624475652749
     
@@ -158,6 +168,8 @@ ___
 ___
 #### Endpoint eletrodomestico : REQUESTS, Curls, RESPONSES
 ___
+
+##### **POST**<br><br>
   
    **POST** http://localhost:8080/eletrodomestico<br>
      Content-Type: application/json
@@ -171,13 +183,18 @@ ___
     curl -X POST --location "http://localhost:8080/eletrodomestico" -H "Content-type:application/json" -d '{"nome":"eletrodomestico", "modelo":"casa-casa", "potencia":"0.2 KWh"}'
     SUCESSO: ao criar Eletrodomestico
 
+___
+
+##### **GET**<br><br>
 
   **GET** http://localhost:8080/eletrodomestico
     
     curl -X GET --location "http://localhost:8080/eletrodomestico"
     [{"id":8393364629003825317,"nome":"eletrodomestico","modelo":"casa-casa","potencia":"0.2 KWh"}]
     
+___
 
+##### **PUT**<br><br>
 
    **PUT** http://localhost:8080/eletrodomestico<br>
     Content-Type: application/json
@@ -197,6 +214,9 @@ ___
       "potencia": "0.1 KWh"
     }
 
+___
+
+##### **DELETE**<br><br>
 
    **DELETE** http://localhost:8080/eletrodomestico/8393364629003825317
     
