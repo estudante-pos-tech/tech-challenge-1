@@ -38,7 +38,7 @@ No body da **POST** request, devem estar os pares key-value:
 
 *EXEMPLO:*   
 
-**POST** http://localhost:8080/endereco<br>
+**POST** http://localhost:8080/endereco <br>
     Content-Type: application/json
     
     {
