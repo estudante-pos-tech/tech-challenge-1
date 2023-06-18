@@ -60,6 +60,8 @@ No body da **POST** request, devem estar os pares key-value:
 ___
 
 ##### **GET**<br><br>
+
+  ###### **GET ALL**<br><br>
     
    **GET** http://localhost:8080/endereco
 
@@ -70,7 +72,16 @@ ___
     
     [{"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}]
 
+  ###### **GET BY ID**<br><br>
 
+    **GET** http://localhost:8080/endereco/1275424829065256685
+
+    curl -i -X GET --location "http://localhost:8080/endereco/1275424829065256685"
+    HTTP/1.1 200
+    Content-Type: application/json
+    Transfer-Encoding: chunked
+    
+    [{"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}]
 
 ___    
 
