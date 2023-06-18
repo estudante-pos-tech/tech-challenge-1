@@ -177,6 +177,8 @@ No body da **POST** request, devem estar os pares key-value:
 ___
 
   ##### **GET**<br><br>
+
+   ###### **GET ALL**<br><br>
     
    **GET** http://localhost:8080/pessoa<br>
     
@@ -186,7 +188,18 @@ ___
     Transfer-Encoding: chunked
        
     [{"id":6196618678884909927,"nome":"ana bela","nascimento":"2020-01-01","sexo":"FEMININO","parentesco":"MAE"}]
+
+  ###### **GET BY ID**<br><br>
+
+    **GET** http://localhost:8080/pessoa/6196618678884909927<br>
     
+    curl -i -X GET --location "http://localhost:8080/pessoa/6196618678884909927"
+    HTTP/1.1 200
+    Content-Type: application/json
+    Transfer-Encoding: chunked
+       
+    [{"id":6196618678884909927,"nome":"ana bela","nascimento":"2020-01-01","sexo":"FEMININO","parentesco":"MAE"}]
+
 ___
 
   ##### **PUT**<br><br>
