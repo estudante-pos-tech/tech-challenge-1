@@ -104,6 +104,22 @@ public class PessoaController  {
     }
 
 
+    @GetMapping("/{id}")
+    public ResponseEntity listarById(@PathVariable Long id) {
+
+        var obj = repositorio.getReferenceById(id);
+
+        if(obj.isPresent()){
+
+            return ResponseEntity.ok().body(obj.stream().map(DadosListagemPessoa::new));
+
+        }else{
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Pessoa.class.getSimpleName(), id));
+
+        }
+
+    }
 
 
     /**

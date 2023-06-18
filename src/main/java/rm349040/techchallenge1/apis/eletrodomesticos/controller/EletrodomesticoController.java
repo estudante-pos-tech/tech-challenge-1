@@ -106,4 +106,21 @@ public class EletrodomesticoController {
     }
 
 
+    @GetMapping("/{id}")
+    public ResponseEntity listarById(@PathVariable Long id) {
+
+        var obj = repositorio.getReferenceById(id);
+
+        if(obj.isPresent()){
+
+            return ResponseEntity.ok().body(obj.stream().map(DadosListagemEletrodomestico::new));
+
+        }else{
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Eletrodomestico.class.getSimpleName(), id));
+
+        }
+
+    }
+
 }//FIM CRUD ELETRODOMÉSTICOS

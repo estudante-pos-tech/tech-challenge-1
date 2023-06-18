@@ -37,4 +37,8 @@ public class Messages {
 
         return "ERRO ao "+action+ " : "+ex.getMessage();
     }
+
+    public static String NAO_ENCONTRADO(String dominio, Long id) {
+        return dominio + " NÃO encontrado, pois seu id=" + id + " NÃO existia na base de dados.";
+    }
 }
