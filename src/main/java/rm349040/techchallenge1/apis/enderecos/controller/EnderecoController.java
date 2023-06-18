@@ -85,7 +85,7 @@ public class EnderecoController {
 
             } else {
 
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Endereco.class.getSimpleName(), id));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO_AO_EXCLUIR(Endereco.class.getSimpleName(), id));
             }
 
         } else{

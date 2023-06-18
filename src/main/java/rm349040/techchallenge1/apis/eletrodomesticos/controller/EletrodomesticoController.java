@@ -87,7 +87,7 @@ public class EletrodomesticoController {
 
             } else {
 
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Eletrodomestico.class.getSimpleName(), id));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO_AO_EXCLUIR(Eletrodomestico.class.getSimpleName(), id));
 
             }
 

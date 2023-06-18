@@ -41,4 +41,8 @@ public class Messages {
     public static String NAO_ENCONTRADO(String dominio, Long id) {
         return dominio + " NÃO encontrado, pois seu id=" + id + " NÃO existia na base de dados.";
     }
+
+    public static String NAO_ENCONTRADO_AO_EXCLUIR(String dominio, Long id) {
+        return dominio + " NÃO encontrado. NÃO EXCLUÍDO, pois seu id=" + id + " NÃO existia na base de dados.";
+    }
 }
