@@ -37,7 +37,7 @@ public class PessoaController  {
 
             repositorio.save(dados.toPessoa());
 
-            return ResponseEntity.ok().body(Messages.SUCESSO_CRIAR(Pessoa.class.getSimpleName()));
+            return ResponseEntity.status(HttpStatus.CREATED).body(Messages.SUCESSO_CRIAR(Pessoa.class.getSimpleName()));
 
         } else {
 

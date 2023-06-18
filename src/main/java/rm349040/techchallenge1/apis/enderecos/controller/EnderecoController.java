@@ -1,6 +1,7 @@
 package rm349040.techchallenge1.apis.enderecos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosAtualizarEndereco;
@@ -31,7 +32,7 @@ public class EnderecoController {
 
             repositorio.save(dados.toEndereco());
 
-            return ResponseEntity.ok().body(Messages.SUCESSO_CRIAR(Endereco.class.getSimpleName()));
+            return ResponseEntity.status(HttpStatus.CREATED).body(Messages.SUCESSO_CRIAR(Endereco.class.getSimpleName()));
 
         } else {
 
