@@ -61,7 +61,9 @@ public class PessoaController  {
                 return ResponseEntity.ok().body(dados);
 
             } else {
-                return ResponseEntity.badRequest().body(Messages.ERRO_ATUALIZAR(Pessoa.class.getSimpleName(),dados.id()));
+
+                return return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Pessoa.class.getSimpleName(), dados.id()));
+
             }
 
 
@@ -86,7 +88,9 @@ public class PessoaController  {
                 return ResponseEntity.ok().body(Messages.SUCESSO_EXCLUJR(Pessoa.class.getSimpleName(), id));
 
             } else {
-                return ResponseEntity.badRequest().body(Messages.ERRO_EXCLUIR(Pessoa.class.getSimpleName(),id));
+
+                return return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Pessoa.class.getSimpleName(), id));
+
             }
 
         } else{

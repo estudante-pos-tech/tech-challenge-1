@@ -58,7 +58,7 @@ public class EnderecoController {
 
             } else {
 
-                return ResponseEntity.badRequest().body(Messages.ERRO_ATUALIZAR(Endereco.class.getSimpleName(),dados.id()));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Endereco.class.getSimpleName(), dados.id()));
 
             }
 
@@ -84,7 +84,8 @@ public class EnderecoController {
                 return ResponseEntity.ok().body(Messages.SUCESSO_EXCLUJR(Endereco.class.getSimpleName(), id));
 
             } else {
-                return ResponseEntity.badRequest().body(Messages.ERRO_EXCLUIR(Endereco.class.getSimpleName(),id));
+
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Endereco.class.getSimpleName(), id));
             }
 
         } else{

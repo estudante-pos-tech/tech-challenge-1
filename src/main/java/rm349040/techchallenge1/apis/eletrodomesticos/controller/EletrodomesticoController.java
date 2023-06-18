@@ -59,7 +59,9 @@ public class EletrodomesticoController {
                 return ResponseEntity.ok().body(dados);
 
             } else {
-                return ResponseEntity.badRequest().body(Messages.ERRO_ATUALIZAR(Eletrodomestico.class.getSimpleName(),dados.id()));
+
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Eletrodomestico.class.getSimpleName(), dados.id()));
+
             }
 
 
@@ -85,7 +87,7 @@ public class EletrodomesticoController {
 
             } else {
 
-                return ResponseEntity.badRequest().body(Messages.ERRO_EXCLUIR(Eletrodomestico.class.getSimpleName(),id));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Eletrodomestico.class.getSimpleName(), id));
 
             }
 
