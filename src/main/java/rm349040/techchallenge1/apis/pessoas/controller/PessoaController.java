@@ -62,7 +62,7 @@ public class PessoaController  {
 
             } else {
 
-                return return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Pessoa.class.getSimpleName(), dados.id()));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Pessoa.class.getSimpleName(), dados.id()));
 
             }
 
