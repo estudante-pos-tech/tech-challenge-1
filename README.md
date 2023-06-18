@@ -280,9 +280,22 @@ ___
 
 ##### **GET**<br><br>
 
+  ###### **GET ALL**<br><br>
+
   **GET** http://localhost:8080/eletrodomestico
     
     curl -i -X GET --location "http://localhost:8080/eletrodomestico"
+    HTTP/1.1 200
+    Content-Type: application/json
+    Transfer-Encoding: chunked
+    
+    [{"id":8393364629003825317,"nome":"eletrodomestico","modelo":"casa-casa","potencia":"0.2 KWh"}]
+
+   ###### **GET BY ID**<br><br>
+
+    **GET** http://localhost:8080/eletrodomestico/8393364629003825317
+    
+    curl -i -X GET --location "http://localhost:8080/eletrodomestico/8393364629003825317"
     HTTP/1.1 200
     Content-Type: application/json
     Transfer-Encoding: chunked
