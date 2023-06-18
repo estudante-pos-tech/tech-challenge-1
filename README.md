@@ -49,7 +49,11 @@ No body da **POST** request, devem estar os pares key-value:
       "estado": "SP"
     }
     
-    curl -X POST --location "http://localhost:8080/endereco" -H "Content-type:application/json" -d '{"rua":"rua bela", "numero":"234", "bairro":"bairro", "cidade":"Maya","estado":"SP"}'
+    curl -i -X POST --location "http://localhost:8080/endereco" -H "Content-type:application/json" -d '{"rua":"rua bela", "numero":"234", "bairro":"bairro", "cidade":"Maya","estado":"SP"}'
+    HTTP/1.1 201 
+    Content-Type: text/plain;charset=UTF-8
+    Content-Length: 26
+        
     SUCESSO: ao criar Endereco
 
 
@@ -58,9 +62,14 @@ ___
 ##### **GET**<br><br>
     
    **GET** http://localhost:8080/endereco
+
+    curl -i -X GET --location "http://localhost:8080/endereco"
+    HTTP/1.1 200
+    Content-Type: application/json
+    Transfer-Encoding: chunked
     
-    curl -X GET --location "http://localhost:8080/endereco"
     [{"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}]
+
 
 
 ___    
@@ -89,7 +98,11 @@ ___
       "estado": "AM"
     }
     
-    curl -X PUT --location "http://localhost:8080/endereco" -H "Content-type:application/json" -d '{"id":"1275424829065256685", "rua":"rua belissima",  "numero":"890234", "bairro":"brejo-bairro", "cidade":"Mayaporã","estado":"AM"}'
+    curl -i -X PUT --location "http://localhost:8080/endereco" -H "Content-type:application/json" -d '{"id":"1275424829065256685", "rua":"rua belissima",  "numero":"890234", "bairro":"brejo-bairro", "cidade":"Mayaporã","estado":"AM"}'
+    HTTP/1.1 200
+    Content-Type: application/json
+    Transfer-Encoding: chunked
+
     {
       "id": "1275424829065256685",
       "rua": "rua belissima",
@@ -110,7 +123,11 @@ No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja de
     
    **DELETE** http://localhost:8080/endereco/1275424829065256685
     
-    curl -X DELETE --location "http://localhost:8080/endereco/1275424829065256685"
+    curl -i -X DELETE --location "http://localhost:8080/endereco/1275424829065256685"
+    HTTP/1.1 200
+    Content-Type: text/plain;charset=UTF-8
+    Content-Length: 48
+        
     SUCESSO: ao excluir Endereco 1275424829065256685
 
 ___
@@ -138,8 +155,13 @@ No body da **POST** request, devem estar os pares key-value:
       "parentesco": "MAE"
     }
     
-    curl -X POST --location "http://localhost:8080/pessoa" -H "Content-type:application/json" -d '{"nome":"ana bela", "nascimento":"2020-01-01", "sexo":"FEMININO", "parentesco":"MAE"}'
+    curl -i -X POST --location "http://localhost:8080/pessoa" -H "Content-type:application/json" -d '{"nome":"ana bela", "nascimento":"2020-01-01", "sexo":"FEMININO", "parentesco":"MAE"}'
+    HTTP/1.1 201 
+    Content-Type: text/plain;charset=UTF-8
+    Content-Length: 24
+    
     SUCESSO: ao criar Pessoa
+
 
 ___
 
@@ -147,7 +169,11 @@ ___
     
    **GET** http://localhost:8080/pessoa<br>
     
-    curl -X GET --location "http://localhost:8080/pessoa"
+    curl -i -X GET --location "http://localhost:8080/pessoa"
+    HTTP/1.1 200
+    Content-Type: application/json
+    Transfer-Encoding: chunked
+       
     [{"id":6196618678884909927,"nome":"ana bela","nascimento":"2020-01-01","sexo":"FEMININO","parentesco":"MAE"}]
     
 ___
@@ -174,7 +200,11 @@ No body da **PUT** request, devem estar os pares key-value:
       "parentesco": "CONJUGE"
     }
     
-    curl -X PUT --location "http://localhost:8080/pessoa" -H "Content-type:application/json" -d '{"id":"6196618678884909927", "nome":"Zuleica bela", "nascimento":"2010-01-01", "sexo":"FEMININO", "parentesco":"CONJUGE"}'
+    curl -i -X PUT --location "http://localhost:8080/pessoa" -H "Content-type:application/json" -d '{"id":"6196618678884909927", "nome":"Zuleica bela", "nascimento":"2010-01-01", "sexo":"FEMININO", "parentesco":"CONJUGE"}'
+    HTTP/1.1 200
+    Content-Type: application/json
+    Transfer-Encoding: chunked
+    
     {"id":6196618678884909927,"nome":"Zuleica bela","nascimento":"2010-01-01","sexo":"FEMININO","parentesco":"CONJUGE"}
 
 ___
@@ -186,7 +216,11 @@ ___
         
    **DELETE** http://localhost:8080/pessoa/1401389624475652749
     
-    curl -X DELETE --location "http://localhost:8080/pessoa/6196618678884909927"
+    curl -i -X DELETE --location "http://localhost:8080/pessoa/6196618678884909927"
+    HTTP/1.1 200
+    Content-Type: text/plain;charset=UTF-8
+    Content-Length: 46
+
     SUCESSO: ao excluir Pessoa 6196618678884909927
 
 ___
@@ -211,7 +245,11 @@ No body da **POST** request, devem estar os pares key-value:
       "potencia": "0.2 KWh"
     }
 
-    curl -X POST --location "http://localhost:8080/eletrodomestico" -H "Content-type:application/json" -d '{"nome":"eletrodomestico", "modelo":"casa-casa", "potencia":"0.2 KWh"}'
+    curl -i -X POST --location "http://localhost:8080/eletrodomestico" -H "Content-type:application/json" -d '{"nome":"eletrodomestico", "modelo":"casa-casa", "potencia":"0.2 KWh"}'
+    HTTP/1.1 201 
+    Content-Type: text/plain;charset=UTF-8
+    Content-Length: 33
+        
     SUCESSO: ao criar Eletrodomestico
 
 ___
@@ -220,7 +258,11 @@ ___
 
   **GET** http://localhost:8080/eletrodomestico
     
-    curl -X GET --location "http://localhost:8080/eletrodomestico"
+    curl -i -X GET --location "http://localhost:8080/eletrodomestico"
+    HTTP/1.1 200
+    Content-Type: application/json
+    Transfer-Encoding: chunked
+    
     [{"id":8393364629003825317,"nome":"eletrodomestico","modelo":"casa-casa","potencia":"0.2 KWh"}]
     
 ___
@@ -246,6 +288,10 @@ No body da **PUT** request, devem estar os pares key-value:
     }
     
     curl -i -X PUT --location "http://localhost:8080/eletrodomestico" -H "Content-type:application/json" -d '{"id":"8393364629003825317","nome":"rural-eletro", "modelo":"casa-rural", "potencia":"0.1 KWh"}'
+    HTTP/1.1 200
+    Content-Type: application/json
+    Transfer-Encoding: chunked
+
     {
       "id": "8393364629003825317",
       "nome": "rural-eletro",
@@ -262,7 +308,11 @@ No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja de
     
    **DELETE** http://localhost:8080/eletrodomestico/8393364629003825317
     
-    curl -X DELETE --location "http://localhost:8080/eletrodomestico/8393364629003825317"
+    curl -i -X DELETE --location "http://localhost:8080/eletrodomestico/8393364629003825317"
+    HTTP/1.1 200
+    Content-Type: text/plain;charset=UTF-8
+    Content-Length: 55
+
     SUCESSO: ao excluir Eletrodomestico 8393364629003825317
 
 ### Requests incorretas
