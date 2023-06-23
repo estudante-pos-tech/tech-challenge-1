@@ -13,11 +13,27 @@ public class Messages {
     }
 
     static public String ERRO_ATUALIZAR(String dominio, long id) {
-        return dominio + " NÃO atualizado, pois seu id=" + id + " NÃO existia na base de dados.";
+        return "ERRO ao atualizar "+dominio + ", pois seu id=" + id + " NÃO existia na base de dados.";
+    }
+
+    static public String ERRO_ATUALIZAR(String dominio) {
+        return "ERRO ao atualizar "+dominio ;
     }
 
     static public String ERRO_EXCLUIR(String dominio, long id) {
         return dominio + " NÃO excluido, pois seu id=" + id + " NÃO existia na base de dados.";
+    }
+
+    static public String ERRO_EXCLUIR(String dominio) {
+        return dominio + " NÃO excluido";
+    }
+
+    static public String ERRO_CRIAR(String dominio, String erro) {
+        return "ERRO ao criar "+dominio + ", pois " + erro;
+    }
+
+    static public String ERRO_CRIAR(String dominio) {
+        return "ERRO ao criar "+dominio;
     }
 
     static public String ERRO_ID_NULO(String dominio) {
@@ -42,6 +58,9 @@ public class Messages {
         return dominio + " NÃO encontrado, pois seu id=" + id + " NÃO existia na base de dados.";
     }
 
+    public static String NAO_ENCONTRADO(String dominio) {
+        return dominio + " NÃO encontrado";
+    }
     public static String NAO_ENCONTRADO_AO_EXCLUIR(String dominio, Long id) {
         return dominio + " NÃO encontrado. NÃO EXCLUÍDO, pois seu id=" + id + " NÃO existia na base de dados.";
     }

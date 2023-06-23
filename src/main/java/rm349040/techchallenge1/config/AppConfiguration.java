@@ -12,18 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import rm349040.techchallenge1.util.Messages;
 
 @Configuration
-@ControllerAdvice
 public class AppConfiguration {
 
     @Bean
     public Validator beanValidator(){
         return Validation.buildDefaultValidatorFactory().getValidator();
-    }
-
-
-    @ExceptionHandler(Exception.class)
-    public @ResponseBody ResponseEntity handleException(HttpServletRequest request, Exception ex){
-        return ResponseEntity.badRequest().body(Messages.ERRO_GLOBAL(request,ex));
     }
 
 }

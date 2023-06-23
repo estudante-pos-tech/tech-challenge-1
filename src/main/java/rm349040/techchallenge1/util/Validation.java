@@ -3,6 +3,7 @@ package rm349040.techchallenge1.util;
 import jakarta.validation.ConstraintViolation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import rm349040.techchallenge1.exception.ApiValidationException;
 
 import java.util.List;
 import java.util.Set;
@@ -11,37 +12,37 @@ import java.util.stream.Collectors;
 @Component
 public class Validation {
 
-    static int instancesNumber=0;
+    static int instancesNumber = 0;
 
     public Validation() {
-        System.out.println("THERE IS(ARE) "+ ++instancesNumber +" rm349040.techchallenge1.util.Validation INSTANCE(S)");
+        System.out.println("THERE IS(ARE) " + ++instancesNumber + " rm349040.techchallenge1.util.Validation INSTANCE(S)");
     }
 
     @Autowired
     private jakarta.validation.Validator validator;
 
-    synchronized public <T> boolean isDadosOk(T obj) {
-        return getViolacoes(obj).isEmpty();
+    synchronized public <T> void throwExceptionIfDataIsWrong(T obj) throws ApiValidationException {
+
+        List<String> violacoes = getViolacoes(obj);
+
+        if( ! violacoes.isEmpty() ){
+             throw new ApiValidationException("",violacoes.toString(),null);
+         }
+
     }
 
-     synchronized public <T> String errorMessage(T obj) {
+    synchronized public <T> String errorMessage(T obj) {
 
         StringBuilder sb = new StringBuilder();
 
         List<String> violacoes = getViolacoes(obj);
 
-        violacoes.stream().forEach(violacao -> {
-            sb.append(violacao);
-            sb.append("\n");
-        });
-
-
-        return sb.toString();
+        return violacoes.toString();
 
     }
 
 
-     synchronized private <T> List<String> getViolacoes(T obj) {
+    synchronized private <T> List<String> getViolacoes(T obj) {
 
         Set<ConstraintViolation<T>> violacoes = validator.validate(obj);
 
@@ -52,7 +53,6 @@ public class Validation {
         return violacoesToList;
 
     }
-
 
 
 }

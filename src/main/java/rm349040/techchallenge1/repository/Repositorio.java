@@ -67,7 +67,7 @@ public class Repositorio<T extends BASE> {
 
         } else {
 
-            return Optional.empty();
+            throw new NullPointerException("O id não pode ser nulo");
 
         }
 

@@ -1,16 +1,16 @@
 package rm349040.techchallenge1.apis.enderecos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosAtualizarEndereco;
 import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosCadastroEndereco;
 import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosListagemEndereco;
 import rm349040.techchallenge1.apis.enderecos.dominio.Endereco;
-import rm349040.techchallenge1.repository.Repositorio;
+import rm349040.techchallenge1.apis.enderecos.service.EnderecoService;
 import rm349040.techchallenge1.util.Messages;
-import rm349040.techchallenge1.util.Validation;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("endereco")
@@ -18,56 +18,20 @@ public class EnderecoController {
 
 
     @Autowired
-    private Repositorio<Endereco> repositorio;
+    private EnderecoService service;
 
-
-    @Autowired
-    private Validation validation;
 
     @PostMapping
     public ResponseEntity criar(@RequestBody DadosCadastroEndereco dados) {
-
-
-        if (validation.isDadosOk(dados)) {
-
-            repositorio.save(dados.toEndereco());
-
-            return ResponseEntity.status(HttpStatus.CREATED).body(Messages.SUCESSO_CRIAR(Endereco.class.getSimpleName()));
-
-        } else {
-
-            return ResponseEntity.badRequest().body(validation.errorMessage(dados));
-
-        }
-
-
+        return ResponseEntity.ok(Messages.SUCESSO_CRIAR(Endereco.class.getSimpleName() + " id: "+service.criar(dados).getId()));
     }
 
     @PutMapping
     public ResponseEntity atualizar(@RequestBody DadosAtualizarEndereco dados) {
 
-        if (validation.isDadosOk(dados)) {
+        service.atualizar(dados);
 
-            var endereco = repositorio.getReferenceById(dados.id());
-
-            if (endereco.isPresent()) {
-
-                endereco.get().atualizarDados(dados.toEndereco());
-
-                return ResponseEntity.ok().body(dados);
-
-            } else {
-
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Endereco.class.getSimpleName(), dados.id()));
-
-            }
-
-
-        } else {
-
-            return ResponseEntity.badRequest().body(validation.errorMessage(dados));
-
-        }
+        return ResponseEntity.ok().body(dados);
 
     }
 
@@ -75,53 +39,23 @@ public class EnderecoController {
     @DeleteMapping("/{id}")
     public ResponseEntity excluir(@PathVariable Long id) {
 
-        if (id != null) {
+        service.excluir(id);
 
-            var endereco = repositorio.deleteById(id);
-
-            if (endereco.isPresent()) {
-
-                return ResponseEntity.ok().body(Messages.SUCESSO_EXCLUJR(Endereco.class.getSimpleName(), id));
-
-            } else {
-
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO_AO_EXCLUIR(Endereco.class.getSimpleName(), id));
-            }
-
-        } else{
-
-            return ResponseEntity.badRequest().body(Messages.ERRO_ID_NULO(Endereco.class.getSimpleName()));
-
-        }
-
+        return ResponseEntity.ok(Messages.SUCESSO_EXCLUJR(Endereco.class.getSimpleName(),id));
 
     }
 
 
     @GetMapping
     public ResponseEntity listar() {
-        return ResponseEntity.ok().body(repositorio.findAll().stream().map(DadosListagemEndereco::new));
+        return ResponseEntity.ok().body(service.listar().stream().map(DadosListagemEndereco::new));
     }
 
 
     @GetMapping("/{id}")
     public ResponseEntity listarById(@PathVariable Long id) {
-
-        var obj = repositorio.getReferenceById(id);
-
-        if(obj.isPresent()){
-
-            return ResponseEntity.ok().body(obj.stream().map(DadosListagemEndereco::new));
-
-        }else{
-
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Endereco.class.getSimpleName(), id));
-
-        }
-
+        return ResponseEntity.ok().body(Optional.of(service.listarById(id)).stream().map(DadosListagemEndereco::new));
     }
-
-
 
 
 
