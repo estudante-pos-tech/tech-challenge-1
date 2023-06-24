@@ -1,6 +1,6 @@
 # tech-challenge-1 
 Implementação ***CRUD** Java Rest Apis*.<br>
-Os endpoints são endereco, pessoa e eletrodomestico
+Os endpoints são enderecos, pessoas e eletrodomesticos
 ## Relatório Técnico
 <div style='text-align: justify;'>
   
@@ -26,7 +26,7 @@ O ***CRUD*** foi implementado seguindo o mapa :
 <br><br>
 ### Requests corretas
 ___
-#### Endpoint endereco : REQUESTS, Curls, RESPONSES
+#### Endpoint enderecos : REQUESTS, Curls, RESPONSES
 ___
 ##### **POST**<br><br>
 No body da **POST** request, devem estar os pares key-value: 
@@ -38,7 +38,7 @@ No body da **POST** request, devem estar os pares key-value:
 
 *EXEMPLO:*   
 
-**POST** http://localhost:8080/endereco <br>
+**POST** http://localhost:8080/enderecos <br>
     Content-Type: application/json
     
     {
@@ -49,7 +49,7 @@ No body da **POST** request, devem estar os pares key-value:
       "estado": "SP"
     }
     
-    curl -i -X POST --location "http://localhost:8080/endereco" -H "Content-type:application/json" -d '{"rua":"rua bela", "numero":"234", "bairro":"bairro", "cidade":"Maya","estado":"SP"}'
+    curl -i -X POST --location "http://localhost:8080/enderecos" -H "Content-type:application/json" -d '{"rua":"rua bela", "numero":"234", "bairro":"bairro", "cidade":"Maya","estado":"SP"}'
     HTTP/1.1 201 
     Content-Type: text/plain;charset=UTF-8
     Content-Length: 26
@@ -63,9 +63,9 @@ ___
 
   ###### **GET ALL**<br><br>
     
-   **GET** http://localhost:8080/endereco
+   **GET** http://localhost:8080/enderecos
 
-    curl -i -X GET --location "http://localhost:8080/endereco"
+    curl -i -X GET --location "http://localhost:8080/enderecos"
     HTTP/1.1 200
     Content-Type: application/json
     Transfer-Encoding: chunked
@@ -74,9 +74,9 @@ ___
 
   ###### **GET BY ID**<br><br>
 
-    **GET** http://localhost:8080/endereco/1275424829065256685
+    **GET** http://localhost:8080/enderecos/1275424829065256685
 
-    curl -i -X GET --location "http://localhost:8080/endereco/1275424829065256685"
+    curl -i -X GET --location "http://localhost:8080/enderecos/1275424829065256685"
     HTTP/1.1 200
     Content-Type: application/json
     Transfer-Encoding: chunked
@@ -97,7 +97,7 @@ ___
 
 *EXEMPLO:*    
 
-   **PUT** http://localhost:8080/endereco<br>
+   **PUT** http://localhost:8080/enderecos<br>
     Content-Type: application/json
     
     {
@@ -109,7 +109,7 @@ ___
       "estado": "AM"
     }
     
-    curl -i -X PUT --location "http://localhost:8080/endereco" -H "Content-type:application/json" -d '{"id":"1275424829065256685", "rua":"rua belissima",  "numero":"890234", "bairro":"brejo-bairro", "cidade":"Mayaporã","estado":"AM"}'
+    curl -i -X PUT --location "http://localhost:8080/enderecos" -H "Content-type:application/json" -d '{"id":"1275424829065256685", "rua":"rua belissima",  "numero":"890234", "bairro":"brejo-bairro", "cidade":"Mayaporã","estado":"AM"}'
     HTTP/1.1 200
     Content-Type: application/json
     Transfer-Encoding: chunked
@@ -132,9 +132,9 @@ ___
 No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja deletar: 
   -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
     
-   **DELETE** http://localhost:8080/endereco/1275424829065256685
+   **DELETE** http://localhost:8080/enderecos/1275424829065256685
     
-    curl -i -X DELETE --location "http://localhost:8080/endereco/1275424829065256685"
+    curl -i -X DELETE --location "http://localhost:8080/enderecos/1275424829065256685"
     HTTP/1.1 200
     Content-Type: text/plain;charset=UTF-8
     Content-Length: 48
@@ -142,7 +142,7 @@ No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja de
     SUCESSO: ao excluir Endereco 1275424829065256685
 
 ___
-#### Endpoint pessoa : REQUESTS, Curls, RESPONSES
+#### Endpoint pessoas : REQUESTS, Curls, RESPONSES
 ___
 
 ##### **POST**<br><br>
@@ -156,7 +156,7 @@ No body da **POST** request, devem estar os pares key-value:
 *EXEMPLO:*   
 
     
-   **POST** http://localhost:8080/pessoa<br>
+   **POST** http://localhost:8080/pessoas<br>
     Content-Type: application/json
     
     {
@@ -166,7 +166,7 @@ No body da **POST** request, devem estar os pares key-value:
       "parentesco": "MAE"
     }
     
-    curl -i -X POST --location "http://localhost:8080/pessoa" -H "Content-type:application/json" -d '{"nome":"ana bela", "nascimento":"2020-01-01", "sexo":"FEMININO", "parentesco":"MAE"}'
+    curl -i -X POST --location "http://localhost:8080/pessoas" -H "Content-type:application/json" -d '{"nome":"ana bela", "nascimento":"2020-01-01", "sexo":"FEMININO", "parentesco":"MAE"}'
     HTTP/1.1 201 
     Content-Type: text/plain;charset=UTF-8
     Content-Length: 24
@@ -180,9 +180,9 @@ ___
 
    ###### **GET ALL**<br><br>
     
-   **GET** http://localhost:8080/pessoa<br>
+   **GET** http://localhost:8080/pessoas<br>
     
-    curl -i -X GET --location "http://localhost:8080/pessoa"
+    curl -i -X GET --location "http://localhost:8080/pessoas"
     HTTP/1.1 200
     Content-Type: application/json
     Transfer-Encoding: chunked
@@ -191,9 +191,9 @@ ___
 
   ###### **GET BY ID**<br><br>
 
-    **GET** http://localhost:8080/pessoa/6196618678884909927<br>
+    **GET** http://localhost:8080/pessoas/6196618678884909927<br>
     
-    curl -i -X GET --location "http://localhost:8080/pessoa/6196618678884909927"
+    curl -i -X GET --location "http://localhost:8080/pessoas/6196618678884909927"
     HTTP/1.1 200
     Content-Type: application/json
     Transfer-Encoding: chunked
@@ -213,7 +213,7 @@ No body da **PUT** request, devem estar os pares key-value:
 
 *EXEMPLO:*  
     
-   **PUT** http://localhost:8080/pessoa<br>
+   **PUT** http://localhost:8080/pessoas<br>
     Content-Type: application/json
     
     {
@@ -224,7 +224,7 @@ No body da **PUT** request, devem estar os pares key-value:
       "parentesco": "CONJUGE"
     }
     
-    curl -i -X PUT --location "http://localhost:8080/pessoa" -H "Content-type:application/json" -d '{"id":"6196618678884909927", "nome":"Zuleica bela", "nascimento":"2010-01-01", "sexo":"FEMININO", "parentesco":"CONJUGE"}'
+    curl -i -X PUT --location "http://localhost:8080/pessoas" -H "Content-type:application/json" -d '{"id":"6196618678884909927", "nome":"Zuleica bela", "nascimento":"2010-01-01", "sexo":"FEMININO", "parentesco":"CONJUGE"}'
     HTTP/1.1 200
     Content-Type: application/json
     Transfer-Encoding: chunked
@@ -238,9 +238,9 @@ ___
   No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja deletar: 
   -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
         
-   **DELETE** http://localhost:8080/pessoa/1401389624475652749
+   **DELETE** http://localhost:8080/pessoas/1401389624475652749
     
-    curl -i -X DELETE --location "http://localhost:8080/pessoa/6196618678884909927"
+    curl -i -X DELETE --location "http://localhost:8080/pessoas/6196618678884909927"
     HTTP/1.1 200
     Content-Type: text/plain;charset=UTF-8
     Content-Length: 46
@@ -248,7 +248,7 @@ ___
     SUCESSO: ao excluir Pessoa 6196618678884909927
 
 ___
-#### Endpoint eletrodomestico : REQUESTS, Curls, RESPONSES
+#### Endpoint eletrodomesticos : REQUESTS, Curls, RESPONSES
 ___
 
 ##### **POST**<br><br>
@@ -260,16 +260,16 @@ No body da **POST** request, devem estar os pares key-value:
 
 *EXEMPLO:*  
   
-   **POST** http://localhost:8080/eletrodomestico<br>
+   **POST** http://localhost:8080/eletrodomesticos<br>
      Content-Type: application/json
 
     {
-      "nome": "eletrodomestico",
+      "nome": "eletrodomesticos",
       "modelo": "casa-casa",
       "potencia": "0.2 KWh"
     }
 
-    curl -i -X POST --location "http://localhost:8080/eletrodomestico" -H "Content-type:application/json" -d '{"nome":"eletrodomestico", "modelo":"casa-casa", "potencia":"0.2 KWh"}'
+    curl -i -X POST --location "http://localhost:8080/eletrodomesticos" -H "Content-type:application/json" -d '{"nome":"eletrodomesticos", "modelo":"casa-casa", "potencia":"0.2 KWh"}'
     HTTP/1.1 201 
     Content-Type: text/plain;charset=UTF-8
     Content-Length: 33
@@ -282,25 +282,25 @@ ___
 
   ###### **GET ALL**<br><br>
 
-  **GET** http://localhost:8080/eletrodomestico
+  **GET** http://localhost:8080/eletrodomesticos
     
-    curl -i -X GET --location "http://localhost:8080/eletrodomestico"
+    curl -i -X GET --location "http://localhost:8080/eletrodomesticos"
     HTTP/1.1 200
     Content-Type: application/json
     Transfer-Encoding: chunked
     
-    [{"id":8393364629003825317,"nome":"eletrodomestico","modelo":"casa-casa","potencia":"0.2 KWh"}]
+    [{"id":8393364629003825317,"nome":"eletrodomesticos","modelo":"casa-casa","potencia":"0.2 KWh"}]
 
    ###### **GET BY ID**<br><br>
 
-    **GET** http://localhost:8080/eletrodomestico/8393364629003825317
+    **GET** http://localhost:8080/eletrodomesticos/8393364629003825317
     
-    curl -i -X GET --location "http://localhost:8080/eletrodomestico/8393364629003825317"
+    curl -i -X GET --location "http://localhost:8080/eletrodomesticos/8393364629003825317"
     HTTP/1.1 200
     Content-Type: application/json
     Transfer-Encoding: chunked
     
-    [{"id":8393364629003825317,"nome":"eletrodomestico","modelo":"casa-casa","potencia":"0.2 KWh"}]
+    [{"id":8393364629003825317,"nome":"eletrodomesticos","modelo":"casa-casa","potencia":"0.2 KWh"}]
     
 ___
 
@@ -314,7 +314,7 @@ No body da **PUT** request, devem estar os pares key-value:
 
 *EXEMPLO:* 
 
-   **PUT** http://localhost:8080/eletrodomestico<br>
+   **PUT** http://localhost:8080/eletrodomesticos<br>
     Content-Type: application/json
     
     {
@@ -324,7 +324,7 @@ No body da **PUT** request, devem estar os pares key-value:
       "potencia": "0.1 KWh"
     }
     
-    curl -i -X PUT --location "http://localhost:8080/eletrodomestico" -H "Content-type:application/json" -d '{"id":"8393364629003825317","nome":"rural-eletro", "modelo":"casa-rural", "potencia":"0.1 KWh"}'
+    curl -i -X PUT --location "http://localhost:8080/eletrodomesticos" -H "Content-type:application/json" -d '{"id":"8393364629003825317","nome":"rural-eletro", "modelo":"casa-rural", "potencia":"0.1 KWh"}'
     HTTP/1.1 200
     Content-Type: application/json
     Transfer-Encoding: chunked
@@ -343,9 +343,9 @@ ___
 No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja deletar: 
   -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
     
-   **DELETE** http://localhost:8080/eletrodomestico/8393364629003825317
+   **DELETE** http://localhost:8080/eletrodomesticos/8393364629003825317
     
-    curl -i -X DELETE --location "http://localhost:8080/eletrodomestico/8393364629003825317"
+    curl -i -X DELETE --location "http://localhost:8080/eletrodomesticos/8393364629003825317"
     HTTP/1.1 200
     Content-Type: text/plain;charset=UTF-8
     Content-Length: 55
@@ -366,9 +366,9 @@ Qualquer e toda request às apis que não esteja na forma indicada na documenta�
 ## Desafio técnico
 <div style='text-align: justify;'>
 
-Da maneira como estão codados os endpoints endereco, pessoa e eletromestico, são semalhantíssimos os métodos GET, POST, PUT e DELETE, nos 3 rest controllers.<br><br> 
+Da maneira como estão codados os endpoints enderecos, pessoas e eletromestico, são semalhantíssimos os métodos GET, POST, PUT e DELETE, nos 3 rest controllers.<br><br> 
 Por exemplo, se prestarmos atenção aos métodos GET, dos 3 rest controllers, vemos que são idênticos, em sua lógica; apenas os DTOs e os paths variam.<br><br>
-Se fosse possível ao Spring *mapear* **um subconjunto específico de requests** (por exemple, {GET http://localhost:8080/endereco , GET http://localhost:8080/pessoa , GET http://localhost:8080/eletrodomestico}) para ***APENAS** 1 determinado método* e se fosse possível *mapear* determinado DTO *a uma determinada request*, então, **ao invés de se ter 3 REST controllers** (EnderecoController, PessoaController, EletrodomesticoController), **seria possivel ter apenas 1 rest controller genérico**. Essa solução simplificaria, enxugaria, tornaria ++ fácil de evoluir o app.<br><br>
+Se fosse possível ao Spring *mapear* **um subconjunto específico de requests** (por exemple, {GET http://localhost:8080/enderecos , GET http://localhost:8080/pessoas , GET http://localhost:8080/eletrodomesticos}) para ***APENAS** 1 determinado método* e se fosse possível *mapear* determinado DTO *a uma determinada request*, então, **ao invés de se ter 3 REST controllers** (EnderecoController, PessoaController, EletrodomesticoController), **seria possivel ter apenas 1 rest controller genérico**. Essa solução simplificaria, enxugaria, tornaria ++ fácil de evoluir o app.<br><br>
 Precisa ser estudado se o **Spring AOP (Aspect Oriented Programming)** suporta os mapeamentos.
 
 </div>
