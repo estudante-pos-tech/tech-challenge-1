@@ -5,6 +5,8 @@ import jakarta.validation.Validator;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import rm349040.techchallenge1.api.dtos.enderecos.DadosListagemEndereco;
+import rm349040.techchallenge1.domain.model.Endereco;
 
 @Configuration
 public class TechChallengeAppConfiguration {
@@ -16,7 +18,14 @@ public class TechChallengeAppConfiguration {
 
     @Bean
     public ModelMapper modelMapper(){
-        return new ModelMapper();
+
+        ModelMapper modelMapper =  new ModelMapper();
+
+//        modelMapper.
+//                createTypeMap(Endereco.class, DadosListagemEndereco.class).
+//                addMapping(Endereco::getNumero,DadosListagemEndereco::setNum);
+
+        return modelMapper;
     }
 
 }
