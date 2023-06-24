@@ -3,7 +3,7 @@ package rm349040.techchallenge1.repository;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
-import rm349040.techchallenge1.apis.BASE;
+import rm349040.techchallenge1.domain.BASE;
 
 import java.util.*;
 

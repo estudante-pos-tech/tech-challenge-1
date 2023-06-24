@@ -1,7 +1,6 @@
-package rm349040.techchallenge1.apis.eletrodomesticos.controller.dtos;
+package rm349040.techchallenge1.api.dtos.eltrodomesticos;
 
-import rm349040.techchallenge1.apis.eletrodomesticos.dominio.Eletrodomestico;
-import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosListagemPessoa;
+import rm349040.techchallenge1.domain.model.Eletrodomestico;
 
 public record DadosListagemEletrodomestico(Long id, String nome, String modelo, String potencia) {
 

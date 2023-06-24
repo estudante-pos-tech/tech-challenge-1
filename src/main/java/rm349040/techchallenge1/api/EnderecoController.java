@@ -1,13 +1,13 @@
-package rm349040.techchallenge1.apis.enderecos.controller;
+package rm349040.techchallenge1.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosAtualizarEndereco;
-import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosCadastroEndereco;
-import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosListagemEndereco;
-import rm349040.techchallenge1.apis.enderecos.dominio.Endereco;
-import rm349040.techchallenge1.apis.enderecos.service.EnderecoService;
+import rm349040.techchallenge1.api.dtos.enderecos.DadosAtualizarEndereco;
+import rm349040.techchallenge1.api.dtos.enderecos.DadosCadastroEndereco;
+import rm349040.techchallenge1.api.dtos.enderecos.DadosListagemEndereco;
+import rm349040.techchallenge1.domain.model.Endereco;
+import rm349040.techchallenge1.domain.service.EnderecoService;
 import rm349040.techchallenge1.util.Messages;
 
 import java.util.Optional;

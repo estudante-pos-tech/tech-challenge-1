@@ -1,8 +1,8 @@
-package rm349040.techchallenge1.apis.enderecos.controller.dtos;
+package rm349040.techchallenge1.api.dtos.enderecos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import rm349040.techchallenge1.apis.enderecos.dominio.Endereco;
+import rm349040.techchallenge1.domain.model.Endereco;
 
 public record DadosCadastroEndereco(
 

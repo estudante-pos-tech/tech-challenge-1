@@ -1,4 +1,4 @@
-package rm349040.techchallenge1.apis.pessoas.controller;
+package rm349040.techchallenge1.api;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -7,10 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosAtualizarPessoa;
-import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosCadastroPessoa;
-import rm349040.techchallenge1.apis.pessoas.controller.dtos.DadosListagemPessoa;
-import rm349040.techchallenge1.apis.pessoas.dominio.Pessoa;
+import rm349040.techchallenge1.api.dtos.pessoas.DadosAtualizarPessoa;
+import rm349040.techchallenge1.api.dtos.pessoas.DadosCadastroPessoa;
+import rm349040.techchallenge1.api.dtos.pessoas.DadosListagemPessoa;
+import rm349040.techchallenge1.domain.model.Pessoa;
 import rm349040.techchallenge1.repository.Repositorio;
 import rm349040.techchallenge1.util.Messages;
 import rm349040.techchallenge1.util.Validation;
@@ -33,45 +33,48 @@ public class PessoaController  {
     public ResponseEntity criar(@RequestBody DadosCadastroPessoa dados) {
 
 
-        if (validation.isDadosOk(dados)) {
-
-            repositorio.save(dados.toPessoa());
-
-            return ResponseEntity.status(HttpStatus.CREATED).body(Messages.SUCESSO_CRIAR(Pessoa.class.getSimpleName()));
-
-        } else {
-
-            return ResponseEntity.badRequest().body(validation.errorMessage(dados));
-
-        }
+//        if (validation.throwExceptionIfDataIsWrong(dados)) {
+//
+//            repositorio.save(dados.toPessoa());
+//
+//            return ResponseEntity.status(HttpStatus.CREATED).body(Messages.SUCESSO_CRIAR(Pessoa.class.getSimpleName()));
+//
+//        } else {
+//
+//            return ResponseEntity.badRequest().body(validation.errorMessage(dados));
+//
+//        }
+        return null;
 
     }
 
     @PutMapping
     public ResponseEntity atualizar(@RequestBody DadosAtualizarPessoa dados) {
 
-        if (validation.isDadosOk(dados)) {
+//        if (validation.throwExceptionIfDataIsWrong(dados)) {
+//
+//            var pessoa = repositorio.getReferenceById(dados.id());
+//
+//            if (pessoa.isPresent()) {
+//
+//                pessoa.get().atualizarDados(dados.toPessoa());
+//
+//                return ResponseEntity.ok().body(dados);
+//
+//            } else {
+//
+//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Pessoa.class.getSimpleName(), dados.id()));
+//
+//            }
+//
+//
+//        } else {
+//
+//            return ResponseEntity.badRequest().body(validation.errorMessage(dados));
+//
+//        }
 
-            var pessoa = repositorio.getReferenceById(dados.id());
-
-            if (pessoa.isPresent()) {
-
-                pessoa.get().atualizarDados(dados.toPessoa());
-
-                return ResponseEntity.ok().body(dados);
-
-            } else {
-
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Pessoa.class.getSimpleName(), dados.id()));
-
-            }
-
-
-        } else {
-
-            return ResponseEntity.badRequest().body(validation.errorMessage(dados));
-
-        }
+        return null;
 
     }
 

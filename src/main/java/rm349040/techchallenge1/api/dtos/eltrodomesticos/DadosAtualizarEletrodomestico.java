@@ -1,11 +1,15 @@
-package rm349040.techchallenge1.apis.eletrodomesticos.controller.dtos;
+package rm349040.techchallenge1.api.dtos.eltrodomesticos;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import rm349040.techchallenge1.apis.eletrodomesticos.dominio.Eletrodomestico;
+import rm349040.techchallenge1.domain.model.Eletrodomestico;
 
-public record DadosCadastroEletrodomestico(
+public record DadosAtualizarEletrodomestico(
 
+
+        @NotNull(message = "ERRO: o ID NÃO pode ser nulo")
+        Long id,
 
         @NotBlank(message = "ERRO: o nome NÃO pode ser nulo ou em BRANCO")
         @Size(max = 60, message = "ERRO: o nome do eletrodoméstico NÃO pode conter mais do que 60 chars")
@@ -21,7 +25,11 @@ public record DadosCadastroEletrodomestico(
 
 
 ) {
+
+
     public Eletrodomestico toEletrodomestico() {
         return new Eletrodomestico(null,nome,modelo,potencia);
     }
+
+
 }

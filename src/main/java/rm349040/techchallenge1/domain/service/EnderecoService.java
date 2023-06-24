@@ -1,11 +1,11 @@
-package rm349040.techchallenge1.apis.enderecos.service;
+package rm349040.techchallenge1.domain.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosAtualizarEndereco;
-import rm349040.techchallenge1.apis.enderecos.controller.dtos.DadosCadastroEndereco;
-import rm349040.techchallenge1.apis.enderecos.dominio.Endereco;
+import rm349040.techchallenge1.api.dtos.enderecos.DadosAtualizarEndereco;
+import rm349040.techchallenge1.api.dtos.enderecos.DadosCadastroEndereco;
+import rm349040.techchallenge1.domain.model.Endereco;
 import rm349040.techchallenge1.exception.ApiException;
 import rm349040.techchallenge1.exception.ApiValidationException;
 import rm349040.techchallenge1.repository.Repositorio;

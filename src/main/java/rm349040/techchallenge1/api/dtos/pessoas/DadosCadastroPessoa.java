@@ -1,19 +1,18 @@
-package rm349040.techchallenge1.apis.pessoas.controller.dtos;
+package rm349040.techchallenge1.api.dtos.pessoas;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
-import rm349040.techchallenge1.apis.pessoas.dominio.Parentesco;
-import rm349040.techchallenge1.apis.pessoas.dominio.Pessoa;
-import rm349040.techchallenge1.apis.pessoas.dominio.Sexo;
+import rm349040.techchallenge1.domain.model.Parentesco;
+import rm349040.techchallenge1.domain.model.Pessoa;
+import rm349040.techchallenge1.domain.model.Sexo;
 
 import java.time.LocalDate;
 
-public record DadosAtualizarPessoa(
+public record DadosCadastroPessoa(
 
-        @NotNull(message = "ERRO: o ID NÃO pode ser nulo")
-        Long id,
+
         @NotBlank(message = "ERRO: o nome NÃO pode ser nulo ou em BRANCO")
         @Size(max = 60, message = "ERRO: o nome da pessoa NÃO pode conter mais do que 60 chars")
         String nome,
@@ -27,10 +26,15 @@ public record DadosAtualizarPessoa(
         @NotNull(message = "ERRO: o parentesco NÃO pode ser nulo ")
         Parentesco parentesco
 
+
 ) {
 
-        public Pessoa toPessoa() {
-                return new Pessoa(null,nome,nascimento,sexo,parentesco);
-        }
+    public static void main(String[] args) {
+        System.out.println(LocalDate.now());
+        //System.out.println(LocalDate.of());
+    }
 
+    public Pessoa toPessoa() {
+        return new Pessoa(null,nome,nascimento,sexo,parentesco);
+    }
 }

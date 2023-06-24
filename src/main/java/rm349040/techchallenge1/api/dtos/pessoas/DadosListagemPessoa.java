@@ -1,8 +1,8 @@
-package rm349040.techchallenge1.apis.pessoas.controller.dtos;
+package rm349040.techchallenge1.api.dtos.pessoas;
 
-import rm349040.techchallenge1.apis.pessoas.dominio.Parentesco;
-import rm349040.techchallenge1.apis.pessoas.dominio.Pessoa;
-import rm349040.techchallenge1.apis.pessoas.dominio.Sexo;
+import rm349040.techchallenge1.domain.model.Parentesco;
+import rm349040.techchallenge1.domain.model.Pessoa;
+import rm349040.techchallenge1.domain.model.Sexo;
 
 import java.time.LocalDate;
 

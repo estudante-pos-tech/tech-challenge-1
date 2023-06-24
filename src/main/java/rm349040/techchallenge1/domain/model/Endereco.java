@@ -1,7 +1,7 @@
-package rm349040.techchallenge1.apis.enderecos.dominio;
+package rm349040.techchallenge1.domain.model;
 
 import lombok.*;
-import rm349040.techchallenge1.apis.BASE;
+import rm349040.techchallenge1.domain.BASE;
 
 @Getter
 @Setter
