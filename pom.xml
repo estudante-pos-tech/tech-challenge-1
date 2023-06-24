@@ -13,9 +13,12 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>tech-challenge-1</name>
     <description>tech-challenge-1</description>
+
     <properties>
         <java.version>17</java.version>
+        <modelmapper.version>3.0.0</modelmapper.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -46,6 +49,12 @@
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>${modelmapper.version}</version>
+        </dependency>
+
 
     </dependencies>
 
