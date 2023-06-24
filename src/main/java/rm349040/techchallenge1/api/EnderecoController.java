@@ -13,7 +13,7 @@ import rm349040.techchallenge1.util.Messages;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("endereco")
+@RequestMapping("enderecos")
 public class EnderecoController {
 
 

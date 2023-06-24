@@ -13,7 +13,7 @@ import rm349040.techchallenge1.util.Messages;
 import rm349040.techchallenge1.util.Validation;
 
 @RestController
-@RequestMapping("eletrodomestico")
+@RequestMapping("eletrodomesticos")
 public class EletrodomesticoController {
 
 

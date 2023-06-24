@@ -19,7 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("pessoa")
+@RequestMapping("pessoas")
 public class PessoaController  {
 
 
