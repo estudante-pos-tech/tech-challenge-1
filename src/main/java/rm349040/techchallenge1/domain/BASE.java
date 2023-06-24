@@ -4,4 +4,5 @@ public abstract class BASE<T> {
     abstract public void setId(Long id);
     abstract public Long getId();
     abstract public void atualizarDados(T t);
+    abstract public void setDefault();
 }
