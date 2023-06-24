@@ -1,4 +1,4 @@
-package rm349040.techchallenge1.exception;
+package rm349040.techchallenge1.domain.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;

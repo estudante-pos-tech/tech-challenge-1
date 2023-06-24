@@ -1,13 +1,13 @@
-package rm349040.techchallenge1.exception;
+package rm349040.techchallenge1.domain.exception;
 
-public class ApiException extends RuntimeException{
+public class ApiValidationException extends RuntimeException{
 
     private String error;
     private Integer status;
 
-    public ApiException(){}
+    public ApiValidationException(){}
 
-    public ApiException(String error, String msg,Integer status){
+    public ApiValidationException(String error, String msg,Integer status){
         super(msg);
         this.error = error;
         this.status = status;
@@ -21,4 +21,5 @@ public class ApiException extends RuntimeException{
     public Integer getStatus() {
         return status;
     }
+
 }

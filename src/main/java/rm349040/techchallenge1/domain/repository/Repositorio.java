@@ -1,4 +1,4 @@
-package rm349040.techchallenge1.repository;
+package rm349040.techchallenge1.domain.repository;
 
 
 import org.springframework.context.annotation.Scope;

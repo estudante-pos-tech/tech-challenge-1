@@ -8,7 +8,7 @@ import rm349040.techchallenge1.api.dtos.eltrodomesticos.DadosAtualizarEletrodome
 import rm349040.techchallenge1.api.dtos.eltrodomesticos.DadosCadastroEletrodomestico;
 import rm349040.techchallenge1.api.dtos.eltrodomesticos.DadosListagemEletrodomestico;
 import rm349040.techchallenge1.domain.model.Eletrodomestico;
-import rm349040.techchallenge1.repository.Repositorio;
+import rm349040.techchallenge1.domain.repository.Repositorio;
 import rm349040.techchallenge1.util.Messages;
 import rm349040.techchallenge1.util.Validation;
 

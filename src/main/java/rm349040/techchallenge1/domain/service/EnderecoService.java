@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosAtualizarEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosCadastroEndereco;
 import rm349040.techchallenge1.domain.model.Endereco;
-import rm349040.techchallenge1.exception.ApiException;
-import rm349040.techchallenge1.exception.ApiValidationException;
-import rm349040.techchallenge1.repository.Repositorio;
+import rm349040.techchallenge1.domain.exception.ApiException;
+import rm349040.techchallenge1.domain.exception.ApiValidationException;
+import rm349040.techchallenge1.domain.repository.Repositorio;
 import rm349040.techchallenge1.util.Messages;
 import rm349040.techchallenge1.util.Validation;
 
