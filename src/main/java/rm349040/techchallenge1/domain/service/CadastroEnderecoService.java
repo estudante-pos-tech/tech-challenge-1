@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import rm349040.techchallenge1.domain.exception.ApiException;
+import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
+import rm349040.techchallenge1.domain.exception.IdNullException;
 import rm349040.techchallenge1.domain.model.Endereco;
 import rm349040.techchallenge1.domain.repository.Repositorio;
 import rm349040.techchallenge1.util.Mapper;
@@ -15,6 +17,8 @@ import java.util.Set;
 
 @Service
 public class CadastroEnderecoService {
+
+    private static String ENTITY_NOT_FOUND = "Endereço não atualizado, pois o id %d não existia na base de dados";
 
     @Autowired
     private Repositorio<Endereco> repositorio;
@@ -63,9 +67,10 @@ public class CadastroEnderecoService {
             throw new DomainException(("O id do Endereço não pode ser nulo."));
         }
 
-        Endereco endereco = repositorio.getReferenceById(atual.getId()).orElseThrow(
-                                 () -> {return new DomainException("Endereço não atualizado, pois o id "
-                                                                        +atual.getId()+" não existia na base de dados");});
+        Endereco endereco = repositorio.
+                getReferenceById(atual.getId()).
+                    orElseThrow(
+                            () ->  {return entityNotFoundException(atual.getId());});
 
         //simula atualizacao
         mapper.identify(atual,endereco);
@@ -78,22 +83,18 @@ public class CadastroEnderecoService {
 
         try {
 
-            repositorio.deleteById(id).orElseThrow(() -> new ApiException(
-                    Messages.ERRO_EXCLUIR(Endereco.class.getSimpleName()),
-                    Messages.ERRO_EXCLUIR(Endereco.class.getSimpleName(), id),
-                    HttpStatus.NOT_FOUND.value()));
+            repositorio.deleteById(id).orElseThrow(() -> entityNotFoundException(id));
 
-        }catch (ApiException apiException){
+        }catch (NullPointerException e){
 
-            throw apiException;
-
-        }catch (Exception e){
-
-            throw new ApiException(e.getMessage(),Messages.ERRO_ID_NULO(Endereco.class.getSimpleName()), HttpStatus.BAD_REQUEST.value());
-
+            throw new IdNullException(e.getMessage());
         }
 
 
+    }
+
+    private DomainException entityNotFoundException(Long id) {
+        return new EntityNotFoundException(String.format(ENTITY_NOT_FOUND,id));
     }
 
     public Set<Endereco> listar() {

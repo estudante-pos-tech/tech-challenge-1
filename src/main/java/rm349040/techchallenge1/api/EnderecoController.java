@@ -10,6 +10,8 @@ import rm349040.techchallenge1.api.dtos.enderecos.DadosCadastroEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosListagemEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoCriado;
 import rm349040.techchallenge1.domain.exception.DomainException;
+import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
+import rm349040.techchallenge1.domain.exception.IdNullException;
 import rm349040.techchallenge1.domain.model.Endereco;
 import rm349040.techchallenge1.domain.service.CadastroEnderecoService;
 import rm349040.techchallenge1.util.Mapper;
@@ -32,7 +34,7 @@ public class EnderecoController {
     public ResponseEntity criar(@RequestBody DadosCadastroEndereco dados) {
 
 
-        Endereco endereco = mapper.fromDtoToDomain(dados,Endereco.class);
+        Endereco endereco = mapper.fromDtoToDomain(dados, Endereco.class);
 
         endereco = cadastroService.criar(endereco);
 
@@ -48,7 +50,7 @@ public class EnderecoController {
 
         try {
 
-            Endereco endereco = mapper.fromDtoToDomain(dados,Endereco.class);
+            Endereco endereco = mapper.fromDtoToDomain(dados, Endereco.class);
 
             endereco.setId(id);
 
@@ -56,7 +58,7 @@ public class EnderecoController {
 
             return ResponseEntity.ok().body(endereco);
 
-        }catch (DomainException domainException){
+        } catch (DomainException domainException) {
 
             return ResponseEntity.notFound().build();
 
@@ -68,9 +70,22 @@ public class EnderecoController {
     @DeleteMapping("/{id}")
     public ResponseEntity excluir(@PathVariable Long id) {
 
-        cadastroService.excluir(id);
+        try {
 
-        return ResponseEntity.ok(Messages.SUCESSO_EXCLUJR(Endereco.class.getSimpleName(),id));
+            cadastroService.excluir(id);
+
+            return ResponseEntity.noContent().build();
+
+        } catch (EntityNotFoundException ex) {
+
+            return ResponseEntity.notFound().build();
+
+        } catch (IdNullException ex) {
+
+            return ResponseEntity.badRequest().body(ex.getMessage());
+
+        }
+
 
     }
 
@@ -85,7 +100,6 @@ public class EnderecoController {
     public ResponseEntity listarById(@PathVariable Long id) {
         return ResponseEntity.ok().body(Optional.of(cadastroService.listarById(id)).stream().map(DadosListagemEndereco::new));
     }
-
 
 
 }
