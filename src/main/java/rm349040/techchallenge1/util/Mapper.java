@@ -21,4 +21,8 @@ public class Mapper {
         return modelMapper.map(source,destination);
     }
 
+    public <T> void identify(T source, T destination){
+        modelMapper.map(source,destination);
+    }
+
 }

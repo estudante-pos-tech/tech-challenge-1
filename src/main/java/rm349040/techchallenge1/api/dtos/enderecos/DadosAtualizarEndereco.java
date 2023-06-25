@@ -6,9 +6,9 @@ import jakarta.validation.constraints.Size;
 import rm349040.techchallenge1.domain.model.Endereco;
 
 public record DadosAtualizarEndereco(
-
-        @NotNull(message = "não pode ser nulo")
-        Long id,
+//
+//        @NotNull(message = "não pode ser nulo")
+//        Long id,
         @NotBlank(message = "não pode ser nula ou em BRANCO")
         @Size(max = 60, message = "não pode conter mais do que 60 chars")
         String rua,
@@ -27,10 +27,6 @@ public record DadosAtualizarEndereco(
 
 
 ) {
-
-    public Endereco toEndereco() {
-        return new Endereco(id, rua, numero, bairro, cidade, estado);
-    }
 
 
 }

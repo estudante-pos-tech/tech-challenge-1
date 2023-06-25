@@ -1,5 +1,6 @@
 package rm349040.techchallenge1.api;
 
+import jakarta.websocket.SendResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import rm349040.techchallenge1.api.dtos.enderecos.DadosAtualizarEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosCadastroEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosListagemEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoCriado;
+import rm349040.techchallenge1.domain.exception.DomainException;
 import rm349040.techchallenge1.domain.model.Endereco;
 import rm349040.techchallenge1.domain.service.CadastroEnderecoService;
 import rm349040.techchallenge1.util.Mapper;
@@ -41,12 +43,24 @@ public class EnderecoController {
 
     }
 
-    @PutMapping
-    public ResponseEntity atualizar(@RequestBody DadosAtualizarEndereco dados) {
+    @PutMapping("/{id}")
+    public ResponseEntity atualizar(@PathVariable Long id, @RequestBody DadosAtualizarEndereco dados) {
 
-        cadastroService.atualizar(dados);
+        try {
 
-        return ResponseEntity.ok().body(dados);
+            Endereco endereco = mapper.fromDtoToDomain(dados,Endereco.class);
+
+            endereco.setId(id);
+
+            endereco = cadastroService.atualizarOuFalhar(endereco);
+
+            return ResponseEntity.ok().body(endereco);
+
+        }catch (DomainException domainException){
+
+            return ResponseEntity.notFound().build();
+
+        }
 
     }
 

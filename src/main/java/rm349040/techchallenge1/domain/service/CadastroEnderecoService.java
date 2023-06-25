@@ -3,14 +3,13 @@ package rm349040.techchallenge1.domain.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import rm349040.techchallenge1.api.dtos.enderecos.DadosAtualizarEndereco;
-import rm349040.techchallenge1.api.dtos.enderecos.DadosCadastroEndereco;
-import rm349040.techchallenge1.domain.model.Endereco;
 import rm349040.techchallenge1.domain.exception.ApiException;
-import rm349040.techchallenge1.domain.exception.ApiValidationException;
+import rm349040.techchallenge1.domain.model.Endereco;
 import rm349040.techchallenge1.domain.repository.Repositorio;
+import rm349040.techchallenge1.util.Mapper;
 import rm349040.techchallenge1.util.Messages;
 import rm349040.techchallenge1.util.Validation;
+import rm349040.techchallenge1.domain.exception.DomainException;
 
 import java.util.Set;
 
@@ -22,6 +21,9 @@ public class CadastroEnderecoService {
 
     @Autowired
     private Validation validation;
+
+    @Autowired
+    private Mapper mapper;
 
     public Endereco criar(Endereco endereco) {
 
@@ -51,43 +53,26 @@ public class CadastroEnderecoService {
 //        }
 
     }
+   public Endereco atualizarOuFalhar(Endereco atual){
 
-    public void atualizar(DadosAtualizarEndereco dados) {
-
-
-        try {
-
-            validation.throwExceptionIfDataIsWrong(dados);
-
-            try{
-
-                Endereco endereco = repositorio.
-                        getReferenceById(dados.id()).
-                        orElseThrow(() -> new ApiException(
-                                Messages.ERRO_ATUALIZAR(Endereco.class.getSimpleName()),
-                                Messages.ERRO_ATUALIZAR(Endereco.class.getSimpleName(), dados.id()),
-                                HttpStatus.NOT_FOUND.value()));
-
-                endereco.atualizarDados(dados.toEndereco());
-
-            }catch (Exception e){
-                try{
-                    throw ((ApiException)e);
-                }catch (Exception ex){
-                    throw new ApiException(
-                            Messages.ERRO_ATUALIZAR(Endereco.class.getSimpleName()),
-                            e.getMessage(),
-                            HttpStatus.INTERNAL_SERVER_ERROR.value());
-                }
-
-            }
-
-
-        } catch (ApiValidationException apiException) {
-            throw new ApiException(Messages.ERRO_CRIAR(Endereco.class.getSimpleName()), apiException.getMessage(), HttpStatus.BAD_REQUEST.value());
+        if(atual == null){
+            throw new DomainException("O Endereço não pode ser nulo");
         }
 
-    }
+        if( atual.getId() == null){
+            throw new DomainException(("O id do Endereço não pode ser nulo."));
+        }
+
+        Endereco endereco = repositorio.getReferenceById(atual.getId()).orElseThrow(
+                                 () -> {return new DomainException("Endereço não atualizado, pois o id "
+                                                                        +atual.getId()+" não existia na base de dados");});
+
+        //simula atualizacao
+        mapper.identify(atual,endereco);
+
+
+        return endereco;
+   }
 
     public void excluir(Long id) {
 
