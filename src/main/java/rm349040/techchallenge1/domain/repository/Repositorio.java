@@ -11,6 +11,8 @@ import java.util.*;
 @Scope("prototype")
 public class Repositorio<T extends BASE> {
 
+    static private String MSG_NULL_ID = "O id não pode ser nulo";
+
     static private int instances = 0;
 
     private static Random random = new Random();
@@ -36,6 +38,9 @@ public class Repositorio<T extends BASE> {
     }
 
     public Optional<T> getReferenceById(Long id) {
+
+        if (id == null) throw new NullPointerException(MSG_NULL_ID);
+
         return collection.stream().filter(t -> t.getId().equals(id)).findFirst();
     }
 
@@ -67,7 +72,7 @@ public class Repositorio<T extends BASE> {
 
         } else {
 
-            throw new NullPointerException("O id não pode ser nulo");
+           throw new NullPointerException(MSG_NULL_ID);
 
         }
 

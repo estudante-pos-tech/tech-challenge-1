@@ -102,7 +102,22 @@ public class EnderecoController {
 
     @GetMapping("/{id}")
     public ResponseEntity listarById(@PathVariable Long id) {
-        return ResponseEntity.ok().body(Optional.of(cadastroService.listarById(id)).stream().map(DadosListagemEndereco::new));
+
+        try {
+
+            return ResponseEntity.ok().body(Optional.of(cadastroService.listarById(id)).stream().map(DadosListagemEndereco::new));
+
+        }catch (EntityNotFoundException e){
+
+            return ResponseEntity.notFound().build();
+
+        }catch (IdNullException e){
+
+            return ResponseEntity.badRequest().body(e.getMessage());
+
+        }
+
+
     }
 
 
