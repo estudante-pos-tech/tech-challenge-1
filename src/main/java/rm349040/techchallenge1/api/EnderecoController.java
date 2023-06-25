@@ -1,6 +1,5 @@
 package rm349040.techchallenge1.api;
 
-import jakarta.websocket.SendResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,15 +8,15 @@ import rm349040.techchallenge1.api.dtos.enderecos.DadosAtualizarEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosCadastroEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosListagemEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoCriado;
-import rm349040.techchallenge1.domain.exception.DomainException;
 import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
 import rm349040.techchallenge1.domain.exception.IdNullException;
 import rm349040.techchallenge1.domain.model.Endereco;
 import rm349040.techchallenge1.domain.service.CadastroEnderecoService;
 import rm349040.techchallenge1.util.Mapper;
-import rm349040.techchallenge1.util.Messages;
 
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("enderecos")
@@ -92,7 +91,12 @@ public class EnderecoController {
 
     @GetMapping
     public ResponseEntity listar() {
-        return ResponseEntity.ok().body(cadastroService.listar().stream().map(DadosListagemEndereco::new));
+
+        Set<Endereco> enderecos = cadastroService.listar();
+        Set<DadosListagemEndereco> enderecosListagem= enderecos.stream().map(DadosListagemEndereco::new).collect(Collectors.toSet());
+
+        return ResponseEntity.ok().body(enderecosListagem);
+
     }
 
 
