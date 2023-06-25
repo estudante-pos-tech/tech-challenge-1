@@ -23,30 +23,32 @@ public class CadastroEnderecoService {
     @Autowired
     private Validation validation;
 
-    public Endereco criar(DadosCadastroEndereco dados) {
+    public Endereco criar(Endereco endereco) {
+
+        return repositorio.save(endereco);
 
 
-        try {
-
-            validation.throwExceptionIfDataIsWrong(dados);
-
-            try {
-
-                Endereco endereco = repositorio.save(dados.toEndereco());
-
-                return endereco;
-
-            } catch (Exception e) {
-
-                throw new ApiException(Messages.ERRO_CRIAR(Endereco.class.getSimpleName()), e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
-
-            }
-
-        } catch (ApiValidationException apiException) {
-
-            throw new ApiException(Messages.ERRO_CRIAR(Endereco.class.getSimpleName()), apiException.getMessage(), HttpStatus.BAD_REQUEST.value());
-
-        }
+//        try {
+//
+//            validation.throwExceptionIfDataIsWrong(dados);
+//
+//            try {
+//
+//                Endereco endereco = repositorio.save(dados.toEndereco());
+//
+//                return endereco;
+//
+//            } catch (Exception e) {
+//
+//                throw new ApiException(Messages.ERRO_CRIAR(Endereco.class.getSimpleName()), e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
+//
+//            }
+//
+//        } catch (ApiValidationException apiException) {
+//
+//            throw new ApiException(Messages.ERRO_CRIAR(Endereco.class.getSimpleName()), apiException.getMessage(), HttpStatus.BAD_REQUEST.value());
+//
+//        }
 
     }
 
