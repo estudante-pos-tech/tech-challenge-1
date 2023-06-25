@@ -15,7 +15,7 @@ import rm349040.techchallenge1.util.Validation;
 import java.util.Set;
 
 @Service
-public class EnderecoService {
+public class CadastroEnderecoService {
 
     @Autowired
     private Repositorio<Endereco> repositorio;

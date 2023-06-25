@@ -7,7 +7,7 @@ import rm349040.techchallenge1.api.dtos.enderecos.DadosAtualizarEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosCadastroEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosListagemEndereco;
 import rm349040.techchallenge1.domain.model.Endereco;
-import rm349040.techchallenge1.domain.service.EnderecoService;
+import rm349040.techchallenge1.domain.service.CadastroEnderecoService;
 import rm349040.techchallenge1.util.Messages;
 
 import java.util.Optional;
@@ -18,18 +18,18 @@ public class EnderecoController {
 
 
     @Autowired
-    private EnderecoService service;
+    private CadastroEnderecoService cadastroService;
 
 
     @PostMapping
     public ResponseEntity criar(@RequestBody DadosCadastroEndereco dados) {
-        return ResponseEntity.ok(Messages.SUCESSO_CRIAR(Endereco.class.getSimpleName() + " id: "+service.criar(dados).getId()));
+        return ResponseEntity.ok(Messages.SUCESSO_CRIAR(Endereco.class.getSimpleName() + " id: "+ cadastroService.criar(dados).getId()));
     }
 
     @PutMapping
     public ResponseEntity atualizar(@RequestBody DadosAtualizarEndereco dados) {
 
-        service.atualizar(dados);
+        cadastroService.atualizar(dados);
 
         return ResponseEntity.ok().body(dados);
 
@@ -39,7 +39,7 @@ public class EnderecoController {
     @DeleteMapping("/{id}")
     public ResponseEntity excluir(@PathVariable Long id) {
 
-        service.excluir(id);
+        cadastroService.excluir(id);
 
         return ResponseEntity.ok(Messages.SUCESSO_EXCLUJR(Endereco.class.getSimpleName(),id));
 
@@ -48,13 +48,13 @@ public class EnderecoController {
 
     @GetMapping
     public ResponseEntity listar() {
-        return ResponseEntity.ok().body(service.listar().stream().map(DadosListagemEndereco::new));
+        return ResponseEntity.ok().body(cadastroService.listar().stream().map(DadosListagemEndereco::new));
     }
 
 
     @GetMapping("/{id}")
     public ResponseEntity listarById(@PathVariable Long id) {
-        return ResponseEntity.ok().body(Optional.of(service.listarById(id)).stream().map(DadosListagemEndereco::new));
+        return ResponseEntity.ok().body(Optional.of(cadastroService.listarById(id)).stream().map(DadosListagemEndereco::new));
     }
 
 
