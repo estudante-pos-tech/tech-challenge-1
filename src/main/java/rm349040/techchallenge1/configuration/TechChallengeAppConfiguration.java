@@ -20,6 +20,9 @@ public class TechChallengeAppConfiguration {
     public ModelMapper modelMapper(){
 
         ModelMapper modelMapper =  new ModelMapper();
+        modelMapper.getConfiguration().
+                setFieldMatchingEnabled(true).
+                setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE);
 
 //        modelMapper.
 //                createTypeMap(Endereco.class, DadosListagemEndereco.class).
