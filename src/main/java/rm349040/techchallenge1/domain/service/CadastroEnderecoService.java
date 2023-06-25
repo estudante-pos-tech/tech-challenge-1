@@ -3,15 +3,12 @@ package rm349040.techchallenge1.domain.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import rm349040.techchallenge1.domain.exception.ApiException;
-import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
-import rm349040.techchallenge1.domain.exception.IdNullException;
+import rm349040.techchallenge1.domain.exception.*;
 import rm349040.techchallenge1.domain.model.Endereco;
 import rm349040.techchallenge1.domain.repository.Repositorio;
 import rm349040.techchallenge1.util.Mapper;
 import rm349040.techchallenge1.util.Messages;
 import rm349040.techchallenge1.util.Validation;
-import rm349040.techchallenge1.domain.exception.DomainException;
 
 import java.util.Set;
 
@@ -60,11 +57,11 @@ public class CadastroEnderecoService {
    public Endereco atualizarOuFalhar(Endereco atual){
 
         if(atual == null){
-            throw new DomainException("O Endereço não pode ser nulo");
+            throw new EntityNullException("O Endereço não pode ser nulo");
         }
 
         if( atual.getId() == null){
-            throw new DomainException(("O id do Endereço não pode ser nulo."));
+            throw new IdNullException(("O id do Endereço não pode ser nulo."));
         }
 
         Endereco endereco = repositorio.

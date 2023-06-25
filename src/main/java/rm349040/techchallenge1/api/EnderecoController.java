@@ -58,7 +58,7 @@ public class EnderecoController {
 
             return ResponseEntity.ok().body(endereco);
 
-        } catch (DomainException domainException) {
+        } catch (EntityNotFoundException ex) {
 
             return ResponseEntity.notFound().build();
 
