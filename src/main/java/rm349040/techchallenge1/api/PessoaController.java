@@ -12,8 +12,6 @@ import rm349040.techchallenge1.api.dtos.pessoas.DadosCadastroPessoa;
 import rm349040.techchallenge1.api.dtos.pessoas.output.DadosListagemPessoa;
 import rm349040.techchallenge1.api.dtos.pessoas.output.DadosPessoaAtualizada;
 import rm349040.techchallenge1.api.dtos.pessoas.output.DadosPessoaCriada;
-import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
-import rm349040.techchallenge1.domain.exception.IdNullException;
 import rm349040.techchallenge1.domain.model.Pessoa;
 import rm349040.techchallenge1.domain.service.CadastroService;
 import rm349040.techchallenge1.util.Mapper;
@@ -35,8 +33,8 @@ public class PessoaController  {
     @Autowired
     private Mapper mapper;
     @PostMapping
-    public ResponseEntity criar(@RequestBody DadosCadastroPessoa dados) {
-
+    @ResponseStatus(HttpStatus.CREATED)
+    public DadosPessoaCriada criar(@RequestBody DadosCadastroPessoa dados) {
 
         Pessoa pessoa = mapper.toDomain(dados, Pessoa.class);
 
@@ -44,85 +42,45 @@ public class PessoaController  {
 
         DadosPessoaCriada output = mapper.toDto(pessoa, DadosPessoaCriada.class);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(output);
-
+        return output;
 
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity atualizar(@PathVariable Long id, @RequestBody DadosAtualizarPessoa dados) {
+    public DadosPessoaAtualizada atualizar(@PathVariable Long id, @RequestBody DadosAtualizarPessoa dados) {
 
-        try {
+        Pessoa pessoa = mapper.toDomain(dados, Pessoa.class);
 
-            Pessoa pessoa = mapper.toDomain(dados, Pessoa.class);
+        pessoa.setId(id);
 
-            pessoa.setId(id);
+        pessoa = pessoaCadastroService.atualizarOuFalhar(pessoa);
 
-            pessoa = pessoaCadastroService.atualizarOuFalhar(pessoa);
+        DadosPessoaAtualizada output = mapper.toDto(pessoa,DadosPessoaAtualizada.class);
 
-            DadosPessoaAtualizada output = mapper.toDto(pessoa,DadosPessoaAtualizada.class);
-
-            return ResponseEntity.ok(output);
-
-        } catch (EntityNotFoundException ex) {
-
-            return ResponseEntity.notFound().build();
-
-        }
+        return output;
 
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity excluir(@PathVariable Long id) {
-
-        try {
-
-            pessoaCadastroService.excluir(id);
-
-            return ResponseEntity.noContent().build();
-
-        } catch (EntityNotFoundException ex) {
-
-            return ResponseEntity.notFound().build();
-
-        } catch (IdNullException ex) {
-
-            return ResponseEntity.badRequest().body(ex.getMessage());
-
-        }
-
-
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void excluir(@PathVariable Long id) {
+        pessoaCadastroService.excluir(id);
     }
 
     @GetMapping
-    public ResponseEntity listar() {
+    public Set<DadosListagemPessoa> listar() {
 
         Set<Pessoa> pessoas = pessoaCadastroService.listar();
         Set<DadosListagemPessoa> pessoasListagem= pessoas.stream().map(DadosListagemPessoa::new).collect(Collectors.toSet());
 
-        return ResponseEntity.ok(pessoasListagem);
+        return pessoasListagem;
 
     }
 
 
     @GetMapping("/{id}")
     public ResponseEntity listarById(@PathVariable Long id) {
-
-        try {
-
-            return ResponseEntity.ok().body(Optional.of(pessoaCadastroService.listarById(id)).stream().map(DadosListagemPessoa::new));
-
-        }catch (EntityNotFoundException e){
-
-            return ResponseEntity.notFound().build();
-
-        }catch (IdNullException e){
-
-            return ResponseEntity.badRequest().body(e.getMessage());
-
-        }
-
-
+        return ResponseEntity.ok().body(Optional.of(pessoaCadastroService.listarById(id)).stream().map(DadosListagemPessoa::new));
     }
 
 
