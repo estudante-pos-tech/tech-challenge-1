@@ -4,14 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosAtualizarEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosCadastroEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoAtualizado;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoCriado;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosListagemEndereco;
-import rm349040.techchallenge1.domain.exceptions.EntityNotFoundException;
-import rm349040.techchallenge1.domain.exceptions.IdNullException;
 import rm349040.techchallenge1.domain.model.Endereco;
 import rm349040.techchallenge1.domain.service.CadastroService;
 import rm349040.techchallenge1.util.Mapper;
@@ -32,6 +29,7 @@ public class EnderecoController {
     private Mapper mapper;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity criar(@RequestBody DadosCadastroEndereco dados) {
 
 
@@ -41,15 +39,13 @@ public class EnderecoController {
 
         DadosEnderecoCriado output = mapper.toDto(endereco, DadosEnderecoCriado.class);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(output);
+        return ResponseEntity.of(Optional.of(output));
 
 
     }
 
     @PutMapping("/{id}")
     public ResponseEntity atualizar(@PathVariable Long id, @RequestBody DadosAtualizarEndereco dados) {
-
-        try {
 
             Endereco endereco = mapper.toDomain(dados, Endereco.class);
 
@@ -60,12 +56,6 @@ public class EnderecoController {
             DadosEnderecoAtualizado output = mapper.toDto(endereco,DadosEnderecoAtualizado.class);
 
             return ResponseEntity.ok(output);
-
-        } catch (EntityNotFoundException ex) {
-
-            return ResponseEntity.notFound().build();
-
-        }
 
     }
 
