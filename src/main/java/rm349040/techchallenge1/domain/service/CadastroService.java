@@ -31,12 +31,17 @@ public abstract class CadastroService<T extends BASE> {
     @Autowired
     private Mapper mapper;
 
+    private CRUD acao = CRUD.LISTAR;
+
     public T criar(T t) {
+        acao = CRUD.CREATE;
         return repositorio.save(t);
     }
 
 
     public T atualizarOuFalhar(T atual){
+
+        acao = CRUD.UPDATE;
 
         if(atual == null){
             throw new EntityNullException(getType() + " não pode ser nulo");
@@ -62,6 +67,8 @@ public abstract class CadastroService<T extends BASE> {
 
         try {
 
+            acao = CRUD.DELETE;
+
             repositorio.deleteById(id).orElseThrow(() -> entityNotFoundException(id));
 
         }catch (NullPointerException e){
@@ -72,10 +79,6 @@ public abstract class CadastroService<T extends BASE> {
 
     }
 
-    protected DomainException entityNotFoundException(Long id) {
-        return new EntityNotFoundException(String.format(ENTITY_NOT_FOUND_MSG(),id));
-    }
-
     public Set<T> listar() {
         return repositorio.findAll();
     }
@@ -83,6 +86,8 @@ public abstract class CadastroService<T extends BASE> {
     public T listarById(Long id) {
 
         try {
+
+            acao = CRUD.LISTAR;
 
             return repositorio.getReferenceById(id).orElseThrow(() -> {return entityNotFoundException(id);});
 
@@ -94,13 +99,18 @@ public abstract class CadastroService<T extends BASE> {
 
     }
 
+
+    protected DomainException entityNotFoundException(Long id) {
+        return new EntityNotFoundException(String.format(ENTITY_NOT_FOUND_MSG(),id));
+    }
+
     private String getType() {
 
         return type==null? "Entidade":type.getSimpleName();
     }
 
     protected String ENTITY_NOT_FOUND_MSG(){
-        return  getType() + " não atualizado(a), pois o id %d não existia na base de dados";
+    return  getType() + " não "+ acao.getAction().toLowerCase()+", pois o id %d não existia na base de dados";
     }
 
 //    public static void main(String[] args) {
