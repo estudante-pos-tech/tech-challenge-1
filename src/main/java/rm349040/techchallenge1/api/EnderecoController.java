@@ -6,9 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosAtualizarEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosCadastroEndereco;
-import rm349040.techchallenge1.api.dtos.enderecos.output.DadosListagemEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoAtualizado;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoCriado;
+import rm349040.techchallenge1.api.dtos.enderecos.output.DadosListagemEndereco;
 import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
 import rm349040.techchallenge1.domain.exception.IdNullException;
 import rm349040.techchallenge1.domain.model.Endereco;
@@ -98,7 +98,7 @@ public class EnderecoController {
         Set<Endereco> enderecos = cadastroService.listar();
         Set<DadosListagemEndereco> enderecosListagem= enderecos.stream().map(DadosListagemEndereco::new).collect(Collectors.toSet());
 
-        return ResponseEntity.ok().body(enderecosListagem);
+        return ResponseEntity.ok(enderecosListagem);
 
     }
 
