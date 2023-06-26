@@ -17,7 +17,7 @@ import java.util.Set;
 public class CadastroService<T extends BASE> {
 
     private Class<T> type;
-    private String ENTITY_NOT_FOUND = getType() + " não atualizado(a), pois o id %d não existia na base de dados";
+    private String ENTITY_NOT_FOUND_MSG = getType() + " não atualizado(a), pois o id %d não existia na base de dados";
 
     private String getType() {
 
@@ -72,7 +72,7 @@ public class CadastroService<T extends BASE> {
     }
 
     private DomainException entityNotFoundException(Long id) {
-        return new EntityNotFoundException(String.format(ENTITY_NOT_FOUND,id));
+        return new EntityNotFoundException(String.format(ENTITY_NOT_FOUND_MSG,id));
     }
 
     public Set<T> listar() {
