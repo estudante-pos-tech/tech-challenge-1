@@ -5,6 +5,9 @@ import jakarta.validation.Validator;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import rm349040.techchallenge1.domain.service.EletrodomesticoCadastroService;
+import rm349040.techchallenge1.domain.service.EnderecoCadastroService;
+import rm349040.techchallenge1.domain.service.PessoaCadastroService;
 
 @Configuration
 public class TechChallengeAppConfiguration {
@@ -29,4 +32,19 @@ public class TechChallengeAppConfiguration {
         return modelMapper;
     }
 
+    @Bean
+    public EnderecoCadastroService enderecoCadastroService(){
+        return new EnderecoCadastroService();
+    }
+
+    @Bean
+    public PessoaCadastroService pessoaCadastroService(){
+        return new PessoaCadastroService();
+    }
+
+
+    @Bean
+    public EletrodomesticoCadastroService eletrodomesticoCadastroService(){
+        return new EletrodomesticoCadastroService();
+    }
 }
