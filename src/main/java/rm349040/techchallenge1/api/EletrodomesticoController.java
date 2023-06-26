@@ -25,7 +25,7 @@ public class EletrodomesticoController {
 
 
     @Autowired
-    private CadastroService<Eletrodomestico> pessoaCadastroService;
+    private CadastroService<Eletrodomestico> eletrodomesticoCadastroService;
 
     @Autowired
     private Mapper mapper;
@@ -35,7 +35,7 @@ public class EletrodomesticoController {
 
         Eletrodomestico eletrodomestico = mapper.toDomain(dados, Eletrodomestico.class);
 
-        eletrodomestico = pessoaCadastroService.criar(eletrodomestico);
+        eletrodomestico = eletrodomesticoCadastroService.criar(eletrodomestico);
 
         DadosEletromesticoCriado output = mapper.toDto(eletrodomestico, DadosEletromesticoCriado.class);
 
@@ -53,7 +53,7 @@ public class EletrodomesticoController {
 
             eletrodomestico.setId(id);
 
-            eletrodomestico = pessoaCadastroService.atualizarOuFalhar(eletrodomestico);
+            eletrodomestico = eletrodomesticoCadastroService.atualizarOuFalhar(eletrodomestico);
 
             DadosEletromesticoAtualizado output = mapper.toDto(eletrodomestico,DadosEletromesticoAtualizado.class);
 
@@ -73,7 +73,7 @@ public class EletrodomesticoController {
 
         try {
 
-            pessoaCadastroService.excluir(id);
+            eletrodomesticoCadastroService.excluir(id);
 
             return ResponseEntity.noContent().build();
 
@@ -95,7 +95,7 @@ public class EletrodomesticoController {
     @GetMapping
     public ResponseEntity listar() {
 
-        Set<Eletrodomestico> eletrodomesticos = pessoaCadastroService.listar();
+        Set<Eletrodomestico> eletrodomesticos = eletrodomesticoCadastroService.listar();
         Set<DadosListagemEletrodomestico> eletromesticosListagem= eletrodomesticos.stream().map(DadosListagemEletrodomestico::new).collect(Collectors.toSet());
 
         return ResponseEntity.ok(eletromesticosListagem);
@@ -108,7 +108,7 @@ public class EletrodomesticoController {
 
         try {
 
-            return ResponseEntity.ok().body(Optional.of(pessoaCadastroService.listarById(id)).stream().map(DadosListagemEletrodomestico::new));
+            return ResponseEntity.ok().body(Optional.of(eletrodomesticoCadastroService.listarById(id)).stream().map(DadosListagemEletrodomestico::new));
 
         }catch (EntityNotFoundException e){
 
