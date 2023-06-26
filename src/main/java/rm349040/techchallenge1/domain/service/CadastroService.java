@@ -10,7 +10,6 @@ import rm349040.techchallenge1.domain.exceptions.IdNullException;
 import rm349040.techchallenge1.domain.repository.Repositorio;
 import rm349040.techchallenge1.util.Mapper;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.Set;
 
 @Service
@@ -26,11 +25,6 @@ public abstract class CadastroService<T extends BASE> {
 
     private Class<T> type;
 
-    private String getType() {
-
-        return type==null? "Entidade":type.getSimpleName();
-    }
-
     @Autowired
     private Repositorio<T> repositorio;
 
@@ -38,28 +32,24 @@ public abstract class CadastroService<T extends BASE> {
     private Mapper mapper;
 
     public T criar(T t) {
-
-        setType(t);
-
         return repositorio.save(t);
-
     }
 
 
     public T atualizarOuFalhar(T atual){
 
         if(atual == null){
-            throw new EntityNullException("A entidade não pode ser nulo");
+            throw new EntityNullException(getType() + " não pode ser nulo");
         }
 
         if( atual.getId() == null){
-            throw new IdNullException(("O id dentidade não pode ser nulo."));
+            throw new IdNullException(("O id "+getType()+" não pode ser nulo."));
         }
 
         T t = repositorio.
                 getReferenceById(atual.getId()).
                     orElseThrow(
-                            () ->  {setType(atual);return entityNotFoundException(atual.getId());});
+                            () ->  {return entityNotFoundException(atual.getId());});
 
         //simula atualizacao
         mapper.identify(atual,t);
@@ -82,7 +72,7 @@ public abstract class CadastroService<T extends BASE> {
 
     }
 
-    private DomainException entityNotFoundException(Long id) {
+    protected DomainException entityNotFoundException(Long id) {
         return new EntityNotFoundException(String.format(ENTITY_NOT_FOUND_MSG(),id));
     }
 
@@ -104,20 +94,13 @@ public abstract class CadastroService<T extends BASE> {
 
     }
 
+    private String getType() {
 
-    private void setType(T t) {
-        if (t != null){
-            type = (Class<T>) t.getClass();
-        }
+        return type==null? "Entidade":type.getSimpleName();
     }
 
-    private String ENTITY_NOT_FOUND_MSG(){
+    protected String ENTITY_NOT_FOUND_MSG(){
         return  getType() + " não atualizado(a), pois o id %d não existia na base de dados";
-    }
-
-    public Class<T> getParameterType(){
-        return (Class<T>) ((ParameterizedType) getClass()
-                .getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
 //    public static void main(String[] args) {
