@@ -7,9 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import rm349040.techchallenge1.api.dtos.enderecos.DadosAtualizarEndereco;
+import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoAtualizado;
 import rm349040.techchallenge1.api.dtos.pessoas.DadosAtualizarPessoa;
 import rm349040.techchallenge1.api.dtos.pessoas.DadosCadastroPessoa;
+import rm349040.techchallenge1.api.dtos.pessoas.output.DadosPessoaAtualizada;
 import rm349040.techchallenge1.api.dtos.pessoas.output.DadosPessoaCriada;
+import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
+import rm349040.techchallenge1.domain.model.Endereco;
 import rm349040.techchallenge1.domain.model.Pessoa;
 import rm349040.techchallenge1.domain.service.CadastroService;
 import rm349040.techchallenge1.util.Mapper;
@@ -42,36 +47,28 @@ public class PessoaController  {
 
     }
 
-    @PutMapping
-    public ResponseEntity atualizar(@RequestBody DadosAtualizarPessoa dados) {
+    @PutMapping("/{id}")
+    public ResponseEntity atualizar(@PathVariable Long id, @RequestBody DadosAtualizarPessoa dados) {
 
-//        if (validation.throwExceptionIfDataIsWrong(dados)) {
-//
-//            var pessoa = repositorio.getReferenceById(dados.id());
-//
-//            if (pessoa.isPresent()) {
-//
-//                pessoa.get().atualizarDados(dados.toPessoa());
-//
-//                return ResponseEntity.ok().body(dados);
-//
-//            } else {
-//
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Pessoa.class.getSimpleName(), dados.id()));
-//
-//            }
-//
-//
-//        } else {
-//
-//            return ResponseEntity.badRequest().body(validation.errorMessage(dados));
-//
-//        }
+        try {
 
-        return null;
+            Pessoa pessoa = mapper.fromDtoToDomain(dados, Pessoa.class);
+
+            pessoa.setId(id);
+
+            pessoa = cadastroService.atualizarOuFalhar(pessoa);
+
+            DadosPessoaAtualizada output = mapper.fromDomainToDto(pessoa,DadosPessoaAtualizada.class);
+
+            return ResponseEntity.ok(output);
+
+        } catch (EntityNotFoundException ex) {
+
+            return ResponseEntity.notFound().build();
+
+        }
 
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity excluir(@PathVariable Long id) {
