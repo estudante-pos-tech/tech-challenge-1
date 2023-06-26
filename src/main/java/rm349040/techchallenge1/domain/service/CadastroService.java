@@ -3,10 +3,10 @@ package rm349040.techchallenge1.domain.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rm349040.techchallenge1.domain.BASE;
-import rm349040.techchallenge1.domain.exceptions.DomainException;
-import rm349040.techchallenge1.domain.exceptions.EntityNotFoundException;
-import rm349040.techchallenge1.domain.exceptions.EntityNullException;
-import rm349040.techchallenge1.domain.exceptions.IdNullException;
+import rm349040.techchallenge1.domain.exception.DomainException;
+import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
+import rm349040.techchallenge1.domain.exception.EntityNullException;
+import rm349040.techchallenge1.domain.exception.IdNullException;
 import rm349040.techchallenge1.domain.repository.Repositorio;
 import rm349040.techchallenge1.util.Mapper;
 

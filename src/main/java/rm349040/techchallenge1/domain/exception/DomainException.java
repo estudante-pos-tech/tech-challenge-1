@@ -1,7 +1,6 @@
-package rm349040.techchallenge1.domain.exceptions;
+package rm349040.techchallenge1.domain.exception;
 
-public class EnderecoNotFoundException extends EntityNotFoundException{
-
+public class DomainException extends RuntimeException{
     /**
      * Constructs a new runtime exception with the specified detail message.
      * The cause is not initialized, and may subsequently be initialized by a
@@ -10,7 +9,11 @@ public class EnderecoNotFoundException extends EntityNotFoundException{
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public EnderecoNotFoundException(String message) {
+    public DomainException(String message) {
         super(message);
     }
+
+    public DomainException(){}
+
+
 }

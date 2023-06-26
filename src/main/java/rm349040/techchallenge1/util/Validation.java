@@ -3,7 +3,7 @@ package rm349040.techchallenge1.util;
 import jakarta.validation.ConstraintViolation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import rm349040.techchallenge1.domain.exceptions.ApiValidationException;
+import rm349040.techchallenge1.domain.exception.ApiValidationException;
 
 import java.util.List;
 import java.util.Set;

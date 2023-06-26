@@ -1,11 +1,6 @@
-package rm349040.techchallenge1.domain.exceptions;
+package rm349040.techchallenge1.domain.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class EntityNotFoundException extends DomainException {
-
+public class IdNullException extends DomainException{
     /**
      * Constructs a new runtime exception with the specified detail message.
      * The cause is not initialized, and may subsequently be initialized by a
@@ -14,7 +9,7 @@ public class EntityNotFoundException extends DomainException {
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public EntityNotFoundException(String message) {
+    public IdNullException(String message) {
         super(message);
     }
 }

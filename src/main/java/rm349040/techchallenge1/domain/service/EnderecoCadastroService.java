@@ -1,7 +1,7 @@
 package rm349040.techchallenge1.domain.service;
 
-import rm349040.techchallenge1.domain.exceptions.DomainException;
-import rm349040.techchallenge1.domain.exceptions.EnderecoNotFoundException;
+import rm349040.techchallenge1.domain.exception.DomainException;
+import rm349040.techchallenge1.domain.exception.EnderecoNotFoundException;
 import rm349040.techchallenge1.domain.model.Endereco;
 
 public class EnderecoCadastroService extends CadastroService<Endereco> {

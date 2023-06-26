@@ -9,8 +9,8 @@ import rm349040.techchallenge1.api.dtos.eltrodomesticos.DadosCadastroEletrodomes
 import rm349040.techchallenge1.api.dtos.eltrodomesticos.output.DadosListagemEletrodomestico;
 import rm349040.techchallenge1.api.dtos.eltrodomesticos.output.DadosEletromesticoAtualizado;
 import rm349040.techchallenge1.api.dtos.eltrodomesticos.output.DadosEletromesticoCriado;
-import rm349040.techchallenge1.domain.exceptions.EntityNotFoundException;
-import rm349040.techchallenge1.domain.exceptions.IdNullException;
+import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
+import rm349040.techchallenge1.domain.exception.IdNullException;
 import rm349040.techchallenge1.domain.model.Eletrodomestico;
 import rm349040.techchallenge1.domain.service.CadastroService;
 import rm349040.techchallenge1.util.Mapper;

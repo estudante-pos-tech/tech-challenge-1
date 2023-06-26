@@ -1,4 +1,4 @@
-package rm349040.techchallenge1.domain.exceptions;
+package rm349040.techchallenge1.domain.exception;
 
 import lombok.*;
 
