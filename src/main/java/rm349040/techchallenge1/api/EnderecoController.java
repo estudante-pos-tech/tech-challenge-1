@@ -31,7 +31,7 @@ public class EnderecoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity criar(@RequestBody DadosCadastroEndereco dados) {
+    public DadosEnderecoCriado criar(@RequestBody DadosCadastroEndereco dados) {
 
 
         Endereco endereco = mapper.toDomain(dados, Endereco.class);
@@ -40,23 +40,23 @@ public class EnderecoController {
 
         DadosEnderecoCriado output = mapper.toDto(endereco, DadosEnderecoCriado.class);
 
-        return ResponseEntity.of(Optional.of(output));
+        return output;
 
 
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity atualizar(@PathVariable Long id, @RequestBody DadosAtualizarEndereco dados) {
+    public DadosEnderecoAtualizado atualizar(@PathVariable Long id, @RequestBody DadosAtualizarEndereco dados) {
 
-            Endereco endereco = mapper.toDomain(dados, Endereco.class);
+        Endereco endereco = mapper.toDomain(dados, Endereco.class);
 
-            endereco.setId(id);
+        endereco.setId(id);
 
-            endereco = enderecoCadastroService.atualizarOuFalhar(endereco);
+        endereco = enderecoCadastroService.atualizarOuFalhar(endereco);
 
-            DadosEnderecoAtualizado output = mapper.toDto(endereco,DadosEnderecoAtualizado.class);
+        DadosEnderecoAtualizado output = mapper.toDto(endereco,DadosEnderecoAtualizado.class);
 
-            return ResponseEntity.ok(output);
+        return output;
 
     }
 
@@ -69,12 +69,12 @@ public class EnderecoController {
 
 
     @GetMapping
-    public ResponseEntity listar() {
+    public Set<DadosListagemEndereco> listar() {
 
         Set<Endereco> enderecos = enderecoCadastroService.listar();
         Set<DadosListagemEndereco> enderecosListagem= enderecos.stream().map(DadosListagemEndereco::new).collect(Collectors.toSet());
 
-        return ResponseEntity.ok(enderecosListagem);
+        return enderecosListagem;
 
     }
 
