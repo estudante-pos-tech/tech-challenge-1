@@ -70,25 +70,9 @@ public class EnderecoController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity excluir(@PathVariable Long id) {
-
-        try {
-
-            cadastroService.excluir(id);
-
-            return ResponseEntity.noContent().build();
-
-        } catch (EntityNotFoundException ex) {
-
-            return ResponseEntity.notFound().build();
-
-        } catch (IdNullException ex) {
-
-            return ResponseEntity.badRequest().body(ex.getMessage());
-
-        }
-
-
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void excluir(@PathVariable Long id) {
+        cadastroService.excluir(id);
     }
 
 
