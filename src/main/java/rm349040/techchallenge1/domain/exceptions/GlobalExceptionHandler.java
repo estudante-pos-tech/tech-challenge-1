@@ -10,7 +10,7 @@ import rm349040.techchallenge1.util.Messages;
 
 import java.time.Instant;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class GlobalExceptionHandler {
 
     private ApiError apiError = new ApiError();
