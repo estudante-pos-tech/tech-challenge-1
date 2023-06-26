@@ -13,11 +13,11 @@ public class Mapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    public <T, S> S fromDtoToDomain(T source, Class<S> destination) {
+    public <T, S> S toDomain(T source, Class<S> destination) {
         return modelMapper.map(source, destination);
     }
 
-    public <T, S> S fromDomainToDto(T source, Class<S> destination) {
+    public <T, S> S toDto(T source, Class<S> destination) {
         return modelMapper.map(source,destination);
     }
 

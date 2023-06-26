@@ -34,11 +34,11 @@ public class EnderecoController {
     public ResponseEntity criar(@RequestBody DadosCadastroEndereco dados) {
 
 
-        Endereco endereco = mapper.fromDtoToDomain(dados, Endereco.class);
+        Endereco endereco = mapper.toDomain(dados, Endereco.class);
 
         endereco = cadastroService.criar(endereco);
 
-        DadosEnderecoCriado output = mapper.fromDomainToDto(endereco, DadosEnderecoCriado.class);
+        DadosEnderecoCriado output = mapper.toDto(endereco, DadosEnderecoCriado.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(output);
 
@@ -50,13 +50,13 @@ public class EnderecoController {
 
         try {
 
-            Endereco endereco = mapper.fromDtoToDomain(dados, Endereco.class);
+            Endereco endereco = mapper.toDomain(dados, Endereco.class);
 
             endereco.setId(id);
 
             endereco = cadastroService.atualizarOuFalhar(endereco);
 
-            DadosEnderecoAtualizado output = mapper.fromDomainToDto(endereco,DadosEnderecoAtualizado.class);
+            DadosEnderecoAtualizado output = mapper.toDto(endereco,DadosEnderecoAtualizado.class);
 
             return ResponseEntity.ok(output);
 

@@ -33,11 +33,11 @@ public class EletrodomesticoController {
     @PostMapping
     public ResponseEntity criar(@RequestBody DadosCadastroEletrodomestico dados) {
 
-        Eletrodomestico eletrodomestico = mapper.fromDtoToDomain(dados, Eletrodomestico.class);
+        Eletrodomestico eletrodomestico = mapper.toDomain(dados, Eletrodomestico.class);
 
         eletrodomestico = cadastroService.criar(eletrodomestico);
 
-        DadosEletromesticoCriado output = mapper.fromDomainToDto(eletrodomestico, DadosEletromesticoCriado.class);
+        DadosEletromesticoCriado output = mapper.toDto(eletrodomestico, DadosEletromesticoCriado.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(output);
 
@@ -49,13 +49,13 @@ public class EletrodomesticoController {
 
         try {
 
-            Eletrodomestico eletrodomestico = mapper.fromDtoToDomain(dados, Eletrodomestico.class);
+            Eletrodomestico eletrodomestico = toDomain(dados);
 
             eletrodomestico.setId(id);
 
             eletrodomestico = cadastroService.atualizarOuFalhar(eletrodomestico);
 
-            DadosEletromesticoAtualizado output = mapper.fromDomainToDto(eletrodomestico,DadosEletromesticoAtualizado.class);
+            DadosEletromesticoAtualizado output = mapper.toDto(eletrodomestico,DadosEletromesticoAtualizado.class);
 
             return ResponseEntity.ok(output);
 
@@ -121,6 +121,10 @@ public class EletrodomesticoController {
         }
 
 
+    }
+
+    private Eletrodomestico toDomain(Object dto){
+        return mapper.toDomain(dto, Eletrodomestico.class);
     }
 
 }//FIM CRUD ELETRODOMÉSTICOS

@@ -38,11 +38,11 @@ public class PessoaController  {
     public ResponseEntity criar(@RequestBody DadosCadastroPessoa dados) {
 
 
-        Pessoa pessoa = mapper.fromDtoToDomain(dados, Pessoa.class);
+        Pessoa pessoa = mapper.toDomain(dados, Pessoa.class);
 
         pessoa = cadastroService.criar(pessoa);
 
-        DadosPessoaCriada output = mapper.fromDomainToDto(pessoa, DadosPessoaCriada.class);
+        DadosPessoaCriada output = mapper.toDto(pessoa, DadosPessoaCriada.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(output);
 
@@ -54,13 +54,13 @@ public class PessoaController  {
 
         try {
 
-            Pessoa pessoa = mapper.fromDtoToDomain(dados, Pessoa.class);
+            Pessoa pessoa = mapper.toDomain(dados, Pessoa.class);
 
             pessoa.setId(id);
 
             pessoa = cadastroService.atualizarOuFalhar(pessoa);
 
-            DadosPessoaAtualizada output = mapper.fromDomainToDto(pessoa,DadosPessoaAtualizada.class);
+            DadosPessoaAtualizada output = mapper.toDto(pessoa,DadosPessoaAtualizada.class);
 
             return ResponseEntity.ok(output);
 
