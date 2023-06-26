@@ -1,4 +1,4 @@
-package rm349040.techchallenge1.api.dtos.pessoas;
+package rm349040.techchallenge1.api.dtos.pessoas.output;
 
 import rm349040.techchallenge1.domain.model.Parentesco;
 import rm349040.techchallenge1.domain.model.Pessoa;

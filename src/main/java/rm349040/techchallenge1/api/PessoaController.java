@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import rm349040.techchallenge1.api.dtos.pessoas.DadosAtualizarPessoa;
 import rm349040.techchallenge1.api.dtos.pessoas.DadosCadastroPessoa;
+import rm349040.techchallenge1.api.dtos.pessoas.output.DadosListagemPessoa;
 import rm349040.techchallenge1.api.dtos.pessoas.output.DadosPessoaAtualizada;
 import rm349040.techchallenge1.api.dtos.pessoas.output.DadosPessoaCriada;
 import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
@@ -19,6 +20,9 @@ import rm349040.techchallenge1.util.Mapper;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("pessoas")
@@ -92,26 +96,32 @@ public class PessoaController  {
 
     @GetMapping
     public ResponseEntity listar() {
-        //return ResponseEntity.ok().body(repositorio.findAll().stream().map(DadosListagemPessoa::new));
-        return null;
+
+        Set<Pessoa> pessoas = cadastroService.listar();
+        Set<DadosListagemPessoa> pessoasListagem= pessoas.stream().map(DadosListagemPessoa::new).collect(Collectors.toSet());
+
+        return ResponseEntity.ok(pessoasListagem);
+
     }
 
 
     @GetMapping("/{id}")
     public ResponseEntity listarById(@PathVariable Long id) {
 
-//        var obj = repositorio.getReferenceById(id);
-//
-//        if(obj.isPresent()){
-//
-//            return ResponseEntity.ok().body(obj.stream().map(DadosListagemPessoa::new));
-//
-//        }else{
-//
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Pessoa.class.getSimpleName(), id));
-//
-//        }
-        return null;
+        try {
+
+            return ResponseEntity.ok().body(Optional.of(cadastroService.listarById(id)).stream().map(DadosListagemPessoa::new));
+
+        }catch (EntityNotFoundException e){
+
+            return ResponseEntity.notFound().build();
+
+        }catch (IdNullException e){
+
+            return ResponseEntity.badRequest().body(e.getMessage());
+
+        }
+
 
     }
 
