@@ -21,7 +21,7 @@ public class CadastroService<T extends BASE> {
 
     private String getType() {
 
-        return "Entidade";
+        return type==null? "Entidade":type.getSimpleName();
     }
 
     @Autowired
@@ -32,10 +32,14 @@ public class CadastroService<T extends BASE> {
 
     public T criar(T t) {
 
+        setType(t);
+
         return repositorio.save(t);
 
     }
-   public T atualizarOuFalhar(T atual){
+
+
+    public T atualizarOuFalhar(T atual){
 
         if(atual == null){
             throw new EntityNullException("A entidade não pode ser nulo");
@@ -48,7 +52,7 @@ public class CadastroService<T extends BASE> {
         T t = repositorio.
                 getReferenceById(atual.getId()).
                     orElseThrow(
-                            () ->  {return entityNotFoundException(atual.getId());});
+                            () ->  {setType(atual);return entityNotFoundException(atual.getId());});
 
         //simula atualizacao
         mapper.identify(atual,t);
@@ -91,6 +95,13 @@ public class CadastroService<T extends BASE> {
 
         }
 
+    }
+
+
+    private void setType(T t) {
+        if (t != null){
+            type = (Class<T>) t.getClass();
+        }
     }
 
     public static void main(String[] args) {
