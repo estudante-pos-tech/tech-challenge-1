@@ -6,11 +6,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rm349040.techchallenge1.api.dtos.eltrodomesticos.DadosAtualizarEletrodomestico;
 import rm349040.techchallenge1.api.dtos.eltrodomesticos.DadosCadastroEletrodomestico;
-import rm349040.techchallenge1.api.dtos.eltrodomesticos.DadosListagemEletrodomestico;
+import rm349040.techchallenge1.api.dtos.eltrodomesticos.output.DadosListagemEletrodomestico;
+import rm349040.techchallenge1.api.dtos.eltrodomesticos.output.DadosEletromesticoAtualizado;
+import rm349040.techchallenge1.api.dtos.eltrodomesticos.output.DadosEletromesticoCriado;
+import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
+import rm349040.techchallenge1.domain.exception.IdNullException;
 import rm349040.techchallenge1.domain.model.Eletrodomestico;
-import rm349040.techchallenge1.domain.repository.Repositorio;
-import rm349040.techchallenge1.util.Messages;
-import rm349040.techchallenge1.util.Validation;
+import rm349040.techchallenge1.domain.service.CadastroService;
+import rm349040.techchallenge1.util.Mapper;
+
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("eletrodomesticos")
@@ -18,85 +25,65 @@ public class EletrodomesticoController {
 
 
     @Autowired
-    private Repositorio<Eletrodomestico> repositorio;
+    private CadastroService<Eletrodomestico> cadastroService;
 
     @Autowired
-    private Validation validation;
-
+    private Mapper mapper;
 
     @PostMapping
     public ResponseEntity criar(@RequestBody DadosCadastroEletrodomestico dados) {
 
+        Eletrodomestico eletrodomestico = mapper.fromDtoToDomain(dados, Eletrodomestico.class);
 
-//        if (validation.throwExceptionIfDataIsWrong(dados)) {
-//
-//            repositorio.save(dados.toEletrodomestico());
-//
-//            return ResponseEntity.status(HttpStatus.CREATED).body(Messages.SUCESSO_CRIAR(Eletrodomestico.class.getSimpleName()));
-//
-//        } else {
-//
-//            return ResponseEntity.badRequest().body(validation.errorMessage(dados));
-//
-//        }
-        return null;
+        eletrodomestico = cadastroService.criar(eletrodomestico);
+
+        DadosEletromesticoCriado output = mapper.fromDomainToDto(eletrodomestico, DadosEletromesticoCriado.class);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(output);
 
     }
 
 
-    @PutMapping
-    public ResponseEntity atualizar(@RequestBody DadosAtualizarEletrodomestico dados) {
+    @PutMapping("/{id}")
+    public ResponseEntity atualizar(@PathVariable Long id, @RequestBody DadosAtualizarEletrodomestico dados) {
 
-//        if (validation.throwExceptionIfDataIsWrong(dados)) {
-//
-//
-//            var eletrodomestico = repositorio.getReferenceById(dados.id());
-//
-//
-//            if (eletrodomestico.isPresent()) {
-//
-//                eletrodomestico.get().atualizarDados(dados.toEletrodomestico());
-//
-//                return ResponseEntity.ok().body(dados);
-//
-//            } else {
-//
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Eletrodomestico.class.getSimpleName(), dados.id()));
-//
-//            }
-//
-//
-//        } else {
-//
-//            return ResponseEntity.badRequest().body(validation.errorMessage(dados));
-//
-//        }
+        try {
 
+            Eletrodomestico eletrodomestico = mapper.fromDtoToDomain(dados, Eletrodomestico.class);
 
-        return null;
+            eletrodomestico.setId(id);
+
+            eletrodomestico = cadastroService.atualizarOuFalhar(eletrodomestico);
+
+            DadosEletromesticoAtualizado output = mapper.fromDomainToDto(eletrodomestico,DadosEletromesticoAtualizado.class);
+
+            return ResponseEntity.ok(output);
+
+        } catch (EntityNotFoundException ex) {
+
+            return ResponseEntity.notFound().build();
+
+        }
+
     }
 
 
     @DeleteMapping("/{id}")
     public ResponseEntity excluir(@PathVariable Long id) {
 
-        if (id != null) {
+        try {
 
-            var eletrodomestico = repositorio.deleteById(id);
+            cadastroService.excluir(id);
 
-            if (eletrodomestico.isPresent()) {
+            return ResponseEntity.noContent().build();
 
-                return ResponseEntity.ok().body(Messages.SUCESSO_EXCLUJR(Eletrodomestico.class.getSimpleName(), id));
+        } catch (EntityNotFoundException ex) {
 
-            } else {
+            return ResponseEntity.notFound().build();
 
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO_AO_EXCLUIR(Eletrodomestico.class.getSimpleName(), id));
+        } catch (IdNullException ex) {
 
-            }
-
-        } else{
-
-            return ResponseEntity.badRequest().body(Messages.ERRO_ID_NULO(Eletrodomestico.class.getSimpleName()));
+            return ResponseEntity.badRequest().body(ex.getMessage());
 
         }
 
@@ -107,24 +94,32 @@ public class EletrodomesticoController {
 
     @GetMapping
     public ResponseEntity listar() {
-        return ResponseEntity.ok().body(repositorio.findAll().stream().map(DadosListagemEletrodomestico::new));
+
+        Set<Eletrodomestico> eletrodomesticos = cadastroService.listar();
+        Set<DadosListagemEletrodomestico> eletromesticosListagem= eletrodomesticos.stream().map(DadosListagemEletrodomestico::new).collect(Collectors.toSet());
+
+        return ResponseEntity.ok(eletromesticosListagem);
+
     }
 
 
     @GetMapping("/{id}")
     public ResponseEntity listarById(@PathVariable Long id) {
 
-        var obj = repositorio.getReferenceById(id);
+        try {
 
-        if(obj.isPresent()){
+            return ResponseEntity.ok().body(Optional.of(cadastroService.listarById(id)).stream().map(DadosListagemEletrodomestico::new));
 
-            return ResponseEntity.ok().body(obj.stream().map(DadosListagemEletrodomestico::new));
+        }catch (EntityNotFoundException e){
 
-        }else{
+            return ResponseEntity.notFound().build();
 
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Eletrodomestico.class.getSimpleName(), id));
+        }catch (IdNullException e){
+
+            return ResponseEntity.badRequest().body(e.getMessage());
 
         }
+
 
     }
 

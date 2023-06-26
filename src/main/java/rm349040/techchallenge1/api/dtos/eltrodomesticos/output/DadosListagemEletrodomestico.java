@@ -1,4 +1,4 @@
-package rm349040.techchallenge1.api.dtos.eltrodomesticos;
+package rm349040.techchallenge1.api.dtos.eltrodomesticos.output;
 
 import rm349040.techchallenge1.domain.model.Eletrodomestico;
 
