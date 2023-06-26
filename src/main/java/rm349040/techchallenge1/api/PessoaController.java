@@ -9,11 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import rm349040.techchallenge1.api.dtos.pessoas.DadosAtualizarPessoa;
 import rm349040.techchallenge1.api.dtos.pessoas.DadosCadastroPessoa;
-import rm349040.techchallenge1.api.dtos.pessoas.DadosListagemPessoa;
+import rm349040.techchallenge1.api.dtos.pessoas.output.DadosPessoaCriada;
 import rm349040.techchallenge1.domain.model.Pessoa;
-import rm349040.techchallenge1.domain.repository.Repositorio;
-import rm349040.techchallenge1.util.Messages;
-import rm349040.techchallenge1.util.Validation;
+import rm349040.techchallenge1.domain.service.CadastroService;
+import rm349040.techchallenge1.util.Mapper;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -24,27 +23,22 @@ public class PessoaController  {
 
 
     @Autowired
-    private Repositorio<Pessoa> repositorio;
+    private CadastroService<Pessoa> cadastroService;
 
     @Autowired
-    private Validation validation;
-
+    private Mapper mapper;
     @PostMapping
     public ResponseEntity criar(@RequestBody DadosCadastroPessoa dados) {
 
 
-//        if (validation.throwExceptionIfDataIsWrong(dados)) {
-//
-//            repositorio.save(dados.toPessoa());
-//
-//            return ResponseEntity.status(HttpStatus.CREATED).body(Messages.SUCESSO_CRIAR(Pessoa.class.getSimpleName()));
-//
-//        } else {
-//
-//            return ResponseEntity.badRequest().body(validation.errorMessage(dados));
-//
-//        }
-        return null;
+        Pessoa pessoa = mapper.fromDtoToDomain(dados, Pessoa.class);
+
+        pessoa = cadastroService.criar(pessoa);
+
+        DadosPessoaCriada output = mapper.fromDomainToDto(pessoa, DadosPessoaCriada.class);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(output);
+
 
     }
 
@@ -82,49 +76,52 @@ public class PessoaController  {
     @DeleteMapping("/{id}")
     public ResponseEntity excluir(@PathVariable Long id) {
 
-        if (id != null) {
-
-            var pessoa = repositorio.deleteById(id);
-
-            if (pessoa.isPresent()) {
-
-                return ResponseEntity.ok().body(Messages.SUCESSO_EXCLUJR(Pessoa.class.getSimpleName(), id));
-
-            } else {
-
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO_AO_EXCLUIR(Pessoa.class.getSimpleName(), id));
-
-            }
-
-        } else{
-
-            return ResponseEntity.badRequest().body(Messages.ERRO_ID_NULO(Pessoa.class.getSimpleName()));
-
-        }
+//        if (id != null) {
+//
+//            var pessoa = repositorio.deleteById(id);
+//
+//            if (pessoa.isPresent()) {
+//
+//                return ResponseEntity.ok().body(Messages.SUCESSO_EXCLUJR(Pessoa.class.getSimpleName(), id));
+//
+//            } else {
+//
+//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO_AO_EXCLUIR(Pessoa.class.getSimpleName(), id));
+//
+//            }
+//
+//        } else{
+//
+//            return ResponseEntity.badRequest().body(Messages.ERRO_ID_NULO(Pessoa.class.getSimpleName()));
+//
+//        }
+        return null;
 
 
     }
 
     @GetMapping
     public ResponseEntity listar() {
-        return ResponseEntity.ok().body(repositorio.findAll().stream().map(DadosListagemPessoa::new));
+        //return ResponseEntity.ok().body(repositorio.findAll().stream().map(DadosListagemPessoa::new));
+        return null;
     }
 
 
     @GetMapping("/{id}")
     public ResponseEntity listarById(@PathVariable Long id) {
 
-        var obj = repositorio.getReferenceById(id);
-
-        if(obj.isPresent()){
-
-            return ResponseEntity.ok().body(obj.stream().map(DadosListagemPessoa::new));
-
-        }else{
-
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Pessoa.class.getSimpleName(), id));
-
-        }
+//        var obj = repositorio.getReferenceById(id);
+//
+//        if(obj.isPresent()){
+//
+//            return ResponseEntity.ok().body(obj.stream().map(DadosListagemPessoa::new));
+//
+//        }else{
+//
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO(Pessoa.class.getSimpleName(), id));
+//
+//        }
+        return null;
 
     }
 
