@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosAtualizarEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosCadastroEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoAtualizado;
@@ -72,7 +73,19 @@ public class EnderecoController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void excluir(@PathVariable Long id) {
-        cadastroService.excluir(id);
+        try {
+
+            cadastroService.excluir(id);
+
+        } catch (EntityNotFoundException ex) {
+
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
+
+        } catch (IdNullException ex) {
+
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
+
+        }
     }
 
 
