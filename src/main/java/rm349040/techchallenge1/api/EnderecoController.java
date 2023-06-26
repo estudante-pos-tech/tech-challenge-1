@@ -12,7 +12,7 @@ import rm349040.techchallenge1.api.dtos.enderecos.output.DadosListagemEndereco;
 import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
 import rm349040.techchallenge1.domain.exception.IdNullException;
 import rm349040.techchallenge1.domain.model.Endereco;
-import rm349040.techchallenge1.domain.service.CadastroEnderecoService;
+import rm349040.techchallenge1.domain.service.CadastroService;
 import rm349040.techchallenge1.util.Mapper;
 
 import java.util.Optional;
@@ -25,7 +25,7 @@ public class EnderecoController {
 
 
     @Autowired
-    private CadastroEnderecoService cadastroService;
+    private CadastroService<Endereco> cadastroService;
 
     @Autowired
     private Mapper mapper;
