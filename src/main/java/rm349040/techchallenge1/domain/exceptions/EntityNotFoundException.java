@@ -1,6 +1,11 @@
-package rm349040.techchallenge1.domain.exception;
+package rm349040.techchallenge1.domain.exceptions;
 
-public class IdNullException extends DomainException{
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class EntityNotFoundException extends DomainException {
+
     /**
      * Constructs a new runtime exception with the specified detail message.
      * The cause is not initialized, and may subsequently be initialized by a
@@ -9,7 +14,7 @@ public class IdNullException extends DomainException{
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public IdNullException(String message) {
+    public EntityNotFoundException(String message) {
         super(message);
     }
 }

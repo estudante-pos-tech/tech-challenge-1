@@ -1,6 +1,6 @@
-package rm349040.techchallenge1.domain.exception;
+package rm349040.techchallenge1.domain.exceptions;
 
-public class EntityNullException extends DomainException {
+public class DomainException extends RuntimeException{
     /**
      * Constructs a new runtime exception with the specified detail message.
      * The cause is not initialized, and may subsequently be initialized by a
@@ -9,7 +9,11 @@ public class EntityNullException extends DomainException {
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public EntityNullException(String message) {
+    public DomainException(String message) {
         super(message);
     }
+
+    public DomainException(){}
+
+
 }
