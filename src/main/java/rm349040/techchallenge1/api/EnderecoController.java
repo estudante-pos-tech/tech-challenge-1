@@ -73,19 +73,7 @@ public class EnderecoController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void excluir(@PathVariable Long id) {
-        try {
-
-            cadastroService.excluir(id);
-
-        } catch (EntityNotFoundException ex) {
-
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
-
-        } catch (IdNullException ex) {
-
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
-
-        }
+        cadastroService.excluir(id);
     }
 
 
@@ -102,23 +90,7 @@ public class EnderecoController {
 
     @GetMapping("/{id}")
     public ResponseEntity listarById(@PathVariable Long id) {
-
-        try {
-
-            return ResponseEntity.ok().body(Optional.of(cadastroService.listarById(id)).stream().map(DadosListagemEndereco::new));
-
-        }catch (EntityNotFoundException e){
-
-            return ResponseEntity.notFound().build();
-
-        }catch (IdNullException e){
-
-            return ResponseEntity.badRequest().body(e.getMessage());
-
-        }
-
-
+        return ResponseEntity.ok(Optional.of(cadastroService.listarById(id)).stream().map(DadosListagemEndereco::new));
     }
-
 
 }
