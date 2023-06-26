@@ -5,8 +5,6 @@ import jakarta.validation.Validator;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import rm349040.techchallenge1.api.dtos.enderecos.DadosListagemEndereco;
-import rm349040.techchallenge1.domain.model.Endereco;
 
 @Configuration
 public class TechChallengeAppConfiguration {

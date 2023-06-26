@@ -1,5 +1,6 @@
 package rm349040.techchallenge1.api.dtos.enderecos.output;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,14 +12,11 @@ import lombok.Setter;
 @AllArgsConstructor
 public class DadosEnderecoAtualizado {
 
-
     private Long id;
     private String rua;
     private String numero;
     private String bairro;
     private String cidade;
     private String estado;
-
-
 
 }

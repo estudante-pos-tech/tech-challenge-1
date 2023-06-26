@@ -1,4 +1,4 @@
-package rm349040.techchallenge1.api.dtos.enderecos;
+package rm349040.techchallenge1.api.dtos.enderecos.output;
 
 import rm349040.techchallenge1.domain.model.Endereco;
 
