@@ -7,14 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import rm349040.techchallenge1.api.dtos.enderecos.DadosAtualizarEndereco;
-import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoAtualizado;
 import rm349040.techchallenge1.api.dtos.pessoas.DadosAtualizarPessoa;
 import rm349040.techchallenge1.api.dtos.pessoas.DadosCadastroPessoa;
 import rm349040.techchallenge1.api.dtos.pessoas.output.DadosPessoaAtualizada;
 import rm349040.techchallenge1.api.dtos.pessoas.output.DadosPessoaCriada;
 import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
-import rm349040.techchallenge1.domain.model.Endereco;
+import rm349040.techchallenge1.domain.exception.IdNullException;
 import rm349040.techchallenge1.domain.model.Pessoa;
 import rm349040.techchallenge1.domain.service.CadastroService;
 import rm349040.techchallenge1.util.Mapper;
@@ -73,26 +71,21 @@ public class PessoaController  {
     @DeleteMapping("/{id}")
     public ResponseEntity excluir(@PathVariable Long id) {
 
-//        if (id != null) {
-//
-//            var pessoa = repositorio.deleteById(id);
-//
-//            if (pessoa.isPresent()) {
-//
-//                return ResponseEntity.ok().body(Messages.SUCESSO_EXCLUJR(Pessoa.class.getSimpleName(), id));
-//
-//            } else {
-//
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Messages.NAO_ENCONTRADO_AO_EXCLUIR(Pessoa.class.getSimpleName(), id));
-//
-//            }
-//
-//        } else{
-//
-//            return ResponseEntity.badRequest().body(Messages.ERRO_ID_NULO(Pessoa.class.getSimpleName()));
-//
-//        }
-        return null;
+        try {
+
+            cadastroService.excluir(id);
+
+            return ResponseEntity.noContent().build();
+
+        } catch (EntityNotFoundException ex) {
+
+            return ResponseEntity.notFound().build();
+
+        } catch (IdNullException ex) {
+
+            return ResponseEntity.badRequest().body(ex.getMessage());
+
+        }
 
 
     }
