@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosAtualizarEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosCadastroEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.DadosListagemEndereco;
+import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoAtualizado;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoCriado;
 import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
 import rm349040.techchallenge1.domain.exception.IdNullException;
@@ -55,7 +56,9 @@ public class EnderecoController {
 
             endereco = cadastroService.atualizarOuFalhar(endereco);
 
-            return ResponseEntity.ok().body(endereco);
+            DadosEnderecoAtualizado output = mapper.fromDomainToDto(endereco,DadosEnderecoAtualizado.class);
+
+            return ResponseEntity.ok(output);
 
         } catch (EntityNotFoundException ex) {
 
