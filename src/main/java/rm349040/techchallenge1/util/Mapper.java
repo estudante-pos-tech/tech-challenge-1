@@ -21,6 +21,12 @@ public class Mapper {
         return modelMapper.map(source,destination);
     }
 
+    /**
+     * Turns destination's settings equal to source's settings.
+     * @param source the instance we read settings from
+     * @param destination the instance we write settingg to
+     * @param <T> a type
+     */
     public <T> void identify(T source, T destination){
         modelMapper.map(source,destination);
     }
