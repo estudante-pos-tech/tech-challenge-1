@@ -9,6 +9,7 @@ import rm349040.techchallenge1.api.dtos.enderecos.DadosCadastroEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoAtualizado;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoCriado;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosListagemEndereco;
+import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
 import rm349040.techchallenge1.domain.model.Endereco;
 import rm349040.techchallenge1.domain.service.CadastroService;
 import rm349040.techchallenge1.util.Mapper;
@@ -81,6 +82,11 @@ public class EnderecoController {
     @GetMapping("/{id}")
     public ResponseEntity listarById(@PathVariable Long id) {
         return ResponseEntity.ok(Optional.of(enderecoCadastroService.listarById(id)).stream().map(DadosListagemEndereco::new));
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity handleEntityNotFoundException(EntityNotFoundException e){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 
 }
