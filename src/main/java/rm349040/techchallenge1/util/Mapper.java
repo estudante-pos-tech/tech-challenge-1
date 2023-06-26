@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * This class converts one object of a type into another object of another type.
+ * Generally, this class converts one object of a type into another object of another type.<br>
+ * Sometimes, it copies properties from an object of a type T into another object of the same tye T.
  */
 @Component
 public class Mapper {
