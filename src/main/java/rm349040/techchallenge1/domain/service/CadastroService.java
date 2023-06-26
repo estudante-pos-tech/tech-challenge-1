@@ -7,14 +7,22 @@ import rm349040.techchallenge1.domain.exceptions.DomainException;
 import rm349040.techchallenge1.domain.exceptions.EntityNotFoundException;
 import rm349040.techchallenge1.domain.exceptions.EntityNullException;
 import rm349040.techchallenge1.domain.exceptions.IdNullException;
-import rm349040.techchallenge1.domain.model.Endereco;
 import rm349040.techchallenge1.domain.repository.Repositorio;
 import rm349040.techchallenge1.util.Mapper;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.Set;
 
 @Service
-public class CadastroService<T extends BASE> {
+public abstract class CadastroService<T extends BASE> {
+
+    protected Class<T> entityClass;
+
+    public CadastroService(Class<T> entityClass) {
+
+        this.entityClass = entityClass;
+        this.type = this.entityClass;
+    }
 
     private Class<T> type;
 
@@ -107,7 +115,12 @@ public class CadastroService<T extends BASE> {
         return  getType() + " não atualizado(a), pois o id %d não existia na base de dados";
     }
 
-    public static void main(String[] args) {
-        new CadastroService<Endereco>().getType();
+    public Class<T> getParameterType(){
+        return (Class<T>) ((ParameterizedType) getClass()
+                .getGenericSuperclass()).getActualTypeArguments()[0];
     }
+
+//    public static void main(String[] args) {
+//        new CadastroService<Endereco>().getParameterType().getSimpleName();
+//    }
 }

@@ -23,7 +23,7 @@ public class EnderecoController {
 
 
     @Autowired
-    private CadastroService<Endereco> cadastroService;
+    private CadastroService<Endereco> enderecoCadastroService;
 
     @Autowired
     private Mapper mapper;
@@ -35,7 +35,7 @@ public class EnderecoController {
 
         Endereco endereco = mapper.toDomain(dados, Endereco.class);
 
-        endereco = cadastroService.criar(endereco);
+        endereco = enderecoCadastroService.criar(endereco);
 
         DadosEnderecoCriado output = mapper.toDto(endereco, DadosEnderecoCriado.class);
 
@@ -51,7 +51,7 @@ public class EnderecoController {
 
             endereco.setId(id);
 
-            endereco = cadastroService.atualizarOuFalhar(endereco);
+            endereco = enderecoCadastroService.atualizarOuFalhar(endereco);
 
             DadosEnderecoAtualizado output = mapper.toDto(endereco,DadosEnderecoAtualizado.class);
 
@@ -63,14 +63,14 @@ public class EnderecoController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void excluir(@PathVariable Long id) {
-        cadastroService.excluir(id);
+        enderecoCadastroService.excluir(id);
     }
 
 
     @GetMapping
     public ResponseEntity listar() {
 
-        Set<Endereco> enderecos = cadastroService.listar();
+        Set<Endereco> enderecos = enderecoCadastroService.listar();
         Set<DadosListagemEndereco> enderecosListagem= enderecos.stream().map(DadosListagemEndereco::new).collect(Collectors.toSet());
 
         return ResponseEntity.ok(enderecosListagem);
@@ -80,7 +80,7 @@ public class EnderecoController {
 
     @GetMapping("/{id}")
     public ResponseEntity listarById(@PathVariable Long id) {
-        return ResponseEntity.ok(Optional.of(cadastroService.listarById(id)).stream().map(DadosListagemEndereco::new));
+        return ResponseEntity.ok(Optional.of(enderecoCadastroService.listarById(id)).stream().map(DadosListagemEndereco::new));
     }
 
 }

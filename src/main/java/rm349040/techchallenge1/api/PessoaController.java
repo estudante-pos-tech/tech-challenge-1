@@ -30,7 +30,7 @@ public class PessoaController  {
 
 
     @Autowired
-    private CadastroService<Pessoa> cadastroService;
+    private CadastroService<Pessoa> pessoaCadastroService;
 
     @Autowired
     private Mapper mapper;
@@ -40,7 +40,7 @@ public class PessoaController  {
 
         Pessoa pessoa = mapper.toDomain(dados, Pessoa.class);
 
-        pessoa = cadastroService.criar(pessoa);
+        pessoa = pessoaCadastroService.criar(pessoa);
 
         DadosPessoaCriada output = mapper.toDto(pessoa, DadosPessoaCriada.class);
 
@@ -58,7 +58,7 @@ public class PessoaController  {
 
             pessoa.setId(id);
 
-            pessoa = cadastroService.atualizarOuFalhar(pessoa);
+            pessoa = pessoaCadastroService.atualizarOuFalhar(pessoa);
 
             DadosPessoaAtualizada output = mapper.toDto(pessoa,DadosPessoaAtualizada.class);
 
@@ -77,7 +77,7 @@ public class PessoaController  {
 
         try {
 
-            cadastroService.excluir(id);
+            pessoaCadastroService.excluir(id);
 
             return ResponseEntity.noContent().build();
 
@@ -97,7 +97,7 @@ public class PessoaController  {
     @GetMapping
     public ResponseEntity listar() {
 
-        Set<Pessoa> pessoas = cadastroService.listar();
+        Set<Pessoa> pessoas = pessoaCadastroService.listar();
         Set<DadosListagemPessoa> pessoasListagem= pessoas.stream().map(DadosListagemPessoa::new).collect(Collectors.toSet());
 
         return ResponseEntity.ok(pessoasListagem);
@@ -110,7 +110,7 @@ public class PessoaController  {
 
         try {
 
-            return ResponseEntity.ok().body(Optional.of(cadastroService.listarById(id)).stream().map(DadosListagemPessoa::new));
+            return ResponseEntity.ok().body(Optional.of(pessoaCadastroService.listarById(id)).stream().map(DadosListagemPessoa::new));
 
         }catch (EntityNotFoundException e){
 
