@@ -1,12 +1,11 @@
-package rm349040.techchallenge1.domain.exception;
+package rm349040.techchallenge1.api.exceptionhandler;
 
 import lombok.*;
 
 import java.time.Instant;
 
 @Getter
-@Setter
-@NoArgsConstructor
+@Builder
 @ToString
 public class ApiError {
 
