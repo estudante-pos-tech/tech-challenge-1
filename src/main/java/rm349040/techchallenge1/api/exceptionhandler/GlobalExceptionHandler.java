@@ -1,20 +1,17 @@
 package rm349040.techchallenge1.api.exceptionhandler;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import rm349040.techchallenge1.api.exceptionhandler.ApiError;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
-import rm349040.techchallenge1.util.Messages;
 
 import java.time.Instant;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     @ExceptionHandler(EntityNotFoundException.class)
