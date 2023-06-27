@@ -44,11 +44,4 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return super.handleExceptionInternal(ex, body, headers, statusCode, request);
     }
 
-    /*
-            Customizes
-         */
-//    @Override
-//    protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-//        return super.handleHttpMediaTypeNotSupported(ex, headers, status, request);
-//    }
 }
