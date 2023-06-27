@@ -27,11 +27,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         String detail = ex.getMessage() + ". Tentando te ajudar ... passe um id que exista na base de dados que daí você terá o que solicita.";
 
 
-        ApiError apiError = ApiError.builder()
-                .status(status.value())
-                .type(type)
-                .title(title)
-                .detail(detail)
+        ApiError apiError = newApiBuilder(status,ErrorType.ENTITY_NOT_FOUND,detail)
                 .timeStamp(Instant.now())
                 .build();
 
@@ -60,6 +56,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         }
 
         return super.handleExceptionInternal(ex, body, headers, statusCode, request);
+    }
+
+    private ApiError.ApiErrorBuilder newApiBuilder(HttpStatus status, ErrorType errorType, String detail){
+        return ApiError.builder()
+                .status(status.value())
+                .type(errorType.getUri())
+                .title(errorType.getTitle())
+                .detail(detail);
     }
 
 }
