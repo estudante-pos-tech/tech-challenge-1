@@ -1,10 +1,13 @@
 package rm349040.techchallenge1.api.exceptionhandler;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
 
@@ -15,26 +18,37 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity handleEntityNotFoundException(EntityNotFoundException e){
-
-        ApiError notFoundError = ApiError.builder().
-                message(e.getMessage()).
-                timeStamp(Instant.now()).
-                build();
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(notFoundError);
+    public ResponseEntity handleEntityNotFoundException(EntityNotFoundException ex, WebRequest request) {
+        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
-    @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
-    public ResponseEntity handleHttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException e){
 
-        ApiError httpMediaTypeNotSupportedError = ApiError.builder().
-                message("Tipo de mídia não é aceito").
-                timeStamp(Instant.now()).
-                build();
+    @Override
+    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatusCode statusCode, WebRequest request) {
 
-        return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(httpMediaTypeNotSupportedError);
+        if(body == null){
 
+            body = ApiError.builder().
+                    message(HttpStatus.valueOf(statusCode.value()).getReasonPhrase()).
+                    timeStamp(Instant.now()).
+                    build();
+
+        } else if (body instanceof String) {
+
+            body = ApiError.builder().
+                    message((String)body).
+                    timeStamp(Instant.now()).
+                    build();
+        }
+
+        return super.handleExceptionInternal(ex, body, headers, statusCode, request);
     }
 
+    /*
+            Customizes
+         */
+//    @Override
+//    protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+//        return super.handleHttpMediaTypeNotSupported(ex, headers, status, request);
+//    }
 }
