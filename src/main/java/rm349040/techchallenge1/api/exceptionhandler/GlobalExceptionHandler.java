@@ -19,7 +19,22 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity handleEntityNotFoundException(EntityNotFoundException ex, WebRequest request) {
-        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+
+
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        String type = "https://github.com/estudante-pos-tech/tech-challenge-1/entidade-nao-encontrada";
+        String title = "Entidade não encontrada";
+        String detail = ex.getMessage();
+
+        ApiError apiError = ApiError.builder()
+                .status(status.value())
+                .type(type)
+                .title(title)
+                .detail(detail)
+                .timeStamp(Instant.now())
+                .build();
+
+        return handleExceptionInternal(ex, apiError , new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
 
