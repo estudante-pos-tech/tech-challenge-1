@@ -22,10 +22,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 
         HttpStatus status = HttpStatus.NOT_FOUND;
-        String type = "https://github.com/estudante-pos-tech/tech-challenge-1/entidade-nao-encontrada";
-        String title = "Entidade não encontrada";
         String detail = ex.getMessage() + ". Tentando te ajudar ... passe um id que exista na base de dados que daí você terá o que solicita.";
-
 
         ApiError apiError = newApiBuilder(status,ErrorType.ENTITY_NOT_FOUND,detail)
                 .timeStamp(Instant.now())
