@@ -29,15 +29,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         if(body == null){
 
             body = ApiError.builder().
-                    message(HttpStatus.valueOf(statusCode.value()).getReasonPhrase()).
+                    title(HttpStatus.valueOf(statusCode.value()).getReasonPhrase()).
+                    status(statusCode.value()).
                     timeStamp(Instant.now()).
                     build();
 
         } else if (body instanceof String) {
 
             body = ApiError.builder().
-                    message((String)body).
+                    title((String)body).
                     timeStamp(Instant.now()).
+                    status(statusCode.value()).
                     build();
         }
 
