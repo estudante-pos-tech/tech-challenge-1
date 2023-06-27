@@ -5,6 +5,9 @@ import jakarta.validation.Validator;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import rm349040.techchallenge1.domain.repository.EletrodomesticoRepository;
+import rm349040.techchallenge1.domain.repository.EnderecoRepository;
+import rm349040.techchallenge1.domain.repository.PessoaRepository;
 import rm349040.techchallenge1.domain.service.EletrodomesticoCadastroService;
 import rm349040.techchallenge1.domain.service.EnderecoCadastroService;
 import rm349040.techchallenge1.domain.service.PessoaCadastroService;
@@ -13,14 +16,14 @@ import rm349040.techchallenge1.domain.service.PessoaCadastroService;
 public class TechChallengeAppConfiguration {
 
     @Bean
-    public Validator beanValidator(){
+    public Validator beanValidator() {
         return Validation.buildDefaultValidatorFactory().getValidator();
     }
 
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapper() {
 
-        ModelMapper modelMapper =  new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().
                 setFieldMatchingEnabled(true).
                 setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE);
@@ -33,18 +36,34 @@ public class TechChallengeAppConfiguration {
     }
 
     @Bean
-    public EnderecoCadastroService enderecoCadastroService(){
+    public EnderecoCadastroService enderecoCadastroService() {
         return new EnderecoCadastroService();
     }
 
     @Bean
-    public PessoaCadastroService pessoaCadastroService(){
+    public PessoaCadastroService pessoaCadastroService() {
         return new PessoaCadastroService();
+    }
+
+    @Bean
+    public EletrodomesticoCadastroService eletrodomesticoCadastroService() {
+        return new EletrodomesticoCadastroService();
     }
 
 
     @Bean
-    public EletrodomesticoCadastroService eletrodomesticoCadastroService(){
-        return new EletrodomesticoCadastroService();
+    public EnderecoRepository enderecoRepository() {
+        return new EnderecoRepository();
     }
+
+    @Bean
+    public PessoaRepository pessoaRepository() {
+        return new PessoaRepository();
+    }
+
+    @Bean
+    public EletrodomesticoRepository eletrodomesticoRepository() {
+        return new EletrodomesticoRepository();
+    }
+
 }

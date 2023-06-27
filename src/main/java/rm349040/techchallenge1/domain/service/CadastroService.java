@@ -26,7 +26,7 @@ public abstract class CadastroService<T extends BASE> {
     private Class<T> type;
 
     @Autowired
-    private Repositorio<T> repositorio;
+    protected Repositorio<T> repositorio;
 
     @Autowired
     private Mapper mapper;

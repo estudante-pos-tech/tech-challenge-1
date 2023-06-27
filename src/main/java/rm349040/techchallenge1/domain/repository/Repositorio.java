@@ -1,15 +1,16 @@
 package rm349040.techchallenge1.domain.repository;
 
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 import rm349040.techchallenge1.domain.BASE;
 
 import java.util.*;
 
 @Repository
-@Scope("prototype")
-public class Repositorio<T extends BASE> {
+//@Scope("prototype")
+public abstract class Repositorio<T extends BASE> {
+
+    protected Class<T> entityClass;
 
     static private String MSG_NULL_ID = "O id não pode ser nulo";
 
@@ -17,11 +18,10 @@ public class Repositorio<T extends BASE> {
 
     private static Random random = new Random();
 
-    private Set<T> collection;
+    private Set<T> collection = new HashSet<>();;
 
-    public Repositorio() {
-        collection = new HashSet<>();
-        System.out.println("CREATING REPOSITORY " + ++instances + " Set type is " + collection.getClass().getSimpleName() + " " + collection.getClass().toGenericString());
+    public Repositorio(Class<T> entityClass) {
+        this.entityClass = entityClass;
     }
 
     public T save(T t) {
