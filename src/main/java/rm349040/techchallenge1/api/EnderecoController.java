@@ -9,13 +9,10 @@ import rm349040.techchallenge1.api.dtos.enderecos.DadosCadastroEndereco;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoAtualizado;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosEnderecoCriado;
 import rm349040.techchallenge1.api.dtos.enderecos.output.DadosListagemEndereco;
-import rm349040.techchallenge1.api.exceptionhandler.ApiError;
-import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
 import rm349040.techchallenge1.domain.model.Endereco;
 import rm349040.techchallenge1.domain.service.CadastroService;
 import rm349040.techchallenge1.util.Mapper;
 
-import java.time.Instant;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
