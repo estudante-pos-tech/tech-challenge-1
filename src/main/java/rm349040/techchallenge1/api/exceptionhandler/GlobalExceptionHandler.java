@@ -14,6 +14,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
 
@@ -25,9 +26,24 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     @Override
+    protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+
+        ErrorType errorType = ErrorType.RESOURCE_NOT_FOUND;
+
+        String detail = String.format("O recurso %s, que você tentou acessar, é inexistente.",ex.getRequestURL() );
+
+        ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
+                .timeStamp(Instant.now())
+                .build();
+
+        return handleExceptionInternal(ex,error,headers,status,request);
+
+    }
+
+    @Override
     protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 
-        ErrorType errorType = ErrorType.PARAMETRO_INVALIDO;
+        ErrorType errorType = ErrorType.INVALID_PARAMETER;
 
         String detail = String.format("O token '%s' da URL recebeu o valor '%s' que é um tipo inválido." +
                 " Corrija e informe um valor compatível com o tipo %s",ex.getPropertyName(), ex.getValue(), ex.getRequiredType().getSimpleName());
@@ -164,7 +180,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         HttpStatus status = HttpStatus.NOT_FOUND;
         String detail = ex.getMessage() + ". Tentando te ajudar ... passe um id que exista na base de dados que daí você poderá receber o que solicita.";
 
-        ApiError apiError = newApiBuilder(status, ErrorType.ENTITY_NOT_FOUND, detail)
+        ApiError apiError = newApiBuilder(status, ErrorType.RESOURCE_NOT_FOUND, detail)
                 .timeStamp(Instant.now())
                 .build();
 
