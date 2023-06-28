@@ -7,8 +7,8 @@ import jakarta.validation.constraints.Size;
 public record DadosAtualizarEletrodomestico(
 
 
-        @NotNull(message = "ERRO: o ID NÃO pode ser nulo")
-        Long id,
+//        @NotNull(message = "ERRO: o ID NÃO pode ser nulo")
+//        Long id,
 
         @NotBlank(message = "O nome NÃO pode ser nulo ou em BRANCO")
         @Size(max = 60, message = "O nome do eletrodoméstico NÃO pode conter mais do que 60 chars")

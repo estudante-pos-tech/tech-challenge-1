@@ -11,8 +11,8 @@ import java.time.LocalDate;
 
 public record DadosAtualizarPessoa(
 
-        @NotNull(message = "O ID NÃO pode ser nulo")
-        Long id,
+//        @NotNull(message = "O ID NÃO pode ser nulo")
+//        Long id,
         @NotBlank(message = "O nome da pessoa NÃO pode ser nulo ou em BRANCO")
         @Size(max = 60, message = "O nome da pessoa NÃO pode conter mais do que 60 chars")
         String nome,
