@@ -5,9 +5,9 @@ import lombok.Getter;
 @Getter
 public enum ErrorType {
 
-    ENTITY_NOT_FOUND("/entidade-nao-encontrada", "Entidade não encotrada"),
+    RESOURCE_NOT_FOUND("/recurso-nao-encontrado", "Recurso não encontrado"),
     MESSAGE_NOT_READABLE("/mensagem-nao-legivel", "Mensagem não legível"),
-    PARAMETRO_INVALIDO("/parametro-invalido", "Parâmetro da url inválido");
+    INVALID_PARAMETER("/parametro-invalido", "Parâmetro da url inválido");
 
     private String uri = "https://github.com/estudante-pos-tech/tech-challenge-1";
     private String title;
