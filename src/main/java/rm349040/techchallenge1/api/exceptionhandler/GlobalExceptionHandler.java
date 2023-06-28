@@ -32,9 +32,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
         String detail = String.format("O recurso %s, que você tentou acessar, é inexistente.",ex.getRequestURL() );
 
-        ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
-                .timeStamp(Instant.now())
-                .build();
+        ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail).build();
 
         return handleExceptionInternal(ex,error,headers,status,request);
 
@@ -49,7 +47,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 " Corrija e informe um valor compatível com o tipo %s",ex.getPropertyName(), ex.getValue(), ex.getRequiredType().getSimpleName());
 
         ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
-                .timeStamp(Instant.now())
                 .build();
 
         return handleExceptionInternal(ex,error,headers,status,request);
@@ -77,7 +74,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 
         ApiError apiError = newApiBuilder(HttpStatus.valueOf(status.value()), ErrorType.MESSAGE_NOT_READABLE, detail)
-                .timeStamp(Instant.now())
                 .build();
 
         return handleExceptionInternal(ex, apiError, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
@@ -91,7 +87,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 " Corrija excluindo-a.",ex.getPropertyName());
 
         ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
-                .timeStamp(Instant.now())
                 .build();
 
         return handleExceptionInternal(ex,error,headers,status,request);
@@ -110,7 +105,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 " Corrija e informe um valor compatível com o tipo %s",path, ex.getValue(), ex.getTargetType().getSimpleName());
 
         ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
-                .timeStamp(Instant.now())
                 .build();
 
         return handleExceptionInternal(ex,error,headers,status,request);
@@ -127,7 +121,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             String detail = "O corpo da solicitação está mal escrito. Corrija adicionando '}' ao fim da mensagem.";
 
             ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
-                    .timeStamp(Instant.now())
                     .build();
 
             return handleExceptionInternal(ex,error,headers,status,request);
@@ -139,7 +132,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         String detail = "Corrija o corpo da solicitação. Ele está mal escrito" ;
 
         ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
-                .timeStamp(Instant.now())
                 .build();
 
 
@@ -181,7 +173,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         String detail = ex.getMessage() + ". Tentando te ajudar ... passe um id que exista na base de dados que daí você poderá receber o que solicita.";
 
         ApiError apiError = newApiBuilder(status, ErrorType.RESOURCE_NOT_FOUND, detail)
-                .timeStamp(Instant.now())
                 .build();
 
         return handleExceptionInternal(ex, apiError, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
@@ -198,7 +189,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 "entre em contato com o administrador do sistema. ");
 
         ApiError error = newApiBuilder(HttpStatus.INTERNAL_SERVER_ERROR, errorType, detail)
-                .timeStamp(Instant.now())
                 .build();
 
         return handleExceptionInternal(ex,error,null,HttpStatus.INTERNAL_SERVER_ERROR,request);
@@ -234,6 +224,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .status(status.value())
                 .type(errorType.getUri())
                 .title(errorType.getTitle())
+                .timeStamp(Instant.now())
                 .detail(detail);
     }
 
