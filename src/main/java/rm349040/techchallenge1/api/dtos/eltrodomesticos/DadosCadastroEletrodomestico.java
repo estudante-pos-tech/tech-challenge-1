@@ -20,8 +20,4 @@ public record DadosCadastroEletrodomestico(
         String potencia
 
 
-) {
-    public Eletrodomestico toEletrodomestico() {
-        return new Eletrodomestico(null,nome,modelo,potencia);
-    }
-}
+) {}

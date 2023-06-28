@@ -23,8 +23,4 @@ public record DadosCadastroEndereco(
         String estado
 
 
-) {
-        public Endereco toEndereco() {
-                return new Endereco(null,rua,numero,bairro,cidade,estado);
-        }
-}
+) {}

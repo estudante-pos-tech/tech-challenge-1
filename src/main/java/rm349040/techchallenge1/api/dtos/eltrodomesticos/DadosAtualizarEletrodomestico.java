@@ -24,12 +24,4 @@ public record DadosAtualizarEletrodomestico(
         String potencia
 
 
-) {
-
-
-    public Eletrodomestico toEletrodomestico() {
-        return new Eletrodomestico(null,nome,modelo,potencia);
-    }
-
-
-}
+) {}

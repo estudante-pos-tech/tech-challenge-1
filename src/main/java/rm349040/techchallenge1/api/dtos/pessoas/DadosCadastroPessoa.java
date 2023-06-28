@@ -27,14 +27,4 @@ public record DadosCadastroPessoa(
         Parentesco parentesco
 
 
-) {
-
-    public static void main(String[] args) {
-        System.out.println(LocalDate.now());
-        //System.out.println(LocalDate.of());
-    }
-
-    public Pessoa toPessoa() {
-        return new Pessoa(null,nome,nascimento,sexo,parentesco);
-    }
-}
+) {}

@@ -27,10 +27,4 @@ public record DadosAtualizarPessoa(
         @NotNull(message = "ERRO: o parentesco NÃO pode ser nulo ")
         Parentesco parentesco
 
-) {
-
-        public Pessoa toPessoa() {
-                return new Pessoa(null,nome,nascimento,sexo,parentesco);
-        }
-
-}
+) {}
