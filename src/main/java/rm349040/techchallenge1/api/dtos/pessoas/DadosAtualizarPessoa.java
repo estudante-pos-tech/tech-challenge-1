@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import rm349040.techchallenge1.domain.model.Parentesco;
-import rm349040.techchallenge1.domain.model.Pessoa;
 import rm349040.techchallenge1.domain.model.Sexo;
 
 import java.time.LocalDate;

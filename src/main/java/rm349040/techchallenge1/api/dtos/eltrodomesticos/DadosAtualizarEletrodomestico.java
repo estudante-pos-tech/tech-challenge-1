@@ -3,7 +3,6 @@ package rm349040.techchallenge1.api.dtos.eltrodomesticos;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import rm349040.techchallenge1.domain.model.Eletrodomestico;
 
 public record DadosAtualizarEletrodomestico(
 
