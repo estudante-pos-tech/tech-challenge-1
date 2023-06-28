@@ -27,9 +27,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 
-        ErrorType errorType = ErrorType.MESSAGE_NOT_READABLE;
+        ErrorType errorType = ErrorType.PARAMETRO_INVALIDO;
 
-        String detail = String.format("A propriedade '%s' recebeu o valor '%s' que é um tipo inválido." +
+        String detail = String.format("O token '%s' da URL recebeu o valor '%s' que é um tipo inválido." +
                 " Corrija e informe um valor compatível com o tipo %s",ex.getPropertyName(), ex.getValue(), ex.getRequiredType().getSimpleName());
 
         ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
