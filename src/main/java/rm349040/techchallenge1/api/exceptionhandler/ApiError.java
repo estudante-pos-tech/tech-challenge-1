@@ -15,7 +15,10 @@ public class ApiError {
     private String type;
     private String title;
     private String detail;
-//
+
+    //TODO implmeentar essa mensagem no GlobalExceptionHandler.java
+    private String userMessage;
+
     private String path;
     private Instant timeStamp;
 
