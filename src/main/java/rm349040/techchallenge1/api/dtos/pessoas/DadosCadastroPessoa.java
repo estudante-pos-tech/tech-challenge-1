@@ -12,17 +12,17 @@ import java.time.LocalDate;
 public record DadosCadastroPessoa(
 
 
-        @NotBlank(message = "ERRO: o nome NÃO pode ser nulo ou em BRANCO")
-        @Size(max = 60, message = "ERRO: o nome da pessoa NÃO pode conter mais do que 60 chars")
+        @NotBlank(message = "O nome da pessoa NÃO pode ser nulo ou em BRANCO")
+        @Size(max = 60, message = "O nome da pessoa NÃO pode conter mais do que 60 chars")
         String nome,
-        @NotNull(message = "ERRO: A data de nascimento NÃO pode ser nula")
-        @Past(message = "ERR0: A data de nascimento NÃO pode ser hoje ou qualquer outro dia depois de hoje")
+        @NotNull(message = "A data de nascimento NÃO pode ser nula")
+        @Past(message = "A data de nascimento NÃO pode ser hoje ou qualquer outro dia depois de hoje")
         LocalDate nascimento,
 
-        @NotNull(message = "ERRO: O sexo NÃO pode ser nulo")
+        @NotNull(message = "O sexo NÃO pode ser nulo")
         Sexo sexo,
 
-        @NotNull(message = "ERRO: o parentesco NÃO pode ser nulo ")
+        @NotNull(message = "O parentesco NÃO pode ser nulo ")
         Parentesco parentesco
 
 
