@@ -11,7 +11,7 @@ public enum ErrorType {
     INVALID_DATA("/dado-invalido", "Dado inválido"),
     INVALID_PARAMETER("/parametro-invalido", "Parâmetro da url inválido");
 
-    private String uri = "https://github.com/estudante-pos-tech/tech-challenge-1";
+    private String uri = "https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/documentation";
     private String title;
 
     ErrorType(String path, String title) {
