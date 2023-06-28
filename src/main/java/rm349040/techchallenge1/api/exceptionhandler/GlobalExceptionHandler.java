@@ -188,6 +188,24 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleExceptionGlobal(Exception ex, WebRequest request) {
+
+        ErrorType errorType = ErrorType.INTERNAL_ERROR;
+
+        String detail = String.format("Ocorreu um erro interno inesperado no sistema. " +
+                "Tente novamente e se o problema persistir, " +
+                "entre em contato com o administrador do sistema. ");
+
+        ApiError error = newApiBuilder(HttpStatus.INTERNAL_SERVER_ERROR, errorType, detail)
+                .timeStamp(Instant.now())
+                .build();
+
+        return handleExceptionInternal(ex,error,null,HttpStatus.INTERNAL_SERVER_ERROR,request);
+
+    }
+
+
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatusCode statusCode, WebRequest request) {
 
