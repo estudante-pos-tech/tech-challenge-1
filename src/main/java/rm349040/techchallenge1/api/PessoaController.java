@@ -2,6 +2,7 @@ package rm349040.techchallenge1.api;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,7 @@ public class PessoaController  {
     private Mapper mapper;
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public DadosPessoaCriada criar(@RequestBody DadosCadastroPessoa dados) {
+    public DadosPessoaCriada criar(@RequestBody @Valid DadosCadastroPessoa dados) {
 
         Pessoa pessoa = mapper.toDomain(dados, Pessoa.class);
 
@@ -47,7 +48,7 @@ public class PessoaController  {
     }
 
     @PutMapping("/{id}")
-    public DadosPessoaAtualizada atualizar(@PathVariable Long id, @RequestBody DadosAtualizarPessoa dados) {
+    public DadosPessoaAtualizada atualizar(@PathVariable Long id, @RequestBody @Valid DadosAtualizarPessoa dados) {
 
         Pessoa pessoa = mapper.toDomain(dados, Pessoa.class);
 

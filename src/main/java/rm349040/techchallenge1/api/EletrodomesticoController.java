@@ -1,5 +1,6 @@
 package rm349040.techchallenge1.api;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class EletrodomesticoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public DadosEletromesticoCriado criar(@RequestBody DadosCadastroEletrodomestico dados) {
+    public DadosEletromesticoCriado criar(@RequestBody @Valid DadosCadastroEletrodomestico dados) {
 
         Eletrodomestico eletrodomestico = mapper.toDomain(dados, Eletrodomestico.class);
 
@@ -44,7 +45,7 @@ public class EletrodomesticoController {
 
 
     @PutMapping("/{id}")
-    public DadosEletromesticoAtualizado atualizar(@PathVariable Long id, @RequestBody DadosAtualizarEletrodomestico dados) {
+    public DadosEletromesticoAtualizado atualizar(@PathVariable Long id, @RequestBody @Valid DadosAtualizarEletrodomestico dados) {
 
         Eletrodomestico eletrodomestico = toDomain(dados);
 

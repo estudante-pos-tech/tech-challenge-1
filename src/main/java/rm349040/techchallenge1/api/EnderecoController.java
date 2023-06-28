@@ -1,5 +1,6 @@
 package rm349040.techchallenge1.api;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class EnderecoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public DadosEnderecoCriado criar(@RequestBody DadosCadastroEndereco dados) {
+    public DadosEnderecoCriado criar(@RequestBody @Valid DadosCadastroEndereco dados) {
 
 
         Endereco endereco = mapper.toDomain(dados, Endereco.class);
@@ -45,7 +46,7 @@ public class EnderecoController {
     }
 
     @PutMapping("/{id}")
-    public DadosEnderecoAtualizado atualizar(@PathVariable Long id, @RequestBody DadosAtualizarEndereco dados) {
+    public DadosEnderecoAtualizado atualizar(@PathVariable Long id, @RequestBody @Valid DadosAtualizarEndereco dados) {
 
         Endereco endereco = mapper.toDomain(dados, Endereco.class);
 

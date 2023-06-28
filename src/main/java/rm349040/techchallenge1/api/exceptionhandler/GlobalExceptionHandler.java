@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -19,11 +21,37 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+
+        ErrorType errorType = ErrorType.INVALID_DATA;
+
+        String detail = String.format("Um ou mais campos estão inválidos. Corrija e tente novamente.");
+
+        BindingResult bindingResult = ex.getBindingResult();
+
+        List<ApiError.Field> fields = bindingResult.getFieldErrors().stream()
+                .map(fieldError -> ApiError.Field.builder()
+                        .name(fieldError.getField())
+                        .userMessage(fieldError.getDefaultMessage())
+                        .build())
+                .collect(Collectors.toList());
+
+        ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
+                .userMessage("Um ou mais campos estão inválidos. Corrija e tente novamente.")
+                .fields(fields)
+                .build();
+
+        return handleExceptionInternal(ex,error,headers,status,request);
+
+    }
 
     @Override
     protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {

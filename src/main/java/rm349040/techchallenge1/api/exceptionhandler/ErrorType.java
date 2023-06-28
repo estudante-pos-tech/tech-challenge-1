@@ -8,6 +8,7 @@ public enum ErrorType {
     RESOURCE_NOT_FOUND("/recurso-nao-encontrado", "Recurso não encontrado"),
     MESSAGE_NOT_READABLE("/mensagem-nao-legivel", "Mensagem não legível"),
     INTERNAL_ERROR("/erro-interno", "Erro interno do sistema"),
+    INVALID_DATA("/dado-invalido", "Dado inválido"),
     INVALID_PARAMETER("/parametro-invalido", "Parâmetro da url inválido");
 
     private String uri = "https://github.com/estudante-pos-tech/tech-challenge-1";
