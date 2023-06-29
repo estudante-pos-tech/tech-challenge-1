@@ -420,9 +420,9 @@ e também customizar o body das respostas de erro com as exceptions que a camand
 
 Depois de feita a request 
 
-    curl -i -X POST --location "api.tech-challenge/eletrodomesticos" -H "Content-type:application/json" -d '{"nome":"eletrodomesticos", "modelo":"casa-casa"}'   
+       curl -i -X POST --location "api.tech-challenge/eletrodomesticos" -H "Content-type:application/json" -d '{"nome":"eletrodomesticos", "modelo":"casa-casa"}'   
   
-o Spring web responde  <br><br>
+<br>o Spring web responde  <br>
 
         {
             "type": "about:blank",
@@ -433,8 +433,22 @@ o Spring web responde  <br><br>
         }
     
 
+<br>e a resposta customizada da API é <br>
 
-
+        {
+            "status": 400,
+            "timeStamp": "2023-06-29T20:09:47.653039425Z",
+            "type": "https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/documentation/dado-invalido",
+            "title": "Dado inválido",
+            "detail": "Um ou mais campos estão inválidos. Corrija e tente novamente.",
+            "userMessage": "Um ou mais campos estão inválidos. Corrija e tente novamente.",
+            "fields":   [
+                            {
+                                "name": "potencia",
+                                "userMessage": "A potência NÃO pode ser nula"
+                            }
+                        ]
+        }
 
 
 </div>
