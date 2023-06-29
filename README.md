@@ -452,7 +452,7 @@ Depois de feita a request
 <br><br>
 Na resposta customizada da API, fica descrito, no campo fields, que o campo potencia não foi
 passado no body da request (ela é NOT-NULL) e essa violação foi detectada na camada de validação da API.
-A resposta customizada da API tenta ajudar o usuário informando que um dos campos está inválido. 
+<br>A resposta customizada da API tenta ajudar o usuário informando que um dos campos está inválido. 
 Além disso, a resposta customizada da API fornece uma url de ajuda, onde há um documento com maiores
 informações de como corrigir esse tipo de erro. 
 
