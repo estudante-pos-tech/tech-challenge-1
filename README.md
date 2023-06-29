@@ -62,11 +62,12 @@ No body da **POST** request, devem estar os pares key-value:
     }
     
     curl -i -X POST --location "api.tech-challenge/enderecos" -H "Content-type:application/json" -d '{"rua":"rua bela", "numero":"234", "bairro":"bairro", "cidade":"Maya","estado":"SP"}'
+    
     HTTP/1.1 201 
     Content-Type: text/plain;charset=UTF-8
     Content-Length: 26
         
-    SUCESSO: ao criar Endereco
+    {"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}
 
 
 ___
