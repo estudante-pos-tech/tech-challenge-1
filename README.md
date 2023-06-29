@@ -34,7 +34,8 @@ Por exemplo, a request abaixo tenta atualizar um recurso inexistente:
                 "detail": "Eletrodomestico não atualizado(a), pois o id 386340500511945 não existia na base de dados. Tentando te ajudar ... passe um id que exista na base de dados que daí você poderá receber o que solicita."
             }
 
-<br><br>**Todo e qualquer** problema/erro é representado no padrão **RFC 7807 - Problem Detail for Http Apis** que tentará ao máximo ajudar o usuário da API a ter uma experiência o mais amigável possível.
+<br><br>**Todo e qualquer** problema/erro é representado no padrão **RFC 7807 - Problem Detail for Http Apis**.
+<br>As responses nesse formato tentarão ao máximo ajudar o usuário da API a ter uma experiência o mais amigável possível.
 
  
  ***erro + causa do erro*** . Este comportamento é implementado usando ***exception handlers GLOBAIS*** e ***validações LOCAIS*** em cada endpoint.<br>
