@@ -15,8 +15,15 @@ Neste projeto **tech-challenge-1**, o [**repositorio**](https://github.com/estud
 Por exemplo, a request abaixo tenta atualizar um recurso inexistente:
 <br><br>
 
-<br><br>
-A request acima recebe uma response que estende a **RFC 7807 - Problem Detail for Http Apis**
+            PUT api.tech-challenge/eletrodomesticos/386340500511945<br>
+            Content-Type: application/json
+            
+            {
+                "nome": "RURAL-RURAL-eletrodomesticos",
+                "modelo": "RURAL RURAL",
+                "potencia": "10.39"
+            }
+<br><br>ela recebe uma response que estende a **RFC 7807 - Problem Detail for Http Apis**
 <br><br>
 
 <br><br>
