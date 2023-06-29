@@ -111,9 +111,12 @@ ___
 ___    
 
 ##### **PUT**<br><br>
-    
-  No body da **PUT** request, devem estar os pares key-value: 
+
+  Na url da **PUT** request deve estar o id do recurso
   -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
+  
+  No body da **PUT** request, devem estar os pares key-value: 
+  
   -    ***rua*** , *não em-branco e no máximo 60 caracteres* 
   -    ***numero***, *não em-branco e no máximo 10 caracteres*
   -    ***bairro***, *não em-branco e no máximo 40 caracteres*
@@ -122,12 +125,11 @@ ___
 
 *EXEMPLO:*    
 
-   **PUT** api.tech-challenge/enderecos<br>
+   **PUT** api.tech-challenge/enderecos/1275424829065256685<br>
     Content-Type: application/json
     
     {
-      "id": "1275424829065256685",
-      "rua": "rua belissima",
+       "rua": "rua belissima",
       "numero": "890234",
       "bairro": "brejo-bairro",
       "cidade": "Mayaporã",
