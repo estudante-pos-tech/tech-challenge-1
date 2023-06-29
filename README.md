@@ -78,7 +78,14 @@ No body da **POST** request, devem estar os pares key-value:
         HTTP/1.1 201
         Content-Type: application/json
              
-        {"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}
+        {
+          "id":1275424829065256685,
+          "rua":"rua bela",
+          "numero":"234",
+          "bairro":"bairro",
+          "cidade":"Maya",
+          "estado":"SP"
+        }
 
 
 ___
@@ -106,7 +113,14 @@ ___
         HTTP/1.1 200
         Content-Type: application/json
         
-        {"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}
+        {
+            "id":1275424829065256685,
+            "rua":"rua bela",
+            "numero":"234",
+            "bairro":"bairro",
+            "cidade":"Maya",
+            "estado":"SP"
+        }
 
 ___    
 
