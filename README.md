@@ -378,7 +378,7 @@ No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja de
 
 <div style='text-align: justify;'>
   
-Qualquer e toda request às apis que não esteja na forma indicada na documentação acima, das apis, resultará numa *java exception*.
+Qualquer e toda request às api que não esteja na forma indicada na documentação acima, das apis, resultará numa *java exception*.
 <br><br> **Ou** esta exception será capturada pelo **exception handler GLOBAL; ou** ela será capturada pela camada de validação.<br> 
 <br>Se acontecer de a exception cair no GLOBAL, então o handler criará uma mensagem genérica que será retornada ao cliente da api. O cliente será **informando** sobre o **erro e a causa do erro**, numa *linguagem técnica*. 
 <br><br>Se a exception for capturada pela validação, as requests que **violaram as restrições (constraints)** programadas, serão interrompidas nesta **camada de validação** e uma mensagem de erro adequada será retornada ao cliente da api.
