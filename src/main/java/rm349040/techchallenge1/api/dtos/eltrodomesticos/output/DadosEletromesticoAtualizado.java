@@ -14,6 +14,6 @@ public class DadosEletromesticoAtualizado {
     private Long id;
     private String nome;
     private String modelo;
-    private String potencia;
+    private Double potencia;
 
 }

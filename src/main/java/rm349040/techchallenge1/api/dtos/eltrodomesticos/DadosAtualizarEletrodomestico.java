@@ -2,6 +2,7 @@ package rm349040.techchallenge1.api.dtos.eltrodomesticos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
 public record DadosAtualizarEletrodomestico(
@@ -18,9 +19,8 @@ public record DadosAtualizarEletrodomestico(
         @Size(max = 60, message = "O modelo NÃO pode conter mais do que 60 chars")
         String modelo,
 
-        @NotBlank(message = "A potência NÃO pode ser nula ou em BRANCO")
-        @Size(max = 30, message = "A potência NÃO pode conter mais do que 30 chars")
-        String potencia
-
+        @NotNull(message = "A potência NÃO pode ser nula")
+        @PositiveOrZero(message = "A potência deve ser maior ou igual do que zero")
+        Double potencia
 
 ) {}

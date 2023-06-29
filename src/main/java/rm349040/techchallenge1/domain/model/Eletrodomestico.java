@@ -28,4 +28,4 @@ public class Eletrodomestico extends BASE<Eletrodomestico> {
         this.potencia = eletrodomestico.getPotencia();
     }
 
-}
+}//refactor
