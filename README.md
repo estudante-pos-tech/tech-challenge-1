@@ -41,7 +41,7 @@ ela recebe um response body que extende a **RFC 7807 - Problem Detail for Http A
 </div>
 
 ##
-## Documentação das API
+## Documentação da API
 O ***CRUD*** foi implementado seguindo o mapa : 
 -  VERBO HTTP **POST** - **CRIAR**
 -  VERBO HTTP **PUT** - **ATUALIZAR**
