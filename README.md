@@ -332,6 +332,7 @@ ___
         GET api.tech-challenge/eletrodomesticos/8393364629003825317
         
         curl -i -X GET --location "api.tech-challenge/eletrodomesticos/8393364629003825317"
+        
         HTTP/1.1 200 
         Server: nginx/1.18.0
         Content-Type: application/json
