@@ -18,7 +18,7 @@ public class Eletrodomestico extends BASE<Eletrodomestico> {
     private Long id;
     private String nome;
     private String modelo;
-    private String potencia;
+    private Double potencia;
 
     /**
      * @param eletrodomestico
@@ -30,20 +30,4 @@ public class Eletrodomestico extends BASE<Eletrodomestico> {
         this.potencia = eletrodomestico.getPotencia();
     }
 
-    /**
-     *
-     */
-    @Override
-    public void setDefault() {
-
-        Random r = new Random();
-
-        long id = r.nextLong(Long.MAX_VALUE);
-
-        this.id = id;
-        nome = "Eletro "+id;
-        modelo = "modelo "+id;
-        potencia = "0."+id+" KWh";
-
-    }
 }

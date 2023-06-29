@@ -38,23 +38,4 @@ public class Endereco extends BASE<Endereco> {
 
     }
 
-    /**
-     *
-     */
-    @Override
-    public void setDefault() {
-
-        Random r = new Random();
-
-        long id = r.nextLong(Long.MAX_VALUE);
-
-        this.id = id;
-        rua = "Rua "+id;
-        numero = "Numero "+id;
-        bairro = "Bairro "+id;
-        cidade = "Cidade "+id;
-        estado = "Estado "+id;
-
-
-    }
 }
