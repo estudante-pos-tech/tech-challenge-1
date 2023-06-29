@@ -13,7 +13,7 @@ Neste projeto **tech-challenge-1**, o [**repositorio**](https://github.com/estud
 **Requests corretas** aos endpoints tem **responses** descritas na **Documentação das APIs**
 <br><br>**Requests incorretas** aos endpoints recebem **Http status codes** conformes a uma rest api e o body da resposta padronizado de acordo com a **RFC 7807 - Problem Detail for Http Apis**. <br>
 Por exemplo, a request abaixo tenta atualizar um recurso inexistente:
-<br><br>
+<br>
 
             PUT api.tech-challenge/eletrodomesticos/386340500511945<br>
             Content-Type: application/json
@@ -23,8 +23,8 @@ Por exemplo, a request abaixo tenta atualizar um recurso inexistente:
                 "modelo": "RURAL RURAL",
                 "potencia": "10.39"
             }
-<br><br>ela recebe uma response que estende a **RFC 7807 - Problem Detail for Http Apis**
-<br><br>
+ela recebe uma response que estende a **RFC 7807 - Problem Detail for Http Apis**
+<br>
 
             {
                 "status": 404,
@@ -34,7 +34,7 @@ Por exemplo, a request abaixo tenta atualizar um recurso inexistente:
                 "detail": "Eletrodomestico não atualizado(a), pois o id 386340500511945 não existia na base de dados. Tentando te ajudar ... passe um id que exista na base de dados que daí você poderá receber o que solicita."
             }
 
-<br><br>**Todo e qualquer** problema/erro é representado no padrão **RFC 7807 - Problem Detail for Http Apis**.
+<br>**Todo e qualquer** problema/erro é representado no padrão **RFC 7807 - Problem Detail for Http Apis**.
 <br>As responses nesse formato tentarão ao máximo ajudar o usuário da API a ter uma experiência o mais amigável possível.
 
  
