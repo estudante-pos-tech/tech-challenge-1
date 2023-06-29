@@ -62,23 +62,23 @@ No body da **POST** request, devem estar os pares key-value:
 
 *EXEMPLO:*   
 
-**POST** api.tech-challenge/enderecos <br>
-    Content-Type: application/json
-    
-    {
-      "rua": "rua bela",
-      "numero": "234",
-      "bairro": "bairro",
-      "cidade": "Maya",
-      "estado": "SP"
-    }
-    
-    curl -i -X POST --location "api.tech-challenge/enderecos" -H "Content-type:application/json" -d '{"rua":"rua bela", "numero":"234", "bairro":"bairro", "cidade":"Maya","estado":"SP"}'
-    
-    HTTP/1.1 201
-    Content-Type: application/json
-         
-    {"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}
+        POST api.tech-challenge/enderecos
+        Content-Type: application/json
+        
+        {
+          "rua": "rua bela",
+          "numero": "234",
+          "bairro": "bairro",
+          "cidade": "Maya",
+          "estado": "SP"
+        }
+        
+        curl -i -X POST --location "api.tech-challenge/enderecos" -H "Content-type:application/json" -d '{"rua":"rua bela", "numero":"234", "bairro":"bairro", "cidade":"Maya","estado":"SP"}'
+        
+        HTTP/1.1 201
+        Content-Type: application/json
+             
+        {"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}
 
 
 ___
@@ -98,7 +98,7 @@ ___
 
   ###### **GET BY ID**<br><br>
 
-    **GET** api.tech-challenge/enderecos/1275424829065256685
+**GET** api.tech-challenge/enderecos/1275424829065256685
 
     curl -i -X GET --location "api.tech-challenge/enderecos/1275424829065256685"
     HTTP/1.1 200
@@ -123,31 +123,31 @@ ___
 
 *EXEMPLO:*    
 
-   **PUT** api.tech-challenge/enderecos/1275424829065256685<br>
-    Content-Type: application/json
+         PUT api.tech-challenge/enderecos/1275424829065256685<br>
+         Content-Type: application/json
     
-    {
-       "rua": "rua belissima",
-      "numero": "890234",
-      "bairro": "brejo-bairro",
-      "cidade": "Mayaporã",
-      "estado": "AM"
-    }
+        {
+           "rua": "rua belissima",
+          "numero": "890234",
+          "bairro": "brejo-bairro",
+          "cidade": "Mayaporã",
+          "estado": "AM"
+        }
+        
+        curl -i -X PUT --location "api.tech-challenge/enderecos/1275424829065256685" -H "Content-type:application/json" -d '{"rua":"rua belissima",  "numero":"890234", "bairro":"brejo-bairro", "cidade":"Mayaporã","estado":"AM"}'
+        
+        HTTP/1.1 200
+        Content-Type: application/json
+        Transfer-Encoding: chunked
     
-    curl -i -X PUT --location "api.tech-challenge/enderecos/1275424829065256685" -H "Content-type:application/json" -d '{"rua":"rua belissima",  "numero":"890234", "bairro":"brejo-bairro", "cidade":"Mayaporã","estado":"AM"}'
-    
-    HTTP/1.1 200
-    Content-Type: application/json
-    Transfer-Encoding: chunked
-
-    {
-      "id": "1275424829065256685",
-      "rua": "rua belissima",
-      "numero": "890234",
-      "bairro": "brejo-bairro",
-      "cidade": "Mayaporã",
-      "estado": "AM"
-    }
+        {
+          "id": "1275424829065256685",
+          "rua": "rua belissima",
+          "numero": "890234",
+          "bairro": "brejo-bairro",
+          "cidade": "Mayaporã",
+          "estado": "AM"
+        }
 
 
 ___    
@@ -158,7 +158,7 @@ ___
 No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja deletar: 
   -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
     
-   **DELETE** api.tech-challenge/enderecos/1275424829065256685
+    DELETE api.tech-challenge/enderecos/1275424829065256685
     
     curl -i -X DELETE --location "api.tech-challenge/enderecos/1275424829065256685"
     HTTP/1.1 204
@@ -173,28 +173,33 @@ No body da **POST** request, devem estar os pares key-value:
   -    ***nome*** , *não em-branco e no máximo 60 caracteres* 
   -    ***nascimento***, *não-nulo e NÃO pode ser "hoje" ou qualquer outro dia depois de "hoje"*
   -    ***sexo***, *não-nulo e MASCULINO ou FEMININO*
-  -    ***parentesco***, *não-nulo e um dos valores : IRMÃO, IRMÃ, PAI, MAE, FILHO , FILHA, AVÔ, AVÓ, CUNHADA, SOGRA, CUNHADO, SOGRO, AGREGADO, NAMORADA,NOMORADO, CONJUGE, TIA, TIO*
+  -    ***isUsuario***, *não-nulo e true ou false*
+  -    ***parentesco***, *não-nulo e um dos valores : IRMÃO, IRMÃ, PAI, MAE, FILHO , FILHA, AVÔ, AVÓ, CUNHADA, SOGRA, CUNHADO, SOGRO, AGREGADO, NAMORADA,NOMORADO, CONJUGE, TIA, TIO, AMIGO, AMIGA, NENHUM*
 
 *EXEMPLO:*   
 
     
-   **POST** api.tech-challenge/pessoas<br>
-    Content-Type: application/json
+       **POST** api.tech-challenge/pessoas<br>
+       Content-Type: application/json
+        
+        {
+          "nome": "ana bela",
+          "nascimento": "2020-01-01",
+          "sexo": "FEMININO",
+          "isUsuario":true,
+          "parentesco": "NENHUM"
+        }
     
-    {
-      "nome": "ana bela",
-      "nascimento": "2020-01-01",
-      "sexo": "FEMININO",
-      "parentesco": "MAE"
-    }
+        curl -i -X POST --location "api.tech-challenge/pessoas" -H "Content-type:application/json" -d '{"nome":"ana bela", "nascimento":"2020-01-01", "sexo":"FEMININO", "isUsuario":false, "parentesco":"MAE"}'
     
-    curl -i -X POST --location "api.tech-challenge/pessoas" -H "Content-type:application/json" -d '{"nome":"ana bela", "nascimento":"2020-01-01", "sexo":"FEMININO", "parentesco":"MAE"}'
-    HTTP/1.1 201 
-    Content-Type: text/plain;charset=UTF-8
-    Content-Length: 24
-    
-    SUCESSO: ao criar Pessoa
-
+        HTTP/1.1 201 
+        Server: nginx/1.18.0
+        Date: Thu, 29 Jun 2023 18:31:49 GMT
+        Content-Type: application/json
+        Transfer-Encoding: chunked
+        Connection: keep-alive
+        
+        {"id":6196618678884909927,"nome":"ana bela","nascimento":"2020-01-01","sexo":"FEMININO","isUsuario":false,"parentesco":"MAE"}
 
 ___
 
@@ -278,7 +283,7 @@ ___
 No body da **POST** request, devem estar os pares key-value: 
   -    ***nome*** , *não em-branco e no máximo 60 caracteres* 
   -    ***modelo***, *não em-branco e no máximo 60 caracteres*
-  -    ***potencia***, *não em-branco e no máximo 30 caracteres*     
+  -    ***potencia***, *não-nula e no range [ 0 , Double.MAX_VALUE ]**     
 
 *EXEMPLO:*  
   
@@ -374,7 +379,7 @@ No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja de
 
     SUCESSO: ao excluir Eletrodomestico 8393364629003825317
 
-</div>
+
 
 ## Desafio técnico
 <div style='text-align: justify;'>
