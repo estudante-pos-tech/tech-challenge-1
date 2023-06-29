@@ -18,6 +18,7 @@ public class Pessoa extends BASE<Pessoa> {
     private String nome;
     private LocalDate nascimento;
     private Sexo sexo;
+    private Boolean isUsuario;
     private Parentesco parentesco;
 
     /**

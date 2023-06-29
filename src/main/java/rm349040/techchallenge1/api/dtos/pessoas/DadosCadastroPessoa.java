@@ -22,6 +22,8 @@ public record DadosCadastroPessoa(
         @NotNull(message = "O sexo NÃO pode ser nulo")
         Sexo sexo,
 
+        Boolean isUsuario,
+
         @NotNull(message = "O parentesco NÃO pode ser nulo ")
         Parentesco parentesco
 

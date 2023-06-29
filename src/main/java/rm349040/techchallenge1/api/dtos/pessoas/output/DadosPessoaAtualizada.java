@@ -18,5 +18,6 @@ public class DadosPessoaAtualizada {
     private String nome;
     private LocalDate nascimento;
     private Sexo sexo;
+    private Boolean isUsuario;
     private Parentesco parentesco;
 }

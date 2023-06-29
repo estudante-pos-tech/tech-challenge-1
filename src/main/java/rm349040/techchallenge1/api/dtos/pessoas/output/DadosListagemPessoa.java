@@ -20,9 +20,10 @@ public class DadosListagemPessoa {
     private String nome;
     private LocalDate nascimento;
     private Sexo sexo;
+    private Boolean isUsuario;
     private Parentesco parentesco;
     public DadosListagemPessoa(Pessoa pessoa){
-        this(pessoa.getId(), pessoa.getNome(),pessoa.getNascimento(), pessoa.getSexo(), pessoa.getParentesco());
+        this(pessoa.getId(), pessoa.getNome(),pessoa.getNascimento(), pessoa.getSexo(), pessoa.getIsUsuario(), pessoa.getParentesco());
     }
 
 }
