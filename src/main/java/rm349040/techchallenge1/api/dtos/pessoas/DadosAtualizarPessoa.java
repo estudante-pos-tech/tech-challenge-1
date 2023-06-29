@@ -23,6 +23,7 @@ public record DadosAtualizarPessoa(
         @NotNull(message = "O sexo NÃO pode ser nulo")
         Sexo sexo,
 
+        @NotNull(message = "É usuário? NÃO pode ser nulo ")
         Boolean isUsuario,
 
         @NotNull(message = "O parentesco NÃO pode ser nulo ")
