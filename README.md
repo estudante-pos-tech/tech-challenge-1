@@ -106,7 +106,7 @@ ___
     Content-Type: application/json
     Transfer-Encoding: chunked
     
-    [{"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}]
+    {"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}
 
 ___    
 
