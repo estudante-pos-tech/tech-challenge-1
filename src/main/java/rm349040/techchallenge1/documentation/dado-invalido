@@ -1,5 +1,7 @@
 Muitas são as causas de um dado inváido.
-A + comuns são haver algum erro de sintaxe JSON no texto do corpo da requisição.
-Por exemplo, esquecer alguma aspas dupla; ou esquecer os dois pontos : e etc.
-Cheque a sintaxe JSON do body da sua request e tente novamente. 
+A + comuns são haver algum erro de associação entre tipos de valores. 
+Por exemplo, você escreve uma palavra num campo que deveria receber um valor monetário.
+Ou, você digita uma data no formato incorreto, por exemplo, 2000-13-01, que está fora do padrão ano-mes-dia, já que não existe mês 13.
+Talvez, você quisesse escrever o décimo terceiro dia (13) de Janeiro (01) de 2000 e então ele deveria ser escrito assim 2000-01-13.
+Cheque a solicitação e corrija body da sua request e tente novamente. 
 
