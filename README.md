@@ -449,6 +449,9 @@ Depois de feita a request
                             }
                         ]
         }
+<br><br>
+Na resposta customizada da API, fica descrito, no campo fields, que o campo potencia não foi
+passado no body da request (ela é NOT-NULL) e essa violação foi detectada na camada de validação da API.
 
 
 </div>
