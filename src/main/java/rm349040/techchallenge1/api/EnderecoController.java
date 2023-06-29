@@ -80,8 +80,8 @@ public class EnderecoController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity listarById(@PathVariable Long id) {
-        return ResponseEntity.ok(Optional.of(enderecoCadastroService.listarById(id)).stream().map(DadosListagemEndereco::new));
+    public DadosListagemEndereco listarById(@PathVariable Long id) {
+        return mapper.toDto(enderecoCadastroService.listarById(id),DadosListagemEndereco.class);
     }
 
 

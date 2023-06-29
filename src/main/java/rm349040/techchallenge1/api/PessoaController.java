@@ -80,8 +80,8 @@ public class PessoaController  {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity listarById(@PathVariable Long id) {
-        return ResponseEntity.ok().body(Optional.of(pessoaCadastroService.listarById(id)).stream().map(DadosListagemPessoa::new));
+    public DadosListagemPessoa listarById(@PathVariable Long id) {
+        return mapper.toDto(pessoaCadastroService.listarById(id),DadosListagemPessoa.class);
     }
 
 

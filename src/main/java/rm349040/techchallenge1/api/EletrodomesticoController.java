@@ -79,8 +79,8 @@ public class EletrodomesticoController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity listarById(@PathVariable Long id) {
-        return ResponseEntity.ok().body(Optional.of(eletrodomesticoCadastroService.listarById(id)).stream().map(DadosListagemEletrodomestico::new));
+    public DadosListagemEletrodomestico listarById(@PathVariable Long id) {
+        return mapper.toDto(eletrodomesticoCadastroService.listarById(id),DadosListagemEletrodomestico.class);
     }
 
     private Eletrodomestico toDomain(Object dto){
