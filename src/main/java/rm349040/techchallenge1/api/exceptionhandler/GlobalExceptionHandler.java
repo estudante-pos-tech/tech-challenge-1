@@ -19,14 +19,12 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
