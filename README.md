@@ -87,24 +87,26 @@ ___
 
   ###### **GET ALL**<br><br>
     
-   **GET** api.tech-challenge/enderecos
-
-    curl -i -X GET --location "api.tech-challenge/enderecos"
-    HTTP/1.1 200
-    Content-Type: application/json
-    Transfer-Encoding: chunked
+        GET api.tech-challenge/enderecos
     
-    [{"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}]
+        curl -i -X GET --location "api.tech-challenge/enderecos"
+        
+        HTTP/1.1 200
+        Content-Type: application/json
+        Transfer-Encoding: chunked
+        
+        [{"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}]
 
   ###### **GET BY ID**<br><br>
 
-**GET** api.tech-challenge/enderecos/1275424829065256685
-
-    curl -i -X GET --location "api.tech-challenge/enderecos/1275424829065256685"
-    HTTP/1.1 200
-    Content-Type: application/json
+        GET api.tech-challenge/enderecos/1275424829065256685
     
-    {"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}
+        curl -i -X GET --location "api.tech-challenge/enderecos/1275424829065256685"
+        
+        HTTP/1.1 200
+        Content-Type: application/json
+        
+        {"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}
 
 ___    
 
@@ -156,12 +158,13 @@ ___
 ##### **DELETE**<br><br>
 
 No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja deletar: 
-  -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
+-    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
     
-    DELETE api.tech-challenge/enderecos/1275424829065256685
-    
-    curl -i -X DELETE --location "api.tech-challenge/enderecos/1275424829065256685"
-    HTTP/1.1 204
+          DELETE api.tech-challenge/enderecos/1275424829065256685
+            
+          curl -i -X DELETE --location "api.tech-challenge/enderecos/1275424829065256685"
+            
+          HTTP/1.1 204
          
 ___
 #### Endpoint pessoas : REQUESTS, Curls, RESPONSES
