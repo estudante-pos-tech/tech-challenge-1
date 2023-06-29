@@ -12,10 +12,14 @@ Neste projeto **tech-challenge-1**, o [**repositorio**](https://github.com/estud
 <br><br>
 **Requests corretas** aos endpoints tem **responses** descritas na **Documentação das APIs**
 <br><br>**Requests incorretas** aos endpoints recebem **Http status codes conformes a uma rest api** e o body da resposta padronizado de acordo com a **RFC 7807 - Problem Detail for Http Apis**. <br>
-Por exemplo, a request abaixo tenta atualizar um recurso inexistente
+Por exemplo, a request abaixo tenta atualizar um recurso inexistente:
+<br><br>
 
 <br><br>
 A request acima recebe uma response que estende a **RFC 7807 - Problem Detail for Http Apis**
+<br><br>
+
+<br><br>
 
  
  ***erro + causa do erro*** . Este comportamento é implementado usando ***exception handlers GLOBAIS*** e ***validações LOCAIS*** em cada endpoint.<br>
