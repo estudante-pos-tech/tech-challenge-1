@@ -1,5 +1,5 @@
 # tech-challenge-1 
-Implementação ***CRUD** Java Rest Apis*.<br>
+Implementação ***CRUD** Java Rest Api*.<br>
 Os endpoints são enderecos, pessoas e eletrodomesticos
 ## Relatório Técnico
 <div style='text-align: justify;'>
