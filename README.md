@@ -136,7 +136,8 @@ ___
       "estado": "AM"
     }
     
-    curl -i -X PUT --location "api.tech-challenge/enderecos" -H "Content-type:application/json" -d '{"id":"1275424829065256685", "rua":"rua belissima",  "numero":"890234", "bairro":"brejo-bairro", "cidade":"Mayaporã","estado":"AM"}'
+    curl -i -X PUT --location "api.tech-challenge/enderecos/1275424829065256685" -H "Content-type:application/json" -d '{"rua":"rua belissima",  "numero":"890234", "bairro":"brejo-bairro", "cidade":"Mayaporã","estado":"AM"}'
+    
     HTTP/1.1 200
     Content-Type: application/json
     Transfer-Encoding: chunked
