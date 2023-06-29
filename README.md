@@ -9,9 +9,12 @@ Debian host, Oracle virtual machine, bash scripting, git, IDE Intellij, maven, S
 <br><br>Um [**repositório**](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/repository/Repositorio.java) é usado para acessar e manipular uma coleção (Set) de objetos, simulando **CRUD**. 
 <br><br>**Soluções genéricas** podem ser excelentes, quando evoluimos uma app. <br><br>
 Neste projeto **tech-challenge-1**, o [**repositorio**](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/repository/Repositorio.java) e o [**serviço de cadastro**](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/domain/service/CadastroService.java)) implementados usam **java generics**. O código para fazer o *CRUD* é parametrizado pelos tipos Endereco, Pessoa e Eletromestico. *Instâncias de CadastroService<T> e Repositorio<T>* são criadas e gerenciadas pelo Spring e são injetadas em cada um dos controllers e repositórios correspondentes.
-<br><br>**Não está implementada i18n**. Toda e qualquer mensagem ao cliente das apis está **hard-coded**; as mensagens ou estão na classe Message.java ou nos DTOs, através das ***bean validations***.  
+<br><br>
 <br>**Requests corretas** aos endpoints tem **responses** descritas na **Documentação das APIs**<br>
-**Requests incorretas** aos endpoints tem **response** : ***erro + causa do erro*** . Este comportamento é implementado usando ***exception handlers GLOBAIS*** e ***validações LOCAIS*** em cada endpoint.<br>
+<br><br>**Requests incorretas** aos endpoints recebem responses que seguem a **RFC 7807 - Problem Detail for Http Apis**. <br>
+Por exemplo, a request abaixo tenta atualizar um etentando atu
+ 
+ ***erro + causa do erro*** . Este comportamento é implementado usando ***exception handlers GLOBAIS*** e ***validações LOCAIS*** em cada endpoint.<br>
 O mecanismo de captura de erros GLOBAL foi instalado na classe [AppConfiguration.java](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/config/AppConfiguration.java), anotando esta classe com a **@ControllerAdvice** annotation do Spring.
               
 
