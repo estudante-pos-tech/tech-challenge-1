@@ -284,7 +284,7 @@ ___
 No body da **POST** request, devem estar os pares key-value: 
   -    ***nome*** , *não em-branco e no máximo 60 caracteres* 
   -    ***modelo***, *não em-branco e no máximo 60 caracteres*
-  -    ***potencia***, *não-nula e no range [ 0 , Double.MAX_VALUE ]**     
+  -    ***potencia***, *não-nula e no range [ 0 , Double.MAX_VALUE ]*     
 
 *EXEMPLO:*  
   
@@ -353,7 +353,7 @@ Na url da **PUT** request deve estar o id do recurso
 No body da **PUT** request, devem estar os pares key-value:
   -    ***nome*** , *não em-branco e no máximo 60 caracteres* 
   -    ***modelo***, *não em-branco e no máximo 60 caracteres*
-  -    ***potencia***, *não-nula e no range [ 0 , Double.MAX_VALUE ]**    
+  -    ***potencia***, *não-nula e no range [ 0 , Double.MAX_VALUE ]*    
 
 *EXEMPLO:* 
 
