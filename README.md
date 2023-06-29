@@ -197,10 +197,8 @@ No body da **POST** request, devem estar os pares key-value:
     
         HTTP/1.1 201 
         Server: nginx/1.18.0
-        Date: Thu, 29 Jun 2023 18:31:49 GMT
         Content-Type: application/json
-        Transfer-Encoding: chunked
-        Connection: keep-alive
+
         
         {"id":6196618678884909927,"nome":"ana bela","nascimento":"2020-01-01","sexo":"FEMININO","isUsuario":false,"parentesco":"MAE"}
 
@@ -239,7 +237,7 @@ No body da **PUT** request, devem estar os pares key-value:
   -    ***nome*** , *não em-branco e no máximo 60 caracteres* 
   -    ***nascimento***, *não-nulo e NÃO pode ser "hoje" ou qualquer outro dia depois de "hoje"*
   -    ***sexo***, *não-nulo e MASCULINO ou FEMININO*
-  -    ***parentesco***, *não-nulo e um dos valores : IRMÃO, IRMÃ, PAI, MAE, FILHO , FILHA, AVÔ, AVÓ, CUNHADA, SOGRA, CUNHADO, SOGRO, AGREGADO, NAMORADA,NOMORADO, CONJUGE, TIA, TIO*
+  -    ***parentesco***, *não-nulo e um dos valores : IRMÃO, IRMÃ, PAI, MAE, FILHO , FILHA, AVÔ, AVÓ, CUNHADA, SOGRA, CUNHADO, SOGRO, AGREGADO, NAMORADA,NOMORADO, CONJUGE, TIA, TIO, AMIGO, AMIGA, NENHUM*
 
 *EXEMPLO:*  
     
@@ -290,21 +288,28 @@ No body da **POST** request, devem estar os pares key-value:
 
 *EXEMPLO:*  
   
-   **POST** api.tech-challenge/eletrodomesticos<br>
-     Content-Type: application/json
-
-    {
-      "nome": "eletrodomesticos",
-      "modelo": "casa-casa",
-      "potencia": "0.2 KWh"
-    }
-
-    curl -i -X POST --location "api.tech-challenge/eletrodomesticos" -H "Content-type:application/json" -d '{"nome":"eletrodomesticos", "modelo":"casa-casa", "potencia":"0.2 KWh"}'
-    HTTP/1.1 201 
-    Content-Type: text/plain;charset=UTF-8
-    Content-Length: 33
+        POST** api.tech-challenge/eletrodomesticos
+        Content-Type: application/json
+    
+        {
+          "nome": "eletrodomesticos",
+          "modelo": "casa-casa",
+          "potencia": "0.2"
+        }
+    
+        curl -i -X POST --location "api.tech-challenge/eletrodomesticos" -H "Content-type:application/json" -d '{"nome":"eletrodomesticos", "modelo":"casa-casa", "potencia":"0.2"}'
         
-    SUCESSO: ao criar Eletrodomestico
+        HTTP/1.1 201 
+        Server: nginx/1.18.0
+        Content-Type: application/json
+
+        {
+            "id":8393364629003825317,
+            "nome":"eletrodomesticos",
+            "modelo":"casa-casa",
+            "potencia":0.2
+        }
+
 
 ___
 
@@ -312,59 +317,66 @@ ___
 
   ###### **GET ALL**<br><br>
 
-  **GET** api.tech-challenge/eletrodomesticos
+        GET api.tech-challenge/eletrodomesticos
     
-    curl -i -X GET --location "api.tech-challenge/eletrodomesticos"
-    HTTP/1.1 200
-    Content-Type: application/json
-    Transfer-Encoding: chunked
-    
-    [{"id":8393364629003825317,"nome":"eletrodomesticos","modelo":"casa-casa","potencia":"0.2 KWh"}]
+        curl -i -X GET --location "api.tech-challenge/eletrodomesticos"
+        
+        HTTP/1.1 200
+        Server: nginx/1.18.0
+        Content-Type: application/json
+         
+        [{"id":8393364629003825317,"nome":"eletrodomesticos","modelo":"casa-casa","potencia":0.2}]
 
    ###### **GET BY ID**<br><br>
 
-    **GET** api.tech-challenge/eletrodomesticos/8393364629003825317
-    
-    curl -i -X GET --location "api.tech-challenge/eletrodomesticos/8393364629003825317"
-    HTTP/1.1 200
-    Content-Type: application/json
-    Transfer-Encoding: chunked
-    
-    [{"id":8393364629003825317,"nome":"eletrodomesticos","modelo":"casa-casa","potencia":"0.2 KWh"}]
-    
+        GET api.tech-challenge/eletrodomesticos/8393364629003825317
+        
+        curl -i -X GET --location "api.tech-challenge/eletrodomesticos/8393364629003825317"
+        HTTP/1.1 200 
+        Server: nginx/1.18.0
+        Content-Type: application/json
+        
+        {
+            "id":8393364629003825317,
+            "nome":"eletrodomesticos",
+            "modelo":"casa-casa",
+            "potencia":0.2
+        }    
 ___
 
 ##### **PUT**<br><br>
 
+Na url da **PUT** request deve estar o id do recurso
+-    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
+
 No body da **PUT** request, devem estar os pares key-value:
-  -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
   -    ***nome*** , *não em-branco e no máximo 60 caracteres* 
   -    ***modelo***, *não em-branco e no máximo 60 caracteres*
-  -    ***potencia***, *não em-branco e no máximo 30 caracteres*     
+  -    ***potencia***, *não-nula e no range [ 0 , Double.MAX_VALUE ]**    
 
 *EXEMPLO:* 
 
-   **PUT** api.tech-challenge/eletrodomesticos<br>
-    Content-Type: application/json
-    
-    {
-      "id": "8393364629003825317",
-      "nome": "rural-eletro",
-      "modelo": "casa-rural",
-      "potencia": "0.1 KWh"
-    }
-    
-    curl -i -X PUT --location "api.tech-challenge/eletrodomesticos" -H "Content-type:application/json" -d '{"id":"8393364629003825317","nome":"rural-eletro", "modelo":"casa-rural", "potencia":"0.1 KWh"}'
-    HTTP/1.1 200
-    Content-Type: application/json
-    Transfer-Encoding: chunked
-
-    {
-      "id": "8393364629003825317",
-      "nome": "rural-eletro",
-      "modelo": "casa-rural",
-      "potencia": "0.1 KWh"
-    }
+        PUT** api.tech-challenge/eletrodomesticos/8393364629003825317
+        Content-Type: application/json
+        
+        {
+          "nome": "rural-eletro",
+          "modelo": "casa-rural",
+          "potencia": "0.1"
+        }
+        
+        curl -i -X PUT --location "api.tech-challenge/eletrodomesticos/8393364629003825317" -H "Content-type:application/json" -d '{"nome":"rural-eletro", "modelo":"casa-rural", "potencia":"0.1"}'
+        
+        HTTP/1.1 200 
+        Server: nginx/1.18.0
+        Content-Type: application/json
+        
+        {
+          "id":8393364629003825317,
+          "nome":"rural-eletro",
+          "modelo":"casa-rural",
+          "potencia":0.1
+        }
 
 ___
 
@@ -373,15 +385,11 @@ ___
 No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja deletar: 
   -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
     
-   **DELETE** api.tech-challenge/eletrodomesticos/8393364629003825317
-    
-    curl -i -X DELETE --location "api.tech-challenge/eletrodomesticos/8393364629003825317"
-    HTTP/1.1 200
-    Content-Type: text/plain;charset=UTF-8
-    Content-Length: 55
-
-    SUCESSO: ao excluir Eletrodomestico 8393364629003825317
-
+            DELETE api.tech-challenge/eletrodomesticos/8393364629003825317
+            
+            curl -i -X DELETE --location "api.tech-challenge/eletrodomesticos/8393364629003825317"
+            
+            HTTP/1.1 204 
 
 
 ## Desafio técnico
