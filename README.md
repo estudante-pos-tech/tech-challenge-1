@@ -11,7 +11,7 @@ Debian host, Oracle virtual machine, bash scripting, git, IDE Intellij, maven, S
 Neste projeto **tech-challenge-1**, o [**repositorio**](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/repository/Repositorio.java) e o [**serviço de cadastro**](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/domain/service/CadastroService.java) implementados usam **java generics**. O código para fazer o *CRUD* é parametrizado pelos tipos Endereco, Pessoa e Eletromestico. *Instâncias de CadastroService<T> e Repositorio<T>* são criadas e gerenciadas pelo Spring e são injetadas em cada um dos controllers e repositórios correspondentes.
 <br><br>
 **Requests corretas** aos endpoints tem **responses** descritas na **Documentação das APIs**
-<br><br>**Requests incorretas** aos endpoints recebem **Http status codes conformes a uma rest api** e response body padronizada de acordo com a **RFC 7807 - Problem Detail for Http Apis**. <br>
+<br><br>**Requests incorretas** aos endpoints recebem **Http status codes conformes a uma rest api** e o body da resposta padronizado de acordo com a **RFC 7807 - Problem Detail for Http Apis**. <br>
 Por exemplo, a request abaixo tenta atualizar um recurso inexistente
 
 <br><br>
