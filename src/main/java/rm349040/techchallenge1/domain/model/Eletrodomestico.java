@@ -4,8 +4,6 @@ package rm349040.techchallenge1.domain.model;
 import lombok.*;
 import rm349040.techchallenge1.domain.BASE;
 
-import java.util.Random;
-
 @Getter
 @Setter
 @Builder

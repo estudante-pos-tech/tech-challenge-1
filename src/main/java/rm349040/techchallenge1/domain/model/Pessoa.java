@@ -4,7 +4,6 @@ import lombok.*;
 import rm349040.techchallenge1.domain.BASE;
 
 import java.time.LocalDate;
-import java.util.Random;
 
 @Getter
 @Setter
