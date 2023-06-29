@@ -23,7 +23,7 @@ Por exemplo, a request abaixo tenta atualizar um recurso inexistente:
                 "modelo": "RURAL RURAL",
                 "potencia": "10.39"
             }
-ela recebe uma response que estende a **RFC 7807 - Problem Detail for Http Apis**
+ela recebe um response body que extende a **RFC 7807 - Problem Detail for Http Apis**
 <br>
 
             {
