@@ -413,7 +413,7 @@ No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja de
 Como capturar e tratar, **num mesmo lugar**, as java exceptions internas do Spring e as java exceptions lançadas pela camada de validação ?
 Esse foi o desafio dessa fase-1, pois desejava-se padronizar as respostas de erros aos usuários da API, seguindo a **RFC 7807 Problem Details for HTTP Apis**.<br>
 <br>O desafio foi resolvido criando-se a classe [GlobalExceptionHandler](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/api/exceptionhandler/GlobalExceptionHandler.java) 
-que extende da classe ResponseEntityExceptionHandler do próprio Spring. 
+que extende da classe *ResponseEntityExceptionHandler* do próprio Spring. 
 Desta forma, foi possivel customizar o body das respostas de erro que o Spring gera 
 e também customizar o body das respostas de erro com as exceptions que a camanda de validação da API lança.
 
