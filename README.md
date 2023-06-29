@@ -35,7 +35,7 @@ ela recebe uma response que estende a **RFC 7807 - Problem Detail for Http Apis*
             }
 
 <br>**Todo e qualquer** problema/erro é representado no padrão **RFC 7807 - Problem Detail for Http Apis**.
-<br>As responses nesse formato tentarão ao máximo ajudar o usuário da API a ter uma experiência o mais amigável possível, pois elas informar o tipo de erro ocorrido (atributos **type** e **title**), o detalhe do erro (atributo **detail**) junto com uma sugestão de correção. Além disso, o atributo **type** aponta para uma url contendo uma documentação que informa possíveis causas do erro
+<br>As responses nesse formato tentarão ao máximo ajudar o usuário da API a ter uma experiência o mais amigável possível, pois elas informar o tipo de erro ocorrido (atributos **type** e **title**), o detalhe do erro (atributo **detail**) junto com uma sugestão de correção. Além disso, o atributo **type** aponta para uma url contendo uma documentação que informa possíveis causas do erro e possíveis soluções.
 
 
 </div>
