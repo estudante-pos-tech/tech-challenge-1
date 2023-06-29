@@ -18,7 +18,7 @@ public abstract class Repositorio<T extends BASE> {
 
     private static Random random = new Random();
 
-    private Set<T> collection = new HashSet<>();;
+    protected Set<T> collection = new HashSet<>();;
 
     public Repositorio(Class<T> entityClass) {
         this.entityClass = entityClass;
