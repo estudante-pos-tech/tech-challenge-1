@@ -23,7 +23,7 @@ public class Mapper {
     }
 
     /**
-     * Turns destination's settings equal to source's settings.
+     * Makes destination's attributes values equal to source's attributes values.
      * @param source the instance we read settings from
      * @param destination the instance we write settingg to
      * @param <T> a type
