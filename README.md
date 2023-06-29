@@ -35,7 +35,7 @@ ela recebe uma response que estende a **RFC 7807 - Problem Detail for Http Apis*
             }
 
 <br>**Todo e qualquer** problema/erro é representado no padrão **RFC 7807 - Problem Detail for Http Apis**.
-<br>As responses nesse formato tentarão ao máximo ajudar o usuário da API a ter uma experiência o mais amigável possível.
+<br>As responses nesse formato tentarão ao máximo ajudar o usuário da API a ter uma experiência o mais amigável possível, pois elas informar o tipo de erro ocorrido (atributos **type** e **title**), o detalhe do erro (atributo **detail**) junto com uma sugestão de correção. Além disso, o atributo **type** aponta para uma url contendo uma documentação que informa possíveis causas do erro
 
 
 </div>
@@ -373,15 +373,6 @@ No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja de
     Content-Length: 55
 
     SUCESSO: ao excluir Eletrodomestico 8393364629003825317
-
-### Requests incorretas
-
-<div style='text-align: justify;'>
-  
-Qualquer e toda request às api que não esteja na forma indicada na documentação acima, das apis, resultará numa *java exception*.
-<br><br> **Ou** esta exception será capturada pelo **exception handler GLOBAL; ou** ela será capturada pela camada de validação.<br> 
-<br>Se acontecer de a exception cair no GLOBAL, então o handler criará uma mensagem genérica que será retornada ao cliente da api. O cliente será **informando** sobre o **erro e a causa do erro**, numa *linguagem técnica*. 
-<br><br>Se a exception for capturada pela validação, as requests que **violaram as restrições (constraints)** programadas, serão interrompidas nesta **camada de validação** e uma mensagem de erro adequada será retornada ao cliente da api.
 
 </div>
 
