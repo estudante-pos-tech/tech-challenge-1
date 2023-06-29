@@ -11,20 +11,32 @@ Debian host, Oracle virtual machine, bash scripting, git, IDE Intellij, maven, S
 Neste projeto **tech-challenge-1**, o [**repositorio**](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/repository/Repositorio.java) e o [**serviço de cadastro**](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/domain/service/CadastroService.java) implementados usam **java generics**. O código para fazer o *CRUD* é parametrizado pelos tipos Endereco, Pessoa e Eletromestico. *Instâncias de CadastroService<T> e Repositorio<T>* são criadas e gerenciadas pelo Spring e são injetadas em cada um dos controllers e repositórios correspondentes.
 <br><br>
 **Requests corretas** aos endpoints tem **responses** descritas na **Documentação das APIs**
-<br><br>**Requests incorretas** aos endpoints recebem **Http status codes conformes a uma rest api** e o body da resposta padronizado de acordo com a **RFC 7807 - Problem Detail for Http Apis**. <br>
+<br><br>**Requests incorretas** aos endpoints recebem **Http status codes** conformes a uma rest api e o body da resposta padronizado de acordo com a **RFC 7807 - Problem Detail for Http Apis**. <br>
 Por exemplo, a request abaixo tenta atualizar um recurso inexistente:
-<br><br>
+<br>
 
-<br><br>
-A request acima recebe uma response que estende a **RFC 7807 - Problem Detail for Http Apis**
-<br><br>
+            PUT api.tech-challenge/eletrodomesticos/386340500511945<br>
+            Content-Type: application/json
+            
+            {
+                "nome": "RURAL-RURAL-eletrodomesticos",
+                "modelo": "RURAL RURAL",
+                "potencia": "10.39"
+            }
+ela recebe uma response que estende a **RFC 7807 - Problem Detail for Http Apis**
+<br>
 
-<br><br>
+            {
+                "status": 404,
+                "timeStamp": "2023-06-29T14:25:25.083893926Z",
+                "type": "https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/documentation/recurso-nao-encontrado",
+                "title": "Recurso não encontrado",
+                "detail": "Eletrodomestico não atualizado(a), pois o id 386340500511945 não existia na base de dados. Tentando te ajudar ... passe um id que exista na base de dados que daí você poderá receber o que solicita."
+            }
 
- 
- ***erro + causa do erro*** . Este comportamento é implementado usando ***exception handlers GLOBAIS*** e ***validações LOCAIS*** em cada endpoint.<br>
-O mecanismo de captura de erros GLOBAL foi instalado na classe [AppConfiguration.java](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/config/AppConfiguration.java), anotando esta classe com a **@ControllerAdvice** annotation do Spring.
-              
+<br>**Todo e qualquer** problema/erro é representado no padrão **RFC 7807 - Problem Detail for Http Apis**.
+<br>As responses nesse formato tentarão ao máximo ajudar o usuário da API a ter uma experiência o mais amigável possível.
+
 
 </div>
 
@@ -63,10 +75,9 @@ No body da **POST** request, devem estar os pares key-value:
     
     curl -i -X POST --location "api.tech-challenge/enderecos" -H "Content-type:application/json" -d '{"rua":"rua bela", "numero":"234", "bairro":"bairro", "cidade":"Maya","estado":"SP"}'
     
-    HTTP/1.1 201 
-    Content-Type: text/plain;charset=UTF-8
-    Content-Length: 26
-        
+    HTTP/1.1 201
+    Content-Type: application/json
+         
     {"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}
 
 
@@ -92,16 +103,18 @@ ___
     curl -i -X GET --location "api.tech-challenge/enderecos/1275424829065256685"
     HTTP/1.1 200
     Content-Type: application/json
-    Transfer-Encoding: chunked
     
-    [{"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}]
+    {"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}
 
 ___    
 
 ##### **PUT**<br><br>
-    
-  No body da **PUT** request, devem estar os pares key-value: 
+
+  Na url da **PUT** request deve estar o id do recurso
   -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
+  
+  No body da **PUT** request, devem estar os pares key-value: 
+  
   -    ***rua*** , *não em-branco e no máximo 60 caracteres* 
   -    ***numero***, *não em-branco e no máximo 10 caracteres*
   -    ***bairro***, *não em-branco e no máximo 40 caracteres*
@@ -110,19 +123,19 @@ ___
 
 *EXEMPLO:*    
 
-   **PUT** api.tech-challenge/enderecos<br>
+   **PUT** api.tech-challenge/enderecos/1275424829065256685<br>
     Content-Type: application/json
     
     {
-      "id": "1275424829065256685",
-      "rua": "rua belissima",
+       "rua": "rua belissima",
       "numero": "890234",
       "bairro": "brejo-bairro",
       "cidade": "Mayaporã",
       "estado": "AM"
     }
     
-    curl -i -X PUT --location "api.tech-challenge/enderecos" -H "Content-type:application/json" -d '{"id":"1275424829065256685", "rua":"rua belissima",  "numero":"890234", "bairro":"brejo-bairro", "cidade":"Mayaporã","estado":"AM"}'
+    curl -i -X PUT --location "api.tech-challenge/enderecos/1275424829065256685" -H "Content-type:application/json" -d '{"rua":"rua belissima",  "numero":"890234", "bairro":"brejo-bairro", "cidade":"Mayaporã","estado":"AM"}'
+    
     HTTP/1.1 200
     Content-Type: application/json
     Transfer-Encoding: chunked
@@ -148,12 +161,8 @@ No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja de
    **DELETE** api.tech-challenge/enderecos/1275424829065256685
     
     curl -i -X DELETE --location "api.tech-challenge/enderecos/1275424829065256685"
-    HTTP/1.1 200
-    Content-Type: text/plain;charset=UTF-8
-    Content-Length: 48
-        
-    SUCESSO: ao excluir Endereco 1275424829065256685
-
+    HTTP/1.1 204
+         
 ___
 #### Endpoint pessoas : REQUESTS, Curls, RESPONSES
 ___
