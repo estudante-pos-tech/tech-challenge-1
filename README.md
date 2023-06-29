@@ -379,10 +379,10 @@ No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja de
 ## Desafio técnico
 <div style='text-align: justify;'>
 
-Da maneira como estão codados os endpoints enderecos, pessoas e eletromestico, são semalhantíssimos os métodos GET, POST, PUT e DELETE, nos 3 rest controllers.<br><br> 
-Por exemplo, se prestarmos atenção aos métodos GET, dos 3 rest controllers, vemos que são idênticos, em sua lógica; apenas os DTOs e os paths variam.<br><br>
-Se fosse possível ao Spring *mapear* **um subconjunto específico de requests** (por exemple, {GET http://localhost:8080/enderecos , GET http://localhost:8080/pessoas , GET http://localhost:8080/eletrodomesticos}) para ***APENAS** 1 determinado método* e se fosse possível *mapear* determinado DTO *a uma determinada request*, então, **ao invés de se ter 3 REST controllers** (EnderecoController, PessoaController, EletrodomesticoController), **seria possivel ter apenas 1 rest controller genérico**. Essa solução simplificaria, enxugaria, tornaria ++ fácil de evoluir o app.<br><br>
-Precisa ser estudado se o **Spring AOP (Aspect Oriented Programming)** suporta os mapeamentos.
+Como capturar as exceptions internas lançadas pelo spring e como capturar as exceptions lançadas pela camada de validação num único ponto ?
+Esse foi o desafio dessa fase-1, pois desejava-se padronizar as respostas de erros aos usuários da API, seguindo a **RFC 7807 Problem Details for HTTP Apis**.
+O desafio foi resolvido criando-se a classe GlobalExceptionHandler que extende da classe ResponseEntityExceptionHandler do próprio Spring.
+Foi assim possivel customizar o body das 
 
 </div>
 
