@@ -75,10 +75,9 @@ No body da **POST** request, devem estar os pares key-value:
     
     curl -i -X POST --location "api.tech-challenge/enderecos" -H "Content-type:application/json" -d '{"rua":"rua bela", "numero":"234", "bairro":"bairro", "cidade":"Maya","estado":"SP"}'
     
-    HTTP/1.1 201 
-    Content-Type: text/plain;charset=UTF-8
-    Content-Length: 26
-        
+    HTTP/1.1 201
+    Content-Type: application/json
+         
     {"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}
 
 
@@ -104,7 +103,6 @@ ___
     curl -i -X GET --location "api.tech-challenge/enderecos/1275424829065256685"
     HTTP/1.1 200
     Content-Type: application/json
-    Transfer-Encoding: chunked
     
     {"id":1275424829065256685,"rua":"rua bela","numero":"234","bairro":"bairro","cidade":"Maya","estado":"SP"}
 
@@ -163,12 +161,8 @@ No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja de
    **DELETE** api.tech-challenge/enderecos/1275424829065256685
     
     curl -i -X DELETE --location "api.tech-challenge/enderecos/1275424829065256685"
-    HTTP/1.1 200
-    Content-Type: text/plain;charset=UTF-8
-    Content-Length: 48
-        
-    SUCESSO: ao excluir Endereco 1275424829065256685
-
+    HTTP/1.1 204
+         
 ___
 #### Endpoint pessoas : REQUESTS, Curls, RESPONSES
 ___
