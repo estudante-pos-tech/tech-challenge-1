@@ -1,22 +1,18 @@
 package rm349040.techchallenge1.domain.repository;
 
 import rm349040.techchallenge1.domain.model.Eletrodomestico;
-import rm349040.techchallenge1.domain.model.Pessoa;
-import rm349040.techchallenge1.domain.model.Sexo;
-
-import java.time.LocalDate;
 
 public class EletrodomesticoRepository extends Repositorio<Eletrodomestico>{
     public EletrodomesticoRepository() {
         super(Eletrodomestico.class);
-        //temporary();
+        temporary();
     }
     private void temporary() {
         Eletrodomestico temporary = Eletrodomestico.builder()
-                .id(2848467342194617996L)
-                .nome("")
-                .modelo("")
-                .potencia("")
+                .id(3863405005119453053L)
+                .nome("eletrodomesticos")
+                .modelo("casa-casa")
+                .potencia(0.2)
                 .build();
         collection.add(temporary);
     }
