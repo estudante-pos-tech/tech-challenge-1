@@ -196,7 +196,7 @@ No body da **POST** request, devem estar os pares key-value:
 *EXEMPLO:*   
 
     
-       **POST** api.tech-challenge/pessoas<br>
+       POST api.tech-challenge/pessoas<br>
        Content-Type: application/json
         
         {
@@ -222,7 +222,7 @@ ___
 
    ###### **GET ALL**<br><br>
     
-   **GET** api.tech-challenge/pessoas<br>
+    GET api.tech-challenge/pessoas<br>
     
     curl -i -X GET --location "api.tech-challenge/pessoas"
     HTTP/1.1 200
@@ -233,7 +233,7 @@ ___
 
   ###### **GET BY ID**<br><br>
 
-    **GET** api.tech-challenge/pessoas/6196618678884909927<br>
+    GET api.tech-challenge/pessoas/6196618678884909927<br>
     
     curl -i -X GET --location "api.tech-challenge/pessoas/6196618678884909927"
     HTTP/1.1 200
@@ -255,7 +255,7 @@ No body da **PUT** request, devem estar os pares key-value:
 
 *EXEMPLO:*  
     
-   **PUT** api.tech-challenge/pessoas<br>
+    PUT api.tech-challenge/pessoas<br>
     Content-Type: application/json
     
     {
@@ -280,7 +280,7 @@ ___
   No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja deletar: 
   -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
         
-   **DELETE** api.tech-challenge/pessoas/1401389624475652749
+    DELETE api.tech-challenge/pessoas/1401389624475652749
     
     curl -i -X DELETE --location "api.tech-challenge/pessoas/6196618678884909927"
     HTTP/1.1 200
@@ -302,7 +302,7 @@ No body da **POST** request, devem estar os pares key-value:
 
 *EXEMPLO:*  
   
-        POST** api.tech-challenge/eletrodomesticos
+        POST api.tech-challenge/eletrodomesticos
         Content-Type: application/json
     
         {
@@ -371,7 +371,7 @@ No body da **PUT** request, devem estar os pares key-value:
 
 *EXEMPLO:* 
 
-        PUT** api.tech-challenge/eletrodomesticos/8393364629003825317
+        PUT api.tech-challenge/eletrodomesticos/8393364629003825317
         Content-Type: application/json
         
         {
