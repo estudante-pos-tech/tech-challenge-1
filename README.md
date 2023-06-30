@@ -416,7 +416,7 @@ Esse foi o desafio dessa fase-1, pois desejava-se padronizar as respostas de err
 que extende da classe *ResponseEntityExceptionHandler* do próprio Spring web. 
 Desta forma, foi possivel customizar o body das respostas de erro com as exceptions que o Spring web lança 
 e também customizar o body das respostas de erro com as exceptions que a camanda de validação da API lança.
-<br><br>Para se ter um contraste entre a resposta http padrão do Spring web e resposta customizada seguindo o padrão **RFC 7807 Problem Details for HTTP Apis**, veja o exemplo a seguir :<br><br>
+<br><br>Para se ter um contraste entre a resposta http padrão do Spring web e uma resposta da API, customizada no padrão **RFC 7807 Problem Details for HTTP Apis**, veja o exemplo a seguir :<br><br>
 
 Depois de feita a request 
 
