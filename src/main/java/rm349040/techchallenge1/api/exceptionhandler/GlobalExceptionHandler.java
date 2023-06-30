@@ -54,7 +54,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
                 .collect(Collectors.toList());
 
-        ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
+        ApiError error = newApiErrorBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
                 .userMessage("Um ou mais campos estão inválidos. Corrija e tente novamente.")
                 .fields(fields)
                 .build();
@@ -70,7 +70,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
         String detail = String.format("O recurso %s, que você tentou acessar, é inexistente.",ex.getRequestURL() );
 
-        ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail).build();
+        ApiError error = newApiErrorBuilder(HttpStatus.valueOf(status.value()), errorType, detail).build();
 
         return handleExceptionInternal(ex,error,headers,status,request);
 
@@ -84,7 +84,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         String detail = String.format("O token '%s' da URL recebeu o valor '%s' que é um tipo inválido." +
                 " Corrija e informe um valor compatível com o tipo %s",ex.getPropertyName(), ex.getValue(), ex.getRequiredType().getSimpleName());
 
-        ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
+        ApiError error = newApiErrorBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
                 .build();
 
         return handleExceptionInternal(ex,error,headers,status,request);
@@ -111,7 +111,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         String detail = "O body da request está inválido. Corrija erro de sintaxe";
 
 
-        ApiError apiError = newApiBuilder(HttpStatus.valueOf(status.value()), ErrorType.MESSAGE_NOT_READABLE, detail)
+        ApiError apiError = newApiErrorBuilder(HttpStatus.valueOf(status.value()), ErrorType.MESSAGE_NOT_READABLE, detail)
                 .build();
 
         return handleExceptionInternal(ex, apiError, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
@@ -124,7 +124,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         String detail = String.format("A propriedade '%s' não é permitida." +
                 " Corrija excluindo-a.",ex.getPropertyName());
 
-        ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
+        ApiError error = newApiErrorBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
                 .build();
 
         return handleExceptionInternal(ex,error,headers,status,request);
@@ -142,7 +142,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         String detail = String.format("A propriedade '%s' recebeu o valor '%s' que é um tipo inválido." +
                 " Corrija e informe um valor compatível com o tipo %s",path, ex.getValue(), ex.getTargetType().getSimpleName());
 
-        ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
+        ApiError error = newApiErrorBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
                 .build();
 
         return handleExceptionInternal(ex,error,headers,status,request);
@@ -158,7 +158,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             ErrorType errorType = ErrorType.MESSAGE_NOT_READABLE;
             String detail = "O corpo da solicitação está mal escrito. Corrija adicionando '}' ao fim da mensagem.";
 
-            ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
+            ApiError error = newApiErrorBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
                     .build();
 
             return handleExceptionInternal(ex,error,headers,status,request);
@@ -169,7 +169,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorType errorType = ErrorType.MESSAGE_NOT_READABLE;
         String detail = "Corrija o corpo da solicitação. Ele está mal escrito" ;
 
-        ApiError error = newApiBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
+        ApiError error = newApiErrorBuilder(HttpStatus.valueOf(status.value()), errorType, detail)
                 .build();
 
 
@@ -210,7 +210,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         HttpStatus status = HttpStatus.NOT_FOUND;
         String detail = ex.getMessage() + ". Tentando te ajudar ... passe um id que exista na base de dados que daí você poderá receber o que solicita.";
 
-        ApiError apiError = newApiBuilder(status, ErrorType.RESOURCE_NOT_FOUND, detail)
+        ApiError apiError = newApiErrorBuilder(status, ErrorType.RESOURCE_NOT_FOUND, detail)
                 .build();
 
         return handleExceptionInternal(ex, apiError, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
@@ -226,7 +226,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 "Tente novamente e se o problema persistir, " +
                 "entre em contato com o administrador do sistema. ");
 
-        ApiError error = newApiBuilder(HttpStatus.INTERNAL_SERVER_ERROR, errorType, detail)
+        ApiError error = newApiErrorBuilder(HttpStatus.INTERNAL_SERVER_ERROR, errorType, detail)
                 .build();
 
         return handleExceptionInternal(ex,error,null,HttpStatus.INTERNAL_SERVER_ERROR,request);
@@ -257,7 +257,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return super.handleExceptionInternal(ex, body, headers, statusCode, request);
     }
 
-    private ApiError.ApiErrorBuilder newApiBuilder(HttpStatus status, ErrorType errorType, String detail) {
+    private ApiError.ApiErrorBuilder newApiErrorBuilder(HttpStatus status, ErrorType errorType, String detail) {
         return ApiError.builder()
                 .status(status.value())
                 .type(errorType.getUri())
