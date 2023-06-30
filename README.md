@@ -47,7 +47,7 @@ ela recebe um response body que extende a **RFC 7807 - Problem Detail for Http A
 ### Desafio técnico
 <div style='text-align: justify;'>
 
-Como capturar e tratar, **num mesmo lugar**, as java exceptions internas do Spring web, as java exceptions lançadas pela camada de validação da API e as exception lançadas pela camada de negócio ?
+Como capturar e tratar, **num mesmo lugar**, as java exceptions internas do Spring web, as java exceptions lançadas pela camada de validação da API e as exceptions lançadas pela camada de negócio ?
 Esse foi o desafio dessa fase-1, pois desejava-se padronizar as respostas de erros aos usuários da API, seguindo a **RFC 7807 Problem Details for HTTP Apis**.<br>
 <br>O desafio foi resolvido criando-se a classe [GlobalExceptionHandler](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/api/exceptionhandler/GlobalExceptionHandler.java)
 que extende da classe *ResponseEntityExceptionHandler* do próprio Spring web.
