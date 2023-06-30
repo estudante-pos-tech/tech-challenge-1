@@ -190,31 +190,35 @@ No body da **POST** request, devem estar os pares key-value:
   -    ***nome*** , *não em-branco e no máximo 60 caracteres* 
   -    ***nascimento***, *não-nulo e NÃO pode ser "hoje" ou qualquer outro dia depois de "hoje"*
   -    ***sexo***, *não-nulo e MASCULINO ou FEMININO*
-  -    ***isUsuario***, *não-nulo e true ou false*
   -    ***parentesco***, *não-nulo e um dos valores : IRMÃO, IRMÃ, PAI, MAE, FILHO , FILHA, AVÔ, AVÓ, CUNHADA, SOGRA, CUNHADO, SOGRO, AGREGADO, NAMORADA,NOMORADO, CONJUGE, TIA, TIO, AMIGO, AMIGA, NENHUM*
 
 *EXEMPLO:*   
 
     
-       POST api.tech-challenge/pessoas<br>
+       POST api.tech-challenge/pessoas
        Content-Type: application/json
         
         {
           "nome": "ana bela",
           "nascimento": "2020-01-01",
           "sexo": "FEMININO",
-          "isUsuario":true,
-          "parentesco": "NENHUM"
+          "parentesco": "MAE"
         }
     
-        curl -i -X POST --location "api.tech-challenge/pessoas" -H "Content-type:application/json" -d '{"nome":"ana bela", "nascimento":"2020-01-01", "sexo":"FEMININO", "isUsuario":false, "parentesco":"MAE"}'
+        curl -i -X POST --location "api.tech-challenge/pessoas" -H "Content-type:application/json" -d '{"nome":"ana bela", "nascimento":"2020-01-01", "sexo":"FEMININO", "parentesco":"MAE"}'
     
         HTTP/1.1 201 
         Server: nginx/1.18.0
         Content-Type: application/json
 
-        
-        {"id":6196618678884909927,"nome":"ana bela","nascimento":"2020-01-01","sexo":"FEMININO","isUsuario":false,"parentesco":"MAE"}
+        {
+          "id":6196618678884909927,
+          "nome":"ana bela",
+          "nascimento":"2020-01-01",
+          "sexo":"FEMININO",
+          "parentesco":"MAE"
+        }
+
 
 ___
 
@@ -222,32 +226,41 @@ ___
 
    ###### **GET ALL**<br><br>
     
-    GET api.tech-challenge/pessoas<br>
-    
-    curl -i -X GET --location "api.tech-challenge/pessoas"
-    HTTP/1.1 200
-    Content-Type: application/json
-    Transfer-Encoding: chunked
-       
-    [{"id":6196618678884909927,"nome":"ana bela","nascimento":"2020-01-01","sexo":"FEMININO","parentesco":"MAE"}]
+        GET api.tech-challenge/pessoas<br>
+        
+        curl -i -X GET --location "api.tech-challenge/pessoas"
+        HTTP/1.1 200
+        Content-Type: application/json
+        Transfer-Encoding: chunked
+           
+        [{"id":6196618678884909927,"nome":"ana bela","nascimento":"2020-01-01","sexo":"FEMININO","parentesco":"MAE"}]
 
   ###### **GET BY ID**<br><br>
 
-    GET api.tech-challenge/pessoas/6196618678884909927<br>
+        GET api.tech-challenge/pessoas/6196618678884909927<br>
+        
+        curl -i -X GET --location "api.tech-challenge/pessoas/5770425075213337291"
+        
+        HTTP/1.1 200
+        Server: nginx/1.18.0
+        Content-Type: application/json
     
-    curl -i -X GET --location "api.tech-challenge/pessoas/6196618678884909927"
-    HTTP/1.1 200
-    Content-Type: application/json
-    Transfer-Encoding: chunked
-       
-    [{"id":6196618678884909927,"nome":"ana bela","nascimento":"2020-01-01","sexo":"FEMININO","parentesco":"MAE"}]
+    
+        {
+          "id":6196618678884909927,
+          "nome":"ana bela",
+          "nascimento":"2020-01-01",
+          "sexo":"FEMININO",
+          "parentesco":"MAE"
+        }
 
 ___
 
   ##### **PUT**<br><br>
+Na url da **PUT** request deve estar o id do recurso
+-    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
 
 No body da **PUT** request, devem estar os pares key-value: 
-  -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
   -    ***nome*** , *não em-branco e no máximo 60 caracteres* 
   -    ***nascimento***, *não-nulo e NÃO pode ser "hoje" ou qualquer outro dia depois de "hoje"*
   -    ***sexo***, *não-nulo e MASCULINO ou FEMININO*
@@ -255,23 +268,29 @@ No body da **PUT** request, devem estar os pares key-value:
 
 *EXEMPLO:*  
     
-    PUT api.tech-challenge/pessoas<br>
-    Content-Type: application/json
-    
-    {
-      "id": "6196618678884909927",
-      "nome": "Zuleica bela",
-      "nascimento": "2010-01-01",
-      "sexo": "FEMININO",
-      "parentesco": "CONJUGE"
-    }
-    
-    curl -i -X PUT --location "api.tech-challenge/pessoas" -H "Content-type:application/json" -d '{"id":"6196618678884909927", "nome":"Zuleica bela", "nascimento":"2010-01-01", "sexo":"FEMININO", "parentesco":"CONJUGE"}'
-    HTTP/1.1 200
-    Content-Type: application/json
-    Transfer-Encoding: chunked
-    
-    {"id":6196618678884909927,"nome":"Zuleica bela","nascimento":"2010-01-01","sexo":"FEMININO","parentesco":"CONJUGE"}
+        PUT api.tech-challenge/pessoas/6196618678884909927
+        Content-Type: application/json
+        
+        {
+          "nome": "Zuleica bela",
+          "nascimento": "2010-01-01",
+          "sexo": "FEMININO",
+          "parentesco": "CONJUGE"
+        }
+        
+        curl -i -X PUT --location "api.tech-challenge/pessoas/6196618678884909927" -H "Content-type:application/json" -d '{"nome":"Zuleica bela", "nascimento":"2010-01-01", "sexo":"FEMININO", "parentesco":"CONJUGE"}'
+        
+        HTTP/1.1 200 
+        Server: nginx/1.18.0
+        Content-Type: application/json
+
+        {
+          "id":6196618678884909927,
+          "nome":"Zuleica bela",
+          "nascimento":"2010-01-01",
+          "sexo":"FEMININO",
+          "parentesco":"CONJUGE"
+        }
 
 ___
 
@@ -280,14 +299,14 @@ ___
   No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja deletar: 
   -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
         
-    DELETE api.tech-challenge/pessoas/1401389624475652749
+    DELETE api.tech-challenge/pessoas/6196618678884909927
     
     curl -i -X DELETE --location "api.tech-challenge/pessoas/6196618678884909927"
-    HTTP/1.1 200
-    Content-Type: text/plain;charset=UTF-8
-    Content-Length: 46
 
-    SUCESSO: ao excluir Pessoa 6196618678884909927
+    HTTP/1.1 204
+    Server: nginx/1.18.0
+
+
 
 ___
 #### Endpoint eletrodomesticos : REQUESTS, Curls, RESPONSES
