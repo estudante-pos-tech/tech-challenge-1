@@ -40,6 +40,62 @@ ela recebe um response body que extende a **RFC 7807 - Problem Detail for Http A
 
 </div>
 
+## Desafio técnico
+<div style='text-align: justify;'>
+
+Como capturar e tratar, **num mesmo lugar**, as java exceptions internas do Spring web e as java exceptions lançadas pela camada de validação da API e pela camada de negócio ?
+Esse foi o desafio dessa fase-1, pois desejava-se padronizar as respostas de erros aos usuários da API, seguindo a **RFC 7807 Problem Details for HTTP Apis**.<br>
+<br>O desafio foi resolvido criando-se a classe [GlobalExceptionHandler](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/api/exceptionhandler/GlobalExceptionHandler.java)
+que extende da classe *ResponseEntityExceptionHandler* do próprio Spring web.
+Desta forma, foi possivel customizar o body das respostas de erro com as exceptions que o Spring web lança
+e também customizar o body das respostas de erro com as exceptions que a camanda de validação da API lança.
+<br><br>Para se ter um contraste entre uma resposta http padrão do Spring web e uma resposta da API customizada seguindo o padrão **RFC 7807 Problem Details for HTTP Apis**, veja o exemplo :<br><br>
+
+
+
+Depois de feita a request
+
+       curl -i -X POST --location "api.tech-challenge/eletrodomesticos" -H "Content-type:application/json" -d '{"nome":"eletrodomesticos", "modelo":"casa-casa"}'   
+
+<br>o Spring web responde  <br>
+
+        {
+            "type": "about:blank",
+            "title": "Bad Request",
+            "status": 400,
+            "detail": "Invalid request content.",
+            "instance": "/eletrodomesticos"
+        }
+
+
+<br>e a resposta customizada da API é <br>
+
+        {
+            "status": 400,
+            "timeStamp": "2023-06-29T20:09:47.653039425Z",
+            "type": "https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/documentation/dado-invalido",
+            "title": "Dado inválido",
+            "detail": "Um ou mais campos estão inválidos. Corrija e tente novamente.",
+            "userMessage": "Um ou mais campos estão inválidos. Corrija e tente novamente.",
+            "fields":   [
+                            {
+                                "name": "potencia",
+                                "userMessage": "A potência NÃO pode ser nula"
+                            }
+                        ]
+        }
+<br><br>
+Na resposta customizada da API, fica descrito, no campo fields, que o campo potencia não foi
+passado no body da request (ela é NOT-NULL) e essa violação foi detectada na camada de validação da API.
+<br><br>A resposta customizada da API tenta ajudar o usuário informando que um dos campos está inválido.
+Além disso, a resposta customizada da API fornece uma url de ajuda, onde há um documento com maiores
+informações de como corrigir esse tipo de erro.
+
+
+</div>
+
+
+
 ##
 ## Documentação da API
 O ***CRUD*** foi implementado seguindo o mapa : 
@@ -424,59 +480,4 @@ No path da **DELETE** request, deve estar o ***id*** do recurso que se deseja de
             curl -i -X DELETE --location "api.tech-challenge/eletrodomesticos/8393364629003825317"
             
             HTTP/1.1 204 
-
-
-## Desafio técnico
-<div style='text-align: justify;'>
-
-Como capturar e tratar, **num mesmo lugar**, as java exceptions internas do Spring web e as java exceptions lançadas pela camada de validação da API e pela camada de negócio ?
-Esse foi o desafio dessa fase-1, pois desejava-se padronizar as respostas de erros aos usuários da API, seguindo a **RFC 7807 Problem Details for HTTP Apis**.<br>
-<br>O desafio foi resolvido criando-se a classe [GlobalExceptionHandler](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/api/exceptionhandler/GlobalExceptionHandler.java) 
-que extende da classe *ResponseEntityExceptionHandler* do próprio Spring web. 
-Desta forma, foi possivel customizar o body das respostas de erro com as exceptions que o Spring web lança 
-e também customizar o body das respostas de erro com as exceptions que a camanda de validação da API lança.
-<br><br>Para se ter um contraste entre uma resposta http padrão do Spring web e uma resposta da API customizada seguindo o padrão **RFC 7807 Problem Details for HTTP Apis**, veja o exemplo :<br><br>
-
-
-
-Depois de feita a request 
-
-       curl -i -X POST --location "api.tech-challenge/eletrodomesticos" -H "Content-type:application/json" -d '{"nome":"eletrodomesticos", "modelo":"casa-casa"}'   
-  
-<br>o Spring web responde  <br>
-
-        {
-            "type": "about:blank",
-            "title": "Bad Request",
-            "status": 400,
-            "detail": "Invalid request content.",
-            "instance": "/eletrodomesticos"
-        }
-    
-
-<br>e a resposta customizada da API é <br>
-
-        {
-            "status": 400,
-            "timeStamp": "2023-06-29T20:09:47.653039425Z",
-            "type": "https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/documentation/dado-invalido",
-            "title": "Dado inválido",
-            "detail": "Um ou mais campos estão inválidos. Corrija e tente novamente.",
-            "userMessage": "Um ou mais campos estão inválidos. Corrija e tente novamente.",
-            "fields":   [
-                            {
-                                "name": "potencia",
-                                "userMessage": "A potência NÃO pode ser nula"
-                            }
-                        ]
-        }
-<br><br>
-Na resposta customizada da API, fica descrito, no campo fields, que o campo potencia não foi
-passado no body da request (ela é NOT-NULL) e essa violação foi detectada na camada de validação da API.
-<br><br>A resposta customizada da API tenta ajudar o usuário informando que um dos campos está inválido. 
-Além disso, a resposta customizada da API fornece uma url de ajuda, onde há um documento com maiores
-informações de como corrigir esse tipo de erro. 
-
-
-</div>
 
