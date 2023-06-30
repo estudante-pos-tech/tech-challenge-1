@@ -19,7 +19,7 @@ Neste projeto **tech-challenge-1**, o [**repositorio**](https://github.com/estud
 Por exemplo, a request abaixo tenta atualizar um recurso inexistente:
 <br>
 
-            PUT api.tech-challenge/eletrodomesticos/386340500511945<br>
+            PUT api.tech-challenge/eletrodomesticos/386340500511945
             Content-Type: application/json
             
             {
@@ -198,7 +198,7 @@ ___
 
 *EXEMPLO:*    
 
-         PUT api.tech-challenge/enderecos/1275424829065256685<br>
+         PUT api.tech-challenge/enderecos/1275424829065256685
          Content-Type: application/json
     
         {
@@ -285,7 +285,7 @@ ___
 
    ###### **GET ALL**<br><br>
     
-        GET api.tech-challenge/pessoas<br>
+        GET api.tech-challenge/pessoas
         
         curl -i -X GET --location "api.tech-challenge/pessoas"
         HTTP/1.1 200
@@ -296,7 +296,7 @@ ___
 
   ###### **GET BY ID**<br><br>
 
-        GET api.tech-challenge/pessoas/6196618678884909927<br>
+        GET api.tech-challenge/pessoas/6196618678884909927
         
         curl -i -X GET --location "api.tech-challenge/pessoas/5770425075213337291"
         
