@@ -2,9 +2,13 @@
 Implementação ***CRUD** Java Rest Api*.<br>
 Os endpoints são enderecos, pessoas e eletrodomesticos
 ## Relatório Técnico
+
+### Tecnologias e ferramentas utilizadas
 <div style='text-align: justify;'>
   
 Debian host, Oracle virtual machine, bash scripting, git, IDE Intellij, maven, Spring Boot, Spring MVC, Spring DevTools, Lombok, curl, Insomnia e Postman são as ferramentas e tecnologias usadas para desenvolver a api rest.
+
+### Resumo técnico. Visão panorâmica.
 <br><br>**Não está implementada persistência de dados**. Os dados que o app cria e manipula residem na memória volátil e **não são persistentes**. Estes dados ficam armazenados numa estrututura de dados java do tipo Set (conjunto). 
 <br><br>Um [**repositório**](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/domain/repository/Repositorio.java) é usado para acessar e manipular uma coleção (Set) de objetos, simulando **CRUD**. 
 <br><br>**Soluções genéricas** podem ser excelentes, quando evoluimos uma app. <br><br>
@@ -40,7 +44,7 @@ ela recebe um response body que extende a **RFC 7807 - Problem Detail for Http A
 
 </div>
 
-## Desafio técnico
+### Desafio técnico
 <div style='text-align: justify;'>
 
 Como capturar e tratar, **num mesmo lugar**, as java exceptions internas do Spring web e as java exceptions lançadas pela camada de validação da API e pela camada de negócio ?
