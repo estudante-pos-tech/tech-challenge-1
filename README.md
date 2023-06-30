@@ -108,7 +108,6 @@ O ***CRUD*** foi implementado seguindo o mapa :
 -  VERBO HTTP **DELETE** - **DELETAR**
 -  VERBO HTTP **GET** - **LISTAR**
 <br><br>
-### Requests corretas
 ___
 #### Endpoint enderecos : REQUESTS, Curls, RESPONSES
 ___
