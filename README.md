@@ -6,7 +6,7 @@ Os endpoints são enderecos, pessoas e eletrodomesticos
 ### Tecnologias e ferramentas utilizadas
 <div style='text-align: justify;'>
   
-Debian host, Oracle virtual machine, bash scripting, git, IDE Intellij, maven, Spring Boot, Spring MVC, Spring DevTools, Lombok, curl, Insomnia e Postman são as ferramentas e tecnologias usadas para desenvolver a api rest.
+Debian host, Oracle virtual machine, bash scripting, git, IDE Intellij, maven, Spring Boot, Spring MVC, Spring DevTools, Lombok, [model mapper](https://modelmapper.org/), curl, Insomnia e Postman são as ferramentas e tecnologias usadas para desenvolver a api rest.
 
 ### Resumo técnico. Visão panorâmica.
 **Não está implementada persistência de dados**. Os dados que o app cria e manipula residem na memória volátil e **não são persistentes**. Estes dados ficam armazenados numa estrututura de dados java do tipo Set (conjunto). 
