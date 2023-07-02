@@ -96,10 +96,10 @@ passado no body da request (ela é NOT-NULL) e essa violação foi detectada na 
 Além disso, a resposta customizada da API fornece uma url de ajuda, onde há um documento com maiores
 informações de como corrigir esse tipo de erro.
 
-<br><br>**Outro** desaio foi o de migrar TOTALMENTE as mensagens 
-das violações das restrições para **Resource Bundles**. 
-<br><br>As mensagens foram colocadas, num primeiro momento, nos atributos message das annotations Bean Validations.
-<br><br>As mensagens de erro ficaram totalmente repetitivas. Para reduzir essas duplicações, foi criado o **messages.properties** resource bundle que resolveu parcialmente este desafio.
+<br><br>**Outro** desafio foi o de migrar TOTALMENTE as mensagens 
+das validações para **Resource Bundles**. 
+<br><br>As mensagens foram colocadas, num primeiro momento, nos atributos message das annotations Bean Validations. Ali, as mensagens de erro ficaram repetitivas, duplicadas.
+<br>Para reduzir essas duplicações, foi criado o **messages.properties** resource bundle que resolveu parcialmente este desafio.
 <br><br>Ficou muito simples gerar mensagens de erros de validação para o tipo @NotBlank, porque as mensagens para essa constraint só carecem de apenas **1 place-holder**.<br>
 Porém, para a constraint @Size, cujas mensagens necessitam de **2 place-holders**, ainda não se teve sucesso... 
 
