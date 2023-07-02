@@ -22,6 +22,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import rm349040.techchallenge1.domain.exception.EntityNotFoundException;
+import rm349040.techchallenge1.domain.exception.NullException;
 
 import java.time.Instant;
 import java.util.List;
@@ -213,9 +214,22 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ApiError apiError = newApiErrorBuilder(status, ErrorType.RESOURCE_NOT_FOUND, detail)
                 .build();
 
-        return handleExceptionInternal(ex, apiError, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+        return handleExceptionInternal(ex, apiError, new HttpHeaders(), status, request);
     }
 
+
+    @ExceptionHandler(NullException.class)
+    public ResponseEntity<Object> handleNullException(NullException ex, WebRequest request){
+
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        String detail = ex.getMessage();
+
+        ApiError apiError = newApiErrorBuilder(status, ErrorType.INVALID_DATA, detail)
+                .build();
+
+        return handleExceptionInternal(ex, apiError, new HttpHeaders(), status, request);
+
+    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleExceptionGlobal(Exception ex, WebRequest request) {
