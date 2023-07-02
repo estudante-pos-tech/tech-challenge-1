@@ -45,12 +45,12 @@ ela recebe um response body que extende a **RFC 7807 - Problem Detail for Http A
 
 </div>
 
-### Desafio técnico
+### Desafios técnicos
 <div style='text-align: justify;'>
 
 Como capturar e tratar, **num mesmo lugar**, as java exceptions internas do Spring web, as java exceptions lançadas pela camada de validação da API e as exceptions lançadas pela camada de negócio ?
-Esse foi o desafio dessa fase-1, pois desejava-se padronizar as respostas de erros aos usuários da API, seguindo a **RFC 7807 Problem Details for HTTP Apis**.<br>
-<br>O desafio foi resolvido criando-se a classe [GlobalExceptionHandler](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/api/exceptionhandler/GlobalExceptionHandler.java)
+Esse foi o **maior** desafio dessa fase-1, pois desejava-se padronizar as respostas de erros aos usuários da API, seguindo a **RFC 7807 Problem Details for HTTP Apis**.<br>
+<br>Este desafio foi resolvido criando-se a classe [GlobalExceptionHandler](https://github.com/estudante-pos-tech/tech-challenge-1/blob/master/src/main/java/rm349040/techchallenge1/api/exceptionhandler/GlobalExceptionHandler.java)
 que extende da classe *ResponseEntityExceptionHandler* do próprio Spring web.
 Desta forma, foi possivel customizar o body das respostas de erro com as exceptions que o Spring web lança
 e também customizar o body das respostas de erro com as exceptions que a camanda de validação da API lança, juntamente com as exceptions que a camada de negócio lança.
@@ -95,6 +95,13 @@ passado no body da request (ela é NOT-NULL) e essa violação foi detectada na 
 <br><br>A resposta customizada da API tenta ajudar o usuário informando que um dos campos está inválido.
 Além disso, a resposta customizada da API fornece uma url de ajuda, onde há um documento com maiores
 informações de como corrigir esse tipo de erro.
+
+<br><br>**Outro** desaio foi o de migrar TOTALMENTE as mensagens 
+das violações das restrições para **Resource Bundles**. 
+<br><br>As mensagens foram colocadas, num primeiro momento, nos atributos message das annotations Bean Validations.
+<br><br>As mensagens de erro ficaram totalmente repetitivas. Para reduzir essas duplicações, foi criado o **messages.properties** resource bundle que resolveu parcialmente este desafio.
+<br><br>Ficou muito simples gerar mensagens de erros de validação para o tipo @NotBlank, porque as mensagens para essa constraint só carecem de apenas **1 place-holder**.<br>
+Porém, para a constraint @Size, cujas mensagens necessitam de **2 place-holders**, ainda não se teve sucesso... 
 
 
 </div>
