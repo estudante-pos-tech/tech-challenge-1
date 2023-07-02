@@ -48,7 +48,7 @@ public abstract class CadastroService<T extends BASE> {
         }
 
         if( atual.getId() == null){
-            throw new IdNullException(("O id "+getType()+" não pode ser nulo."));
+            throw new IdNullException(("O id do(a) "+getType()+" não pode ser nulo."));
         }
 
         T t = repositorio.
