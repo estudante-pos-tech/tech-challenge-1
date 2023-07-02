@@ -116,6 +116,12 @@ O ***CRUD*** foi implementado seguindo o mapa :
 -  VERBO HTTP **DELETE** - **DELETAR**
 -  VERBO HTTP **GET** - **LISTAR**
 <br><br>
+
+**OBSERVAÇÃO**: No ambiente em que este projeto foi desenvolvido, para o host http://localhost:8080 foi dado um nome mais legal :  **api.tech-challenge**
+<br>Nas urls dos exemplos curls da documentação da api, por exemplo, aparece **api.tech-challenge/eletrodomesticos** ao invés de http://localhost:8080/eletrodomesticos
+<br>Se for rodar os exemplos curls, substitua o nome do servidor **api.tech-challenge** pelo local onde está rodando seu servidor.
+
+<br><br>
 ___
 #### Endpoint enderecos : REQUESTS, Curls, RESPONSES
 ___
@@ -193,7 +199,7 @@ ___
 
 ##### **PUT**<br><br>
 
-  Na url da **PUT** request deve estar o id do recurso
+  Na url da **PUT** request deve estar o id do recurso que se deseja atualizar
   -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
   
   No body da **PUT** request, devem estar os pares key-value: 
@@ -324,7 +330,7 @@ ___
 ___
 
   ##### **PUT**<br><br>
-Na url da **PUT** request deve estar o id do recurso
+Na url da **PUT** request deve estar o id do recurso que se deseja atualizar
 -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
 
 No body da **PUT** request, devem estar os pares key-value: 
@@ -447,7 +453,7 @@ ___
 
 ##### **PUT**<br><br>
 
-Na url da **PUT** request deve estar o id do recurso
+Na url da **PUT** request deve estar o id do recurso que se deseja atualizar
 -    ***id*** , *não-nulo e no range [ Long.MIN_VALUE, Long.MAX_VALUE ]*
 
 No body da **PUT** request, devem estar os pares key-value:
