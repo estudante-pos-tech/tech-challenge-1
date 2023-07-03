@@ -312,7 +312,7 @@ ___
 
         GET api.tech-challenge/pessoas/6196618678884909927
         
-        curl -i -X GET --location "api.tech-challenge/pessoas/5770425075213337291"
+        curl -i -X GET --location "api.tech-challenge/pessoas/6196618678884909927"
         
         HTTP/1.1 200
         Server: nginx/1.18.0
