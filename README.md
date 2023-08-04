@@ -1,4 +1,4 @@
-# tech-challenge-1 
+# tech-challenge-1 (14MB)
 Implementação ***CRUD** Java Rest Api*.<br>
 Os endpoints são enderecos, pessoas e eletrodomesticos
 ## Relatório Técnico
